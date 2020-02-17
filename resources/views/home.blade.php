@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     @if(session('success'))
         <div class="alert alert-success">
@@ -26,7 +25,7 @@
                     <td><a href={{route('medico.index')}}><big><strong>Medicos</strong></big></a></td>
                 </div>
                 <div>
-                    <td><a href={{route('medico.create')}}><big><strong>Crear Medico</strong></big></a></td>
+                    <td><a href={{url('/medico/create')}}><big><strong>Crear Medico</strong></big></a></td>
                 </div>
 
             </div>

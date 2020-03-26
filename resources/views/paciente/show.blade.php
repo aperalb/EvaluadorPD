@@ -13,7 +13,6 @@
                                 <td colspan="10">Datos personales del paciente</td>
                             </tr>
                             <td>Nombre</td>
-                            <td> Apellidos</td>
                             <td>Sexo</td>
                             <td>NUHSA</td>
                             <td>Fecha de nacimiento</td>
@@ -22,7 +21,6 @@
                             <td>Observaciones</td>
                             </tr>
                             <tr>
-                                <td>{{ $paciente->nombre }}</td>
                                 <td>{{ $paciente->getFullsurnameAttribute() }}</td>
                                 <td>{{ $paciente->sexo }}</td>
                                 <td>{{ $paciente->nuhsa }}</td>
@@ -32,17 +30,33 @@
                                 <td>{{$paciente->observaciones}}</td>
                             </tr>
                         </table>
-                        <div></div>
-                        <table class="table table-striped table-bordered">
+
+                        <table class="table table-striped ">
                             <tr>
                                 <td>
-                                    <a href={{url('/responsable/?id='.$paciente->id)}} class="btn btn-info">Ver Responsables</a>
+                                    {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
+                                    {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                    {!! Form::close() !!}
                                 </td>
-                                <td>Añadir responsable</td>
+                                <td>
+                                    {!! Form::open(['route' => ['paciente.destroy',$paciente->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
+                                    {!! Form::close() !!}
+                                </td>
+                                <td>
+                                    <a href={{url('/responsable/?id='.$paciente->id)}} class="btn btn-info">Ver Responsables</a>
+                                    <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir</a>
+                                </td>
                             </tr>
                         </table>
 
-                        <div></div>
+                        <div>
+                            <td>
+                                {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
+                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                {!! Form::close() !!}
+                            </td>
+                        </div>
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <td colspan="10">Datos cuantitativos</td>

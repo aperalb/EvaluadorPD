@@ -27,6 +27,8 @@ Route::get('/medico/create', function(){return view('medico.create');});
 Route::resource('/paciente', 'PacienteController');
 Route::get('/paciente/index', function(){return view('paciente.index');});
 Route::get('/paciente/show', function(){return view('paciente.show');});
+Route::get('/paciente/edit', function(){return view('paciente.edit');});
+
 /*RESPONSABLES*/
 Route::resource('/responsable', 'ResponsableController');
 

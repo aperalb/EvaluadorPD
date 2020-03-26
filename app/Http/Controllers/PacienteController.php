@@ -66,7 +66,10 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paciente  = Paciente::find($id);
+        return view('paciente/edit', ['paciente'=>$paciente] );
+
+
     }
 
     /**
@@ -78,7 +81,10 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        $paciente->fill($request->all());
+        $paciente->save();
+        return redirect()->route('paciente.index');
     }
 
     /**
@@ -87,8 +93,13 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        dd($id);
+        $paciente = Paciente::find($id);
+        $paciente->delete();
+        return redirect()->route('paciente.index');
     }
+
 }

@@ -17,12 +17,11 @@
                         <br><br>
                         <table class="table table-striped table-bordered" >
                             <tr>
-                                <th colspan="7">Nombre Tabla</th>
+                                <th colspan="6">Nombre Tabla</th>
                             </tr>
 
                             <tr>
                                 <th>Nombre</th>
-                                <th>Apellidos</th>
                                 <th>Edad</th>
                                 <th>NUHSA</th>
                                 <th>Ver detalle</th>
@@ -31,7 +30,6 @@
                             </tr>
                             @foreach ($pacientes as $paciente)
                                 <tr>
-                                    <td>{{ $paciente->nombre }}</td>
                                     <td>{{ $paciente->getFullsurnameAttribute() }}</td>
                                     <td>{{ $paciente->getAgeAttribute() }}</td>
                                     <td>{{ $paciente->nuhsa}}</td>

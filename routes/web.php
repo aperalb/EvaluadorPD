@@ -30,7 +30,9 @@ Route::get('/paciente/show', function(){return view('paciente.show');});
 Route::get('/paciente/edit', function(){return view('paciente.edit');});
 
 /*RESPONSABLES*/
+Route::get('/responsable/delete', 'ResponsableController@delete');
+Route::get('/responsable/editar', 'ResponsableController@editar');
+Route::get('/responsable/index/{id}', 'ResponsableController@index');
 Route::resource('/responsable', 'ResponsableController');
-
 
 });

@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
 @section('content')
     <div class="container">
         <div class="row">
@@ -21,25 +27,25 @@
                                     <td>{{ $responsable->numerotel }}</td>
                                     <td>{{ $responsable->direccion}}</td>
                                     <td>
-                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
+                                        <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a>
                                     </td>
+                                    {{--<td>--}}
+                                        {{--{!! Form::open(['route' => ['responsable.destroy',$responsable->id], 'method' => 'delete']) !!}--}}
+                                        {{--{!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}--}}
+                                        {{--{!! Form::close() !!}--}}
+                                    {{--</td>--}}
                                     <td>
-                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
+                                        <a href={{url('/responsable/delete/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Eliminar</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
+
                         <td>
-                            <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir</a>
+                            <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Crear Responsable</a>
                         </td>
 
-                        {{--<td>--}}
-                            {{--<a href={{url('/responsable/?id='.$paciente->id)}} class="btn btn-info">Responsables</a>--}}
-                        {{--</td>--}}
+
                     </div>
                 </div>
             </div>

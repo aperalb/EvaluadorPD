@@ -6,10 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Introduzca los datos del Nuevo Responsable</div>
-                <div>
 
-                            {{--<td>{{$paciente['1']}}</td>--}}
-                </div>
             </div>
             <div class="panel-body">
                 {!! Form::open(['route' => 'responsable.store', 'class'=>'form-inline']) !!}

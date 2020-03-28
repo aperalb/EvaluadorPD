@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
 @section('content')
     <div class="container">
         <div class="row">
@@ -45,7 +51,7 @@
                                     </td>
 
                                     <td>
-                                    <a href={{url('/responsable/?id='.$paciente->id)}} class="btn btn-info">Responsables</a>
+                                    <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
                                     </td>
 
                                 </tr>

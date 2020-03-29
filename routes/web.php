@@ -29,10 +29,14 @@ Route::get('/paciente/index', function(){return view('paciente.index');});
 Route::get('/paciente/show', function(){return view('paciente.show');});
 Route::get('/paciente/edit', function(){return view('paciente.edit');});
 
-/*RESPONSABLES*/
+/*RESPONSABLE*/
 Route::get('/responsable/delete', 'ResponsableController@delete');
 Route::get('/responsable/editar', 'ResponsableController@editar');
 Route::get('/responsable/index/{id}', 'ResponsableController@index');
 Route::resource('/responsable', 'ResponsableController');
+
+/*TRATAMIENTO*/
+Route::get('/tratamiento/index/{id}', 'TratamientoController@index');
+Route::resource('/tratamiento', 'TratamientoController');
 
 });

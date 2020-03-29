@@ -19,7 +19,7 @@ class CreateRespuestasTable extends Migration
             $table->string('valor');
             $table->string('respuestaposible');
             $table->string('tipopregunta');
-            $table->string('enunciado');
+            $table->text('enunciado');
             /**Constraints*/
             $table->unsignedBigInteger('pregunta_id');
             $table->foreign('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');

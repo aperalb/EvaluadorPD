@@ -9,9 +9,11 @@ class Tratamiento extends Model
     protected $fillable = [
         'medicamento',
         'dosis',
+        'frecuencia',
         'fechainicio',
         'fechafin',
         'detalles',
+        'paciente_id',
 
     ];
 

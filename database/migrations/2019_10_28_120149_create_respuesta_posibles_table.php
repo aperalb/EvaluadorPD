@@ -15,7 +15,7 @@ class CreateRespuestaPosiblesTable extends Migration
     {
         Schema::create('respuesta_posibles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('enunciado');
+            $table->text('enunciado');
             $table->unsignedBigInteger('pregunta_id');
             $table->foreign('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');
 

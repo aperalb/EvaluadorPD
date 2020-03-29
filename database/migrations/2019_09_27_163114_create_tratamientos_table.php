@@ -17,10 +17,11 @@ class CreateTratamientosTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('medicamento');
-            $table->string('dosis');
+            $table->double('dosis');
+            $table->integer('frecuencia');
             $table->date('fechainicio');
             $table->date('fechafin');
-            $table->string('detalles');
+            $table->text('detalles');
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');

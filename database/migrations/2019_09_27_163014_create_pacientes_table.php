@@ -24,7 +24,7 @@ class CreatePacientesTable extends Migration
             $table->date('fechanac');
             $table->string('numerotel');
             $table->date('fechainiciopd');
-            $table->string('observaciones');
+            $table->text('observaciones');
 
         });
     }

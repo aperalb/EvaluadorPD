@@ -17,8 +17,8 @@ class CreateFormulariosTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->double('descripcion');
-            $table->double('instrucción');
+            $table->text('descripcion');
+            $table->text('instrucción');
             /**Constraints*/
 
         });

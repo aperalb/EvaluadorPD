@@ -12,6 +12,13 @@
                             <tr>
                                 <td colspan="10">Datos personales del paciente</td>
                             </tr>
+                            <tr>
+                                <td colspan="7">Datos personales del paciente</td>
+                                <td colspan="1">
+                                    <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-info">Tratamientos</a>
+                                </td>
+
+                            </tr>
                             <td>Nombre</td>
                             <td>Sexo</td>
                             <td>NUHSA</td>
@@ -44,8 +51,11 @@
                                     {!! Form::close() !!}
                                 </td>
                                 <td>
-                                    <a href={{url('/responsable/?id='.$paciente->id)}} class="btn btn-info">Ver Responsables</a>
+                                <td>
+                                    <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
                                     <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir</a>
+                                </td>
+
                                 </td>
                             </tr>
                         </table>

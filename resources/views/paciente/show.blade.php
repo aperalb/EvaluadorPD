@@ -13,9 +13,11 @@
                                 <td colspan="10">Datos personales del paciente</td>
                             </tr>
                             <tr>
-                                <td colspan="7">Datos personales del paciente</td>
-                                <td colspan="1">
+                                <td colspan="6">Datos personales del paciente</td>
+                                <td>
                                     <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-info">Tratamientos</a>
+                                    <br/>
+                                    <a href={{url('/sintoma/index/'.$paciente->id)}} class="btn btn-info">Sintomas</a>
                                 </td>
 
                             </tr>

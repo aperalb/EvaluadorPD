@@ -28,7 +28,7 @@ class Paciente extends Model
     }
     //Un paciente presenta N sintomas
     public function sintomas(){
-        return $this->hasMany('App\Sintomas');
+        return $this->hasMany('App\Sintoma');
     }
     //Un paciente presenta N tratamientos
     public function tratamientos(){

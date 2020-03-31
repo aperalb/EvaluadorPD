@@ -9,55 +9,25 @@
 
                 </div>
                 <div class="panel-body">
-                    {!! Form::model($tratamiento, [ 'route' => ['tratamiento.update',$tratamiento->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+                    {!! Form::model($sintoma, [ 'route' => ['sintoma.update',$sintoma->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
                     <table id="datosPersonales" width="600" >
                         <tr>
                             <div class="form-group">
                                 <td width="500" >
-                                    {!! Form::label('medicamento', 'Medicamento ') !!}
+                                    {!! Form::label('nombre', 'Sintoma ') !!}
                                 </td>
                                 <td width="500">
-                                    {!! Form::text('medicamento',$tratamiento->medicamento,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    {!! Form::select('nombre', array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores')),array_search($sintoma->nombre,array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores'))),['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
                             </div>
                         </tr>
                         <tr>
                             <div class="form-group">
                                 <td width="500" >
-                                    {!! Form::label('dosis', 'Dosis ') !!}
+                                    {!! Form::label('descripcion', 'descripcion ') !!}
                                 </td>
                                 <td width="500">
-                                    {!! Form::text('dosis',$tratamiento->dosis,['class'=>'form-control', 'required', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('frecuencia', 'Frecuencia diaria ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('frecuencia',$tratamiento->frecuencia,['class'=>'form-control', 'required', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('fechainicio', 'Fecha de Inicio ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::date('fechainicio',$tratamiento->fechainicio,['class'=>'form-control', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('fechafin', 'Fecha de Fin ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::date('fechafin',$tratamiento->fechafin,['class'=>'form-control', 'autofocus']) !!}
+                                    {!! Form::text('descripcion',$sintoma->descripcion,['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
                             </div>
                         </tr>
@@ -67,12 +37,10 @@
                                     {!! Form::label('detalles', 'Detalles ') !!}
                                 </td>
                                 <td width="500">
-                                    {!! Form::textarea('detalles',$tratamiento->detalles,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    {!! Form::text('detalles',$sintoma->detalles,['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
                             </div>
                         </tr>
-
-
                         <tr>
                             {{  Form::hidden('url',URL::previous())  }}
                         </tr>

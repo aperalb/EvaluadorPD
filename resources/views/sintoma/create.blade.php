@@ -15,7 +15,7 @@
                             {!! Form::label('nombre', 'Nombre') !!}
                         </td>
                         <td width="500">
-                            {!! Form::select('nombre', config('enumSintomas'),['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::select('nombre', array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores')),['class'=>'form-control', 'required', 'autofocus']) !!}
                         </td>
                     </div>
                     <tr>

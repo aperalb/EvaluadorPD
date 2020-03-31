@@ -48,17 +48,17 @@ class SintomaController extends Controller
         /** Creamos el nuevo paciente*/
         $sintoma = new Sintoma();
         $idSintoma=$request->get('nombre');
-        $valorSintoma=array_values(config('enumSintomas.Motores'))[$idSintoma];
+        $valorSintoma=array_values(array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores')))[$idSintoma];
 
 
 
-        if (array_values(config('enumSintomas.Motores'))[$idSintoma]){
+        if (in_array($valorSintoma,array_values(config('enumSintomas.Motores')))){
 
-            $categoriasintoma="motores";
+            $categoriasintoma="Motores";
         }
         else{
 
-            $categoriasintoma="nomotores";
+            $categoriasintoma="No motor";
         }
         $sintoma->nombre=$valorSintoma;
         $sintoma->categoriasintoma=$categoriasintoma;
@@ -91,7 +91,8 @@ class SintomaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sintoma  = Sintoma::find($id);
+        return view('sintoma/edit', ['sintoma'=>$sintoma] );
     }
 
     /**
@@ -103,7 +104,11 @@ class SintomaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sintoma = Tratamiento::find($id);
+        $sintoma->fill($request->all());
+        $sintoma->save();
+        $url=$request->input('url');
+        return redirect($url)->with('success', 'Sintoma editado con éxito.');
     }
 
     /**
@@ -114,6 +119,9 @@ class SintomaController extends Controller
      */
     public function destroy($id)
     {
+        $sintoma = Sintoma::find($id);
+        $sintoma->delete();
+        return redirect()->back();
         //
     }
 }

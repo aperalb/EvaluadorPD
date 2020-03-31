@@ -29,14 +29,10 @@
                                     <td>{{ $sintoma->detalles}}</td>
                                     <td>{{ $sintoma->categoriasintoma}}</td>
                                     <td>
-                                        {!! Form::open(['route' => ['sintoma.show',$sintoma->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
                                         {!! Form::open(['route' => ['sintoma.edit',$sintoma->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}                                    </td>
+                                        {!! Form::close() !!}
+                                    </td>
                                     <td>
                                         {!! Form::open(['route' => ['sintoma.destroy',$sintoma->id], 'method' => 'delete']) !!}
                                         {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}

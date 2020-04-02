@@ -43,5 +43,10 @@ Route::resource('/tratamiento', 'TratamientoController');
 Route::get('/sintoma/index/{id}', 'SintomaController@index');
 Route::resource('/sintoma', 'SintomaController');
 
+/*EVALUACION*/
+Route::get('/evaluacion/index/{id}', 'EvaluacionController@index');
+Route::resource('/evaluacion', 'EvaluacionController');
+
+
 
 });

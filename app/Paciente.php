@@ -35,7 +35,7 @@ class Paciente extends Model
         return $this->hasMany('App\Tratamiento');
     }
     //Un paciente tiene N evaluaciones
-    public function evaluacion(){
+    public function evaluaciones(){
         return $this->hasMany('App\Evaluacion');
     }
 

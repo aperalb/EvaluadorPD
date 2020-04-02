@@ -64,9 +64,7 @@
 
                         <div>
                             <td>
-                                {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
-                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                {!! Form::close() !!}
+                                <a href={{url('/evaluacion/index/'.$paciente->id)}} class="btn btn-info">Evaluaciones</a>
                             </td>
                         </div>
                         <table class="table table-striped table-bordered">

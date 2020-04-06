@@ -12,12 +12,19 @@ class Responsable extends Model
         'apellido2',
         'numerotel',
         'direccion',
+        'fotografia',
     ];
 
     //Relaciones
     //Un responsable tiene N pacientes
     public function pacientes(){
         return $this->belongsToMany('App\Paciente');
+    }
+
+    public function getParentesco($pacienteID,$responsable){
+
+        $parentesco=DB::select('select parentesco from paciente_responsable where paciente_id = ? AND responsable_id=', [$pacienteID,$responsable->id]);
+        return $parentesco;
     }
 
     public function getFullsurnameAttribute()

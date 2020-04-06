@@ -10,7 +10,7 @@ class Formulario extends Model
         'nombre',
         'descripcion',
         'instrucción',
-        'puntuacionglobal',
+        'max',
     ];
 
     public function evaluacions()

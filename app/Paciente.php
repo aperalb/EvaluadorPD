@@ -10,6 +10,7 @@ class Paciente extends Model
         'nombre',
         'apellido1',
         'apellido2',
+        'fotografia',
         'sexo',
         'nuhsa',
         'fechanac',

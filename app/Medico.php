@@ -12,6 +12,7 @@ class Medico extends Model
         'consulta',
         'numerotel',
         'especialidad',
+        'fotografia',
     ];
 
 
@@ -32,7 +33,8 @@ class Medico extends Model
     }
     //El medico tiene N pacientes
     public function pacientes(){
-        return $this->belongToMany('App\Paciente');
+
+        return $this->belongsToMany('App\Paciente');
     }
 
 }

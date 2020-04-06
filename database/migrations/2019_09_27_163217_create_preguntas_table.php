@@ -17,7 +17,7 @@ class CreatePreguntasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('titulo');
-            $table->text('enunciado');
+            $table->text('enunciado')->nullable();;
             $table->string('tipopregunta');
             /**Constraints*/
             $table->unsignedBigInteger('formulario_id');

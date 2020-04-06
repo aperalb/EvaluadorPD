@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Responsable;
 use App\Paciente;
+use App\Medico;
 use App\Tratamiento;
+use Redirect;
 
 class TratamientoController extends Controller
 {
@@ -19,7 +22,6 @@ class TratamientoController extends Controller
         $tratamientos = $paciente->tratamientos;
         return view('tratamiento.index', ['tratamientos'=>$tratamientos, 'paciente'=>$paciente]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -28,8 +30,10 @@ class TratamientoController extends Controller
     public function create(Request $request)
     {
         $pacienteID = $request->get('pacienteID');
+
         return view('tratamiento/create', ['pacienteID'=>$pacienteID]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,24 +43,26 @@ class TratamientoController extends Controller
      */
     public function store(Request $request)
     {
-        $pacienteID=$request->get('pacienteID');
-        $paciente = Paciente::find($pacienteID);
+
+
+        $id=$request->get('pacienteID');
+        $paciente = Paciente::find($id);
         $this->validate($request, []);
 
-        /** Creamos el nuevo tratamiento*/
-        $tratamiento = Tratamiento::create([
-            'medicamento' => $request->get('medicamento'),
-            'dosis' => $request->get('dosis'),
-            'frecuencia' => $request->get('frecuencia'),
-            'fechainicio' => $request->get('fechainicio'),
-            'fechafin' => $request->get('fechafin'),
-            'detalles' => $request->get('detalles'),
-            'paciente_id' => $pacienteID
-        ]);
+        /** Creamos el nuevo paciente*/
+        $tratamiento = new Tratamiento();
+        $tratamiento->medicamento=$request->get('medicamento');
+        $tratamiento->dosis=$request->get('dosis');
+        $tratamiento->frecuencia=$request->get('frecuencia');
+        $tratamiento->fechainicio = $request->get('fechainicio');
+        $tratamiento->fechafin = $request->get('fechafin');
+        $tratamiento->detalles = $request->get('detalles');
+        $tratamiento->paciente_id = $id;
         $tratamiento->save();
 
-        return redirect('tratamiento/index/'.$pacienteID)->with('success', 'Elemento agregado correctamente');
-
+        /** Sacamos mensaje flash */
+        /** Volvemos al índice de los Pacientes*/
+        return redirect('tratamiento/index/'.$id)->with('success', 'Elemento agregado correctamente');
     }
 
     /**
@@ -82,7 +88,8 @@ class TratamientoController extends Controller
     public function edit($id)
     {
         $tratamiento  = Tratamiento::find($id);
-        return view('tratamiento/edit', ['tratamiento'=>$tratamiento] );
+
+        return view('tratamiento/edit', ['tratamiento'=>$tratamiento]);
     }
 
     /**
@@ -98,7 +105,8 @@ class TratamientoController extends Controller
         $tratamiento->fill($request->all());
         $tratamiento->save();
         $url=$request->input('url');
-        return redirect($url)->with('success', 'Tratamiento editado con éxito.');    }
+        return redirect($url)->with('success', 'Tratamiento editado con éxito.');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -112,5 +120,10 @@ class TratamientoController extends Controller
         $tratamiento->delete();
         return redirect()->back();
         //
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }

@@ -31,6 +31,7 @@ class ResponsableController extends Controller
     public function create(Request $request)
     {
         $pacienteID = $request->get('pacienteID');
+
         return view('responsable/create', ['pacienteID'=>$pacienteID]);
     }
 
@@ -38,26 +39,25 @@ class ResponsableController extends Controller
     public function store(Request $request)
     {
 
-        $pacienteID=$request->get('pacienteID');
+
+        $id=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
-        $paciente = Paciente::find($pacienteID);
+        $paciente = Paciente::find($id);
         $this->validate($request, []);
 
         /** Creamos el nuevo paciente*/
-        $responsable = Responsable::create([
-            'nombre' => $request->get('nombre'),
-            'apellido1' => $request->get('apellido1'),
-            'apellido2' => $request->get('apellido2'),
-            'numerotel' => $request->get('numerotel'),
-            'direccion' => $request->get('direccion')
-            ]);
+        $responsable = new Responsable();
+        $responsable->nombre=$request->get('nombre');
+        $responsable->apellido1=$request->get('apellido1');
+        $responsable->apellido2 = $request->get('apellido2');
+        $responsable->numerotel = $request->get('numerotel');
+        $responsable->direccion = $request->get('direccion');
         $responsable->save();
-        $responsable->pacientes()->attach($pacienteID, ['parentesco' => $parentesco]);
-//        $responsable->pacientes()->attach($pacienteID);
+        $responsable->pacientes()->attach($paciente ->id,["parentesco"=>$parentesco]);
 
         /** Sacamos mensaje flash */
         /** Volvemos al índice de los Pacientes*/
-        return redirect('responsable/index/'.$pacienteID)->with('success', 'Elemento agregado correctamente');
+        return redirect('responsable/index/'.$id)->with('success', 'Elemento agregado correctamente');
     }
 
     /**
@@ -78,14 +78,6 @@ class ResponsableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $responsable  = Responsable::find($id);
-
-        return view('responsable/edit', ['responsable'=>$responsable] );
-
-    }
-
     public function editar(Request $request)
     {
         $idResponsable=$request->get('responsableID');
@@ -96,6 +88,7 @@ class ResponsableController extends Controller
         return view('responsable/edit', ['responsable'=>$responsable,'parentesco'=>$parentesco,'pacienteID'=>$pacienteID] );
 
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -112,7 +105,7 @@ class ResponsableController extends Controller
         $responsable->fill($request->all());
         $responsable->save();
         $responsable->pacientes()->updateExistingPivot($pacienteID,["parentesco"=>$parentesco]);
-        return redirect('responsable/index/'.$pacienteID)->with('success', 'Elemento editado correctamente');
+        return redirect()->route('paciente.index');
     }
 
     /**

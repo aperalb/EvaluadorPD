@@ -17,9 +17,9 @@ class CreateEvaluacionsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->date('fechafin');
-            $table->double('altura');
-            $table->double('peso');
-            $table->double('puntuacionglobal');
+            $table->double('altura')->nullable();;
+            $table->double('peso')->nullable();;
+            $table->double('puntuacionglobal')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');

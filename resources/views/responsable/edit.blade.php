@@ -6,6 +6,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Editar Responsable</div>
+                    <div>
+
+                        {{--<td>{{$paciente['1']}}</td>--}}
+                    </div>
                 </div>
                 <div class="panel-body">
                     {!! Form::model($responsable, [ 'route' => ['responsable.update',$responsable->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}

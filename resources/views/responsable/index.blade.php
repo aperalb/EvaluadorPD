@@ -29,13 +29,8 @@
                                     <td>
                                         <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a>
                                     </td>
-                                    {{--<td>--}}
-                                        {{--{!! Form::open(['route' => ['responsable.destroy',$responsable->id], 'method' => 'delete']) !!}--}}
-                                        {{--{!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}--}}
-                                        {{--{!! Form::close() !!}--}}
-                                    {{--</td>--}}
                                     <td>
-                                        <a href={{url('/responsable/delete/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Eliminar</a>
+                                        <a href={{url('/responsable/delete/?responsableID='.$responsable->id.'&&pacienteID='.$paciente->id )}} class="btn btn-info">Eliminar</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -18,7 +18,8 @@ class CreateFormulariosTable extends Migration
             $table->timestamps();
             $table->string('nombre');
             $table->text('descripcion');
-            $table->text('instrucción');
+            $table->text('instruccion')->nullable();
+            $table->double('max');
             /**Constraints*/
 
         });

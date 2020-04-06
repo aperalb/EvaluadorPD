@@ -3,70 +3,86 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div >
                 <div class="panel panel-default">
-                    <div class="panel-heading">Pacientes</div>
-
                     <div class="panel-body">
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <td colspan="10">Datos personales del paciente</td>
-                            </tr>
-                            <tr>
-                                <td colspan="6">Datos personales del paciente</td>
-                                <td>
-                                    <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-info">Tratamientos</a>
-                                    <br/>
-                                    <a href={{url('/sintoma/index/'.$paciente->id)}} class="btn btn-info">Sintomas</a>
-                                </td>
+                        <div class="floatLeft">
 
-                            </tr>
-                            <td>Nombre</td>
-                            <td>Sexo</td>
-                            <td>NUHSA</td>
-                            <td>Fecha de nacimiento</td>
-                            <td>Contacto</td>
-                            <td>Año de inicio PD</td>
-                            <td>Observaciones</td>
-                            </tr>
-                            <tr>
-                                <td>{{ $paciente->getFullsurnameAttribute() }}</td>
-                                <td>{{ $paciente->sexo }}</td>
-                                <td>{{ $paciente->nuhsa }}</td>
-                                <td>{{ $paciente->fechanac }}</td>
-                                <td>{{ $paciente->numerotel }}</td>
-                                <td>{{ $paciente->getAgeInitPD() }}</td>
-                                <td>{{$paciente->observaciones}}</td>
-                            </tr>
-                        </table>
+                            <h4>Datos personales del paciente</h4>
+                            <table class="table table-striped table-bordered">
 
-                        <table class="table table-striped ">
-                            <tr>
-                                <td>
-                                    {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
-                                    {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                    {!! Form::close() !!}
-                                </td>
-                                <td>
-                                    {!! Form::open(['route' => ['paciente.destroy',$paciente->id], 'method' => 'delete']) !!}
-                                    {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
-                                    {!! Form::close() !!}
-                                </td>
-                                <td>
-                                <td>
-                                    <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
-                                    <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir</a>
-                                </td>
 
-                                </td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <td>{{ $paciente->getFullsurnameAttribute() }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Sexo</th>
+                                    <td>{{ $paciente->sexo }}</td>
+                                </tr>
+                                <tr>
+                                    <th>NUHSA</th>
+                                    <td>{{ $paciente->nuhsa }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de nacimiento</th>
+                                    <td>{{ $paciente->fechanac }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contacto</th>
+                                    <td>{{ $paciente->numerotel }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Año de inicio PD</th>
+                                    <td>{{ $paciente->getAgeInitPD() }}</td>
+                                </tr>
 
-                        <div>
-                            <td>
+                            </table>
+                            <div>
+                                <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-info">Tratamientos</a>
+                                <a href={{url('/sintoma/index/'.$paciente->id)}} class="btn btn-info">Síntomas</a>
                                 <a href={{url('/evaluacion/index/'.$paciente->id)}} class="btn btn-info">Evaluaciones</a>
-                            </td>
+                                <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
+                            </div>
+                            <br>
+                            <div>
+                                <h4>Observaciones</h4>
+                                <a>  <pre><textarea readonly cols="80" rows="10">{{$paciente->observaciones}}</textarea></pre></a>
+                            </div>
+
                         </div>
+
+                        <div class="floatRight">
+                            <table class="table table-striped table-bordered">
+
+                                <tr>
+                                    <td rowspan="1">
+
+                                        <img src="{{$paciente->fotografia}}"
+                                             width="300" height="300"
+                                             onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                             alt="Fotografia" />
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
+                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> <a href={{url('/paciente/delete/'.$paciente->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este paciente?');" >Eliminar</a> </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+
+
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <td colspan="10">Datos cuantitativos</td>
@@ -78,4 +94,5 @@
             </div>
         </div>
     </div>
+
 @endsection

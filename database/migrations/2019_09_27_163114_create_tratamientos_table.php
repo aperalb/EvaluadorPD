@@ -21,7 +21,7 @@ class CreateTratamientosTable extends Migration
             $table->integer('frecuencia');
             $table->date('fechainicio');
             $table->date('fechafin');
-            $table->text('detalles');
+            $table->text('detalles')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');

@@ -1,66 +1,56 @@
 @extends('layouts.app')
-@if (\Session::has('success'))
-    <div class="alert alert-success">
-        <ul>
-            <li>{!! \Session::get('success') !!}</li>
-        </ul>
-    </div>
-@endif
+
 @section('content')
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Mis pacientes</div>
 
-                    <div class="panel-body">
-                        <br><br>
-                        <button>
-                            <a href={{url('/paciente/create')}}><big><strong>Nuevo Paciente</strong></big></a>
 
-                        </button>
+        <h2>Mis pacientes</h2>
 
-                        <br><br>
-                        <table class="table table-striped table-bordered" >
-                            <tr>
-                                <th colspan="6">Nombre Tabla</th>
-                            </tr>
 
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Edad</th>
-                                <th>NUHSA</th>
-                                <th>Ver detalle</th>
-                                <th>Evaluaciones</th>
-                                <th>Ver responsables</th>
-                            </tr>
-                            @foreach ($pacientes as $paciente)
-                                <tr>
-                                    <td>{{ $paciente->getFullsurnameAttribute() }}</td>
-                                    <td>{{ $paciente->getAgeAttribute() }}</td>
-                                    <td>{{ $paciente->nuhsa}}</td>
-                                    <td>
-                                        {!! Form::open(['route' => ['paciente.show',$paciente->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['paciente.show',$paciente->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Evaluaciones', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
+        <br>
+        <a href={{url('/paciente/create')}} class="btn btn-info"><big><strong>Registrar Nuevo</strong></big></a>
 
-                                    <td>
-                                    <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
-                                    </td>
 
-                                </tr>
-                            @endforeach
-                        </table>
+        <br><br>
+        <br>
+        @foreach ($pacientes as $paciente)
+            <div id ="paciente" style="display: inline-block; padding: 10px;">
 
-                    </div>
-                </div>
+                <table class="table table-striped table-bordered" id="indexPacientes">
+                    <tr>
+                        <th>{{ $paciente->getFullsurnameAttribute() }}</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="1">
+
+                            <img src="{{$paciente->fotografia}}"
+                                 width="150" height="150"
+                                 onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                 alt="Fotografia" />
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: center">
+                            {!! Form::open(['route' => ['paciente.show',$paciente->id], 'method' => 'get']) !!}
+                            {!! Form::submit('Perfil', ['class'=> 'btn btn-info','style'=>"width: 100%"])!!}
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
+
             </div>
-        </div>
+            @endforeach
+            </table>
+
+
     </div>
+
 @endsection

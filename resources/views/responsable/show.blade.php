@@ -15,30 +15,31 @@
                                 <th>Dirección</th>
                                 <th align ="center" colspan ="2">Acciones</th>
                             </tr>
-                                @foreach($responsables as $responsable)
-                                    <tr>
-                                        <td>{{ $responsable->getFullsurnameAttribute() }}</td>
-                                        <td>{{ $responsable->numerotel }}</td>
-                                        <td>{{ $responsable->direccion}}</td>
-                                        <td>
-                                            {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                        <td>
-                                            {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($responsables as $responsable)
+                                <tr>
+                                    <td>{{ $responsable->getFullsurnameAttribute() }}</td>
+                                    <td>{{ $responsable->numerotel }}</td>
+                                    <td>{{ $responsable->direccion}}</td>
+                                    <td>
+                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
+                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
+                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
-                        <td>
-                            {!! Form::open(['route' => ['responsable.create'], 'method' => 'get']) !!}
-                            {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
-                            {!! Form::close() !!}
-                        </td>
-
+                        @if ($responsables->isNotEmpty())
+                            <td>
+                                {!! Form::open(['route' => ['responsable.createResponsable', []], 'method' => 'get']) !!}
+                                {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
+                                {!! Form::close() !!}
+                            </td>
+                        @endif
 
                     </div>
                 </div>

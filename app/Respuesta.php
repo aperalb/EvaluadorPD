@@ -20,10 +20,10 @@ class Respuesta extends Model
         return $this->hasOne('App\Pregunta');
     }
     //Una respuesta corresponde a 1 evaluación
-    public function evaluacion()
-    {
-        return $this->hasOne('App\Evaluacion');
-    }
+//    public function evaluacion()
+//    {
+//        return $this->hasOne('App\Evaluacion');
+//    }
     //Una respuesta puede tener 1..0 respuestas posibles
     public function respuestaposibles(){
         return $this->belongsTo('App\RespuestaPosible');

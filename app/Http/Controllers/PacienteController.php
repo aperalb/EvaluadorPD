@@ -17,7 +17,9 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::get();
+        $medico = Medico::find(Auth::user()->medico->id);
+        $pacientes = $medico->pacientes;
+
         return view('paciente.index', ['pacientes'=>$pacientes]);
     }
 
@@ -93,12 +95,16 @@ class PacienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy($id)
+    public function delete($id)
     {
         $paciente = Paciente::find($id);
         $paciente->delete();
         return redirect()->route('paciente.index');
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
 }

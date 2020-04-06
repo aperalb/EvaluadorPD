@@ -1,100 +1,174 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <title>EvaluadorPD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Laravel</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <link rel="stylesheet" href="/css/style.css">
 
-            .full-height {
-                height: 100vh;
-            }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-            .position-ref {
-                position: relative;
-            }
+<div class="site-wrap">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    EvaluadorPD
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
 
-            .content {
-                text-align: center;
-            }
+                    </ul>
 
-            .title {
-                font-size: 84px;
-            }
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
-            @endif
+            </div>
+        </nav>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+    </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+
+    <div class="site-blocks-cover overlay" style="background-image: url(images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row align-items-center justify-content-center text-center">
+
+                <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
+
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-md-8 text-center">
+                            <h1>EvaluadorPD <span class="typed-words"></span></h1>
+                            <p class="lead mb-5">Ana Perez Albarrán</p>
+                            <div><a data-fancybox data-ratio="2" href="https://github.com" class="btn btn-primary btn-md">Github</a></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+
+
+
+
+    <section class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-3 box-with-humber">
+                        <div class="number-behind">01.</div>
+                        <h2 class="text-primary">Título 1</h2>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
+                        <ul class="list-unstyled ul-check primary">
+                            <li>Característica 1</li>
+                            <li>Característica 2</li>
+                            <li>Característica 3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-3 box-with-humber">
+                        <div class="number-behind">02.</div>
+                        <h2 class="text-primary">Título 2</h2>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
+                        <ul class="list-unstyled ul-check primary">
+                            <li>Característica 1</li>
+                            <li>Característica 2</li>
+                            <li>Característica 3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="p-3 box-with-humber">
+                        <div class="number-behind">03.</div>
+                        <h2 class="text-primary">Título 3</h2>
+                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
+                        <ul class="list-unstyled ul-check primary">
+                            <li>Característica 1</li>
+                            <li>Característica 2</li>
+                            <li>Característica 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+            </div> <!-- .site-wrap -->
+
+            <script src="js/jquery-3.3.1.min.js"></script>
+            <script src="js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="js/jquery-ui.js"></script>
+            <script src="js/popper.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/owl.carousel.min.js"></script>
+            <script src="js/jquery.stellar.min.js"></script>
+            <script src="js/jquery.countdown.min.js"></script>
+            <script src="js/bootstrap-datepicker.min.js"></script>
+            <script src="js/jquery.easing.1.3.js"></script>
+            <script src="js/aos.js"></script>
+            <script src="js/jquery.fancybox.min.js"></script>
+            <script src="js/jquery.sticky.js"></script>
+
+            <script src="js/typed.js"></script>
+            <script>
+                var typed = new Typed('.typed-words', {
+                    strings: ["TFG"," Ingeniería de la Salud"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 2000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                });
+            </script>
+
+            <script src="js/main.js"></script>
+
+
+
+</body>
 </html>

@@ -19,6 +19,7 @@ class CreateMedicosTable extends Migration
             $table->string('consulta');
             $table->string('numerotel');
             $table->string('especialidad');
+            $table->string('fotografia')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

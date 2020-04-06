@@ -84,6 +84,12 @@ class RegisterController extends Controller
             $medico->save();
         }
 
+//        if($data['soyAdmin']==1){
+//            $administrador = new Administrador();
+//            $administrador->user_id = $user->id;
+//            $administrador->save();
+//        }
+
         return $user;
 
     }

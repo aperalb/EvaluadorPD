@@ -17,8 +17,8 @@ class CreateSintomasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->text('descripcion');
-            $table->text('detalles');
+            $table->text('descripcion')->nullable();
+            $table->text('detalles')->nullable();
             $table->string('categoriasintoma');
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');

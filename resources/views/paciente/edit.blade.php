@@ -94,7 +94,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::url('fotografia',$paciente -> fotografia,['class'=>'form-control', 'autofocus','maxlength' => '1000']) !!}
+                                        {!! Form::url('fotografia',$paciente -> fotografia,['class'=>'form-control', 'autofocus','maxlength="1000"']) !!}
                                     </td>
 
                                 </tr>

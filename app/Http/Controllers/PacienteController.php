@@ -45,7 +45,7 @@ class PacienteController extends Controller
 
         /** Sacamos mensaje flash */
         /** Volvemos al índice de los Pacientes*/
-        return redirect()->route('home')->with('success', 'Elemento agregado correctamente');
+        return redirect()->route('paciente.show',[$paciente->id]);
     }
 
     /**
@@ -86,7 +86,7 @@ class PacienteController extends Controller
         $paciente = Paciente::find($id);
         $paciente->fill($request->all());
         $paciente->save();
-        return redirect()->route('paciente.index');
+        return redirect()->route('paciente.show',[$paciente->id]);
     }
 
     /**

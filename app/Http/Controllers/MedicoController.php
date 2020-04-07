@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Medico;
+use App\User;
 
 class MedicoController extends Controller
 {
@@ -76,7 +77,8 @@ class MedicoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('medico/edit', ['user'=>$user] );
     }
 
     /**
@@ -88,7 +90,29 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $medico = $user->medico;
+        $user->fill($request->all());
+        $user->save();
+        $medico->fill($request->all());
+        $medico->save();
+
+//        $user ->name = $request->get('name');
+//        $user ->apellido1 = $request->get('apellido1');
+//        $user ->apellido2 = $request->get('apellido2');
+//        $user ->email = $request->get('email');
+//        $user ->update();
+//
+//        $medico->numerotel = $request->get('numerotel');
+//        $medico->consulta = $request->get('consulta');
+//        $medico->especialidad = $request->get('especialidad');
+//        $medico->fotografia = $request->get('fotografia');
+
+//        $medico->update();
+
+        return redirect()->route('home');
+
+
     }
 
     /**

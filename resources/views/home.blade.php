@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::open(['route' => ['paciente.edit',Auth::user()->medico->id], 'method' => 'get']) !!}
+                                        {!! Form::open(['route' => ['medico.edit',Auth::user()->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>

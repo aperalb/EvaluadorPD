@@ -11,37 +11,48 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
+                    <div class="panel-heading">Síntomas</div>
 
-                        <div class="panel panel-default">
-                            <h4>Síntomas presentados por {{$paciente->getFullsurnameAttribute()}}</h4>
                     <div class="panel-body">
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Detalles</th>
-                                <th>Categoria De Síntoma</th>
-                                <th align="center" colspan="3">Acciones</th>
-                            </tr>
-                            @foreach($sintomas as $sintoma)
-                                <tr>
-                                    <td>{{ $sintoma->nombre }}</td>
-                                    <td>{{ $sintoma->descripcion }}</td>
-                                    <td>{{ $sintoma->detalles}}</td>
-                                    <td>{{ $sintoma->categoriasintoma}}</td>
-                                    <td>
-                                        {!! Form::open(['route' => ['sintoma.edit',$sintoma->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['sintoma.destroy',$sintoma->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </table>
+
+
+
+                        @foreach(array_keys($categoriaYSintoma) as $catSintomas)
+
+                            <h4><button onclick="myFunction('{{$catSintomas}}')" class="btn btn-link" style="font-size:20px">{{$catSintomas}}</button></h4>
+                            <hr>
+
+                            <div id="{{$catSintomas}}" style="display: none">
+                                <table class="table table-striped table-bordered">
+                                    @foreach($categoriaYSintoma[$catSintomas] as $sintoma)
+
+                                        <tr>
+                                            <th>{{ $sintoma->nombre }}</th>
+
+
+                                            <td>
+                                                {!! Form::open(['route' => ['sintoma.edit',$sintoma->id], 'method' => 'get']) !!}
+                                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                            <td>
+                                                {!! Form::open(['route' => ['sintoma.destroy',$sintoma->id], 'method' => 'delete']) !!}
+                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><a>  <pre><textarea readonly cols="140" rows="4">{{$sintoma->detalles}}</textarea></pre></a></td>
+                                        </tr>
+                                        <div>
+
+
+                                        </div>
+                                    @endforeach
+                                </table>
+                            </div>
+                        @endforeach
+
 
                         <td>
                             <a href={{url('/sintoma/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir
@@ -57,4 +68,17 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function myFunction(idDiv) {
+
+            var x = document.getElementById(idDiv);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 @endsection
+

@@ -26,9 +26,9 @@ class SintomaController extends Controller
                 $categoriaYSintomas[$sintoma->categoriasintoma]=[$sintoma];
             }
         }
-        
-        dd($categoriaYSintomas);
-        return view('sintoma.index', ['sintomas'=>$sintomas, 'paciente'=>$paciente]);
+
+//        dd($categoriaYSintomas);
+        return view('sintoma.index', ['categoriaYSintoma'=>$categoriaYSintomas, 'paciente'=>$paciente]);
     }
 
 

@@ -34,7 +34,7 @@
                                 </tr>
                                 <tr>
                                     <td rowspan="1">
-                                        <strong> Especialidad: </strong> {{ Auth::user()->medico->consulta}}
+                                        <strong> Especialidad: </strong> {{ Auth::user()->medico->especialidad}}
 
                                     </td>
 

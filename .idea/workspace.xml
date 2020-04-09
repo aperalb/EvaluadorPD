@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="52aa15ed-7683-41c0-92b3-e7102064e668" name="Default" comment="OJO a la logica de las vistas, que no te las sabes. Hemos migrado el HTML a pelo a FORM, haz el favor de usar los maldtos forms. Buscar una plantilla o algo que lo deje bonito...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SintomaController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SintomaController.php" />
+      <change beforePath="$PROJECT_DIR$/config/enumSintomas.php" afterPath="$PROJECT_DIR$/config/enumSintomas.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sintoma/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/sintoma/create.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sintoma/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/sintoma/edit.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sintoma/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/sintoma/index.blade.php" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sintoma/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/sintoma/show.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,12 +22,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="enumSintomas.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/enumSintomas.php">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/sintoma/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+              <folding>
+                <marker date="1586454578790" expanded="true" signature="9:22" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="29:53" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="125:151" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="201:210" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="486:522" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1044:1065" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1146:1164" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1214:1237" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1287:1306" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1356:1383" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1475:1550" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1597:1648" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1695:1710" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1840:1921" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="1968:2021" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="2068:2083" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="2308:2357" ph="..." />
+                <marker date="1586454578790" expanded="true" signature="2525:2544" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/paciente/show.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="42" column="87" lean-forward="true" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
+              <folding>
+                <marker date="1586100952236" expanded="true" signature="9:22" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="34:43" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="541:579" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="754:771" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="947:965" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1155:1176" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1355:1377" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1564:1591" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1751:1791" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1874:1910" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="1989:2028" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="2111:2151" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="2432:2456" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="2820:2841" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="3288:3365" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="3412:3463" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="3510:3525" ph="..." />
+                <marker date="1586100952236" expanded="true" signature="3697:3735" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -31,8 +83,8 @@
       <file leaf-file-name="SintomaController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SintomaController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="442">
+              <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -57,6 +109,7 @@
       <find>evaluacion</find>
       <find>font</find>
       <find>$medico</find>
+      <find>trata</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -70,13 +123,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/tratamiento/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/tratamiento/create.blade.php" />
         <option value="$PROJECT_DIR$/config/enumSintomasMotores.php" />
-        <option value="$PROJECT_DIR$/config/enumSintomas.php" />
-        <option value="$PROJECT_DIR$/resources/views/sintoma/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/sintoma/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/sintoma/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/evaluacion/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EvaluacionController.php" />
         <option value="$PROJECT_DIR$/resources/views/evaluacion/index.blade.php" />
@@ -87,7 +135,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_09_27_163217_create_preguntas_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_09_27_163159_create_formularios_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ResponsableController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SintomaController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TratamientoController.php" />
         <option value="$PROJECT_DIR$/app/Medico.php" />
         <option value="$PROJECT_DIR$/app/Paciente.php" />
@@ -121,6 +168,12 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/PacienteController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/sintoma/show.blade.php" />
+        <option value="$PROJECT_DIR$/config/enumSintomas.php" />
+        <option value="$PROJECT_DIR$/resources/views/sintoma/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/sintoma/edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/sintoma/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SintomaController.php" />
       </list>
     </option>
   </component>
@@ -224,8 +277,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="403" />
-    <option name="y" value="242" />
+    <option name="x" value="46" />
+    <option name="y" value="33" />
     <option name="width" value="1242" />
     <option name="height" value="666" />
   </component>
@@ -292,6 +345,31 @@
               <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
               <item name="EvaluadorPD" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EvaluadorPD" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EvaluadorPD" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EvaluadorPD" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="paciente" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EvaluadorPD" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="sintoma" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="EvaluadorPD" type="b2602c69:ProjectViewProjectNode" />
@@ -389,7 +467,7 @@
       <workItem from="1586099876382" duration="5847000" />
       <workItem from="1586195179701" duration="4196000" />
       <workItem from="1586281167040" duration="5623000" />
-      <workItem from="1586444617908" duration="1377000" />
+      <workItem from="1586444617908" duration="11295000" />
     </task>
     <task id="LOCAL-00001" summary="Ningun avance relevante">
       <created>1572889112077</created>
@@ -430,13 +508,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172485000" />
+    <option name="totallyTimeSpent" value="182403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22239584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -505,27 +583,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_09_27_163114_create_tratamientos_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="49" lean-forward="false" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_09_27_163138_create_evaluacions_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="58" lean-forward="false" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EvaluacionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="38" column="6" lean-forward="false" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_09_27_163159_create_formularios_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -666,13 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/sintoma/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -809,7 +859,7 @@
         <state relative-caret-position="102">
           <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="30" />
           <folding>
-            <element signature="e#45#81#0#PHP" expanded="true" />
+            <element signature="e#45#81#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -851,7 +901,7 @@
         <state relative-caret-position="1530">
           <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#40#68#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -937,10 +987,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sintoma/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <marker date="1586452268766" expanded="true" signature="9:22" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="34:43" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="554:581" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="757:778" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="966:992" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="1172:1199" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="1379:1403" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="1641:1665" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="1920:1988" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="2031:2082" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="2125:2140" ph="..." />
+            <marker date="1586452268766" expanded="true" signature="2232:2251" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sintoma/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1173">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <marker date="1586453051808" expanded="true" signature="9:22" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="34:43" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="370:436" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="733:780" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="828:841" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1037:1097" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1154:1165" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1219:1280" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1336:1347" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1555:3192" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1748:1792" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="1922:2005" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="2283:2321" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="2451:2535" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="2813:2854" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="2988:3042" ph="..." />
+            <marker date="1586453051808" expanded="true" signature="3073:3088" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sintoma/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <marker date="1586453661245" expanded="true" signature="9:22" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="34:43" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="350:461" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="698:733" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1120:1167" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1221:1254" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1327:1340" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1469:1482" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1781:1841" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1910:1921" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="1987:2048" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="2110:2141" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="2222:2233" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="2378:2389" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="3018:3062" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="3192:3292" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="3570:3608" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="3738:3832" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="3998:4037" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="4122:4176" ph="..." />
+            <marker date="1586453661245" expanded="true" signature="4203:4218" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/enumSintomas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/sintoma/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding>
+            <marker date="1586454578790" expanded="true" signature="9:22" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="29:53" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="125:151" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="201:210" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="486:522" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1044:1065" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1146:1164" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1214:1237" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1287:1306" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1356:1383" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1475:1550" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1597:1648" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1695:1710" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1840:1921" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="1968:2021" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="2068:2083" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="2308:2357" ph="..." />
+            <marker date="1586454578790" expanded="true" signature="2525:2544" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/paciente/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1422">
-          <caret line="97" column="11" lean-forward="false" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
+        <state relative-caret-position="459">
+          <caret line="42" column="87" lean-forward="true" selection-start-line="42" selection-start-column="87" selection-end-line="42" selection-end-column="87" />
           <folding>
             <marker date="1586100952236" expanded="true" signature="9:22" ph="..." />
             <marker date="1586100952236" expanded="true" signature="34:43" ph="..." />
@@ -964,18 +1126,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/enumSintomas.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SintomaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="442">
+          <caret line="28" column="8" lean-forward="false" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
           <folding />
         </state>
       </provider>

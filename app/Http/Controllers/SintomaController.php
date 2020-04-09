@@ -17,8 +17,20 @@ class SintomaController extends Controller
     {
         $paciente = Paciente::find($id);
         $sintomas = $paciente->sintomas;
+        $categoriaYSintomas=[];
+        foreach ($sintomas as $sintoma){
+            if(in_array($sintoma->categoriasintoma,array_keys($categoriaYSintomas))){
+                array_push($categoriaYSintomas[$sintoma->categoriasintoma],$sintoma);
+            }
+            else{
+                $categoriaYSintomas[$sintoma->categoriasintoma]=[$sintoma];
+            }
+        }
+        
+        dd($categoriaYSintomas);
         return view('sintoma.index', ['sintomas'=>$sintomas, 'paciente'=>$paciente]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,18 +59,27 @@ class SintomaController extends Controller
 
         /** Creamos el nuevo paciente*/
         $sintoma = new Sintoma();
-        $idSintoma=$request->get('nombre');
-        $valorSintoma=array_values(array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores')))[$idSintoma];
+        $valorSintoma=$request->get('nombre');
+
 
 
 
         if (in_array($valorSintoma,array_values(config('enumSintomas.Motores')))){
 
-            $categoriasintoma="Motores";
+            $categoriasintoma="Motor";
         }
         else{
 
-            $categoriasintoma="No motor";
+            $categoriasintoma="No Motor";
+            $subcatSintoma="";
+            foreach (array_keys(config('enumSintomas.No_Motores')) as $catNoMotor){
+                if(array_search($valorSintoma,config('enumSintomas.No_Motores.'.$catNoMotor))) {
+                    $subcatSintoma = $catNoMotor;
+                }
+            }
+            $categoriasintoma=$categoriasintoma.' - '.$subcatSintoma;
+
+
         }
         $sintoma->nombre=$valorSintoma;
         $sintoma->categoriasintoma=$categoriasintoma;
@@ -104,8 +125,30 @@ class SintomaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sintoma = Tratamiento::find($id);
+        $sintoma = Sintoma::find($id);
         $sintoma->fill($request->all());
+
+        $valorSintoma=$request->get('nombre');
+
+
+        if (in_array($valorSintoma,array_values(config('enumSintomas.Motores')))){
+
+            $categoriasintoma="Motor";
+        }
+        else {
+            $categoriasintoma = "No Motor";
+            $subcatSintoma = "";
+            foreach (array_keys(config('enumSintomas.No_Motores')) as $catNoMotor) {
+                if (array_search($valorSintoma, config('enumSintomas.No_Motores.' . $catNoMotor))) {
+                    $subcatSintoma = $catNoMotor;
+                }
+            }
+            $categoriasintoma = $categoriasintoma . ' - ' . $subcatSintoma;
+
+
+        }
+        $sintoma->categoriasintoma = $categoriasintoma;
+
         $sintoma->save();
         $url=$request->input('url');
         return redirect($url)->with('success', 'Sintoma editado con éxito.');

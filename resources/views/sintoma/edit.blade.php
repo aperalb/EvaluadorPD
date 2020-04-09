@@ -17,7 +17,33 @@
                                     {!! Form::label('nombre', 'Sintoma ') !!}
                                 </td>
                                 <td width="500">
-                                    {!! Form::select('nombre', array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores')),array_search($sintoma->nombre,array_merge(config('enumSintomas.Motores'),config('enumSintomas.No_Motores'))),['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    <select id="sintoma" name="nombre">
+                                        <option value="" disabled selected>Seleccione síntoma</option>
+                                        <optgroup label="Motores">
+                                            @foreach (config('enumSintomas.Motores') as $sintomaMotor)
+                                                @if($sintomaMotor == $sintoma->nombre)
+                                                    <option selected>{{$sintomaMotor}}</option>
+                                                @else
+                                                    <option >{{$sintomaMotor}}</option>
+                                                @endif
+                                            @endforeach
+                                        </optgroup>
+                                        <optgroup label="No Motores">
+                                            @foreach (array_keys(config('enumSintomas.No_Motores')) as $catNoMotor)
+                                                <optgroup label="{{$catNoMotor}}">
+                                                    @foreach(config('enumSintomas.No_Motores.'.$catNoMotor) as $valNoMotor)
+                                                        @if($valNoMotor == $sintoma->nombre)
+                                                            <option selected>{{$valNoMotor}}</option>
+                                                        @else
+                                                            <option >{{$valNoMotor}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </optgroup>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+
+
                                 </td>
                             </div>
                         </tr>
@@ -52,7 +78,3 @@
         </div>
     </div>
 @endsection
-
-
-
-

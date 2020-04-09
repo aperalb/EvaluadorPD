@@ -11,8 +11,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Síntomas</div>
 
+                        <div class="panel panel-default">
+                            <h4>Síntomas presentados por {{$paciente->getFullsurnameAttribute()}}</h4>
                     <div class="panel-body">
                         <table class="table table-striped table-bordered">
                             <tr>

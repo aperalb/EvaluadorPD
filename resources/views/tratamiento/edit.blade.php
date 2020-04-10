@@ -4,18 +4,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Editar Tratamiento</div>
 
-                </div>
+                <h4>Editar tratamiento</h4>
+
+                <hr>
                 <div class="panel-body">
                     {!! Form::model($tratamiento, [ 'route' => ['tratamiento.update',$tratamiento->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
-                    <table id="datosPersonales" width="600" >
+                    <table id="datosPersonales" width="600" class="table table-striped table-bordered">
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('medicamento', 'Medicamento ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
                                     {!! Form::text('medicamento',$tratamiento->medicamento,['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
@@ -23,29 +23,29 @@
                         </tr>
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('dosis', 'Dosis ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
-                                    {!! Form::text('dosis',$tratamiento->dosis,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    {!! Form::number('dosis',$tratamiento->dosis,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
                                 </td>
                             </div>
                         </tr>
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('frecuencia', 'Frecuencia diaria ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
-                                    {!! Form::text('frecuencia',$tratamiento->frecuencia,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    {!! Form::number('frecuencia',$tratamiento->frecuencia,['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
                             </div>
                         </tr>
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('fechainicio', 'Fecha de Inicio ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
                                     {!! Form::date('fechainicio',$tratamiento->fechainicio,['class'=>'form-control', 'autofocus']) !!}
                                 </td>
@@ -53,9 +53,9 @@
                         </tr>
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('fechafin', 'Fecha de Fin ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
                                     {!! Form::date('fechafin',$tratamiento->fechafin,['class'=>'form-control', 'autofocus']) !!}
                                 </td>
@@ -63,9 +63,9 @@
                         </tr>
                         <tr>
                             <div class="form-group">
-                                <td width="500" >
+                                <th width="500" >
                                     {!! Form::label('detalles', 'Detalles ') !!}
-                                </td>
+                                </th>
                                 <td width="500">
                                     {!! Form::textarea('detalles',$tratamiento->detalles,['class'=>'form-control', 'required', 'autofocus']) !!}
                                 </td>
@@ -84,6 +84,8 @@
         </div>
     </div>
 @endsection
+
+
 
 
 

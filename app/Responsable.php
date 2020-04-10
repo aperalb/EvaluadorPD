@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Responsable extends Model
 {
@@ -21,9 +22,9 @@ class Responsable extends Model
         return $this->belongsToMany('App\Paciente');
     }
 
-    public function getParentesco($pacienteID,$responsable){
+    public function getParentesco($pacienteID, $responsableID){
 
-        $parentesco=DB::select('select parentesco from paciente_responsable where paciente_id = ? AND responsable_id=', [$pacienteID,$responsable->id]);
+        $parentesco=DB::table('paciente_responsable')->where('paciente_id', $pacienteID)->where('responsable_id',$responsableID)->value('parentesco');
         return $parentesco;
     }
 

@@ -39,8 +39,10 @@ class SintomaController extends Controller
      */
     public function create(Request $request)
     {
+
         $pacienteID = $request->get('pacienteID');
-        return view('sintoma/create', ['pacienteID'=>$pacienteID]);
+        $paciente = Paciente::find($pacienteID);
+        return view('sintoma/create', ['paciente'=>$paciente]);
     }
 
     /**
@@ -51,7 +53,6 @@ class SintomaController extends Controller
      */
     public function store(Request $request)
     {
-
 
         $id=$request->get('pacienteID');
         $paciente = Paciente::find($id);
@@ -127,6 +128,7 @@ class SintomaController extends Controller
     {
         $sintoma = Sintoma::find($id);
         $sintoma->fill($request->all());
+//        dd($sintoma);
 
         $valorSintoma=$request->get('nombre');
 
@@ -164,7 +166,7 @@ class SintomaController extends Controller
     {
         $sintoma = Sintoma::find($id);
         $sintoma->delete();
-        return redirect()->back();
+        return redirect()->back()->with('danger', 'Sintoma eliminado con éxito.');
         //
     }
 

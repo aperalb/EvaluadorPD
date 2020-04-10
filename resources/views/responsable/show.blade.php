@@ -3,47 +3,69 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div >
                 <div class="panel panel-default">
-                    <div class="panel-heading">Responsables</div>
-
                     <div class="panel-body">
-                        <table class="table table-striped table-bordered" >
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th align ="center" colspan ="2">Acciones</th>
-                            </tr>
-                            @foreach($responsables as $responsable)
+                        <div class="floatLeft">
+
+                            <h4>Datos personales Responsable</h4>
+                            <table class="table table-striped table-bordered">
+
+
                                 <tr>
+                                    <th>Nombre</th>
                                     <td>{{ $responsable->getFullsurnameAttribute() }}</td>
-                                    <td>{{ $responsable->numerotel }}</td>
-                                    <td>{{ $responsable->direccion}}</td>
-                                    <td>
-                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['responsable.show',$responsable->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
                                 </tr>
-                            @endforeach
-                        </table>
-                        @if ($responsables->isNotEmpty())
-                            <td>
-                                {!! Form::open(['route' => ['responsable.createResponsable', []], 'method' => 'get']) !!}
-                                {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
-                                {!! Form::close() !!}
-                            </td>
-                        @endif
+                                <tr>
+                                    <th>Telefono</th>
+                                    <td>{{ $responsable->numerotel }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirreccion</th>
+                                    <td>{{ $responsable->direccion }}</td>
+                                </tr>
+                                <tr>
+
+                            </table>
+
+
+
+                        </div>
+
+                        <div class="floatRight">
+                            <table class="table table-striped table-bordered">
+
+                                <tr>
+                                    <td rowspan="1">
+
+                                        <img src="{{$responsable->fotografia}}"
+                                             width="300" height="300"
+                                             onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                             alt="Fotografia" />
+
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a
+                                </tr>
+                                <tr>
+                                    <td> <a href={{url('/responsable/delete/'.$responsable->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este responsable?');" >Eliminar</a> </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+
+
 
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

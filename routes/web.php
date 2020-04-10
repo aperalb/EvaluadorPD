@@ -32,6 +32,8 @@ Route::group(['middlewere'=>['web']], function(){
     Route::get('/responsable/delete', 'ResponsableController@delete');
     Route::get('/responsable/editar', 'ResponsableController@editar');
     Route::get('/responsable/index/{id}', 'ResponsableController@index');
+    Route::get('/responsable/{idResponsable}/{idPaciente}', 'ResponsableController@show2')->name('responsable.show2');
+
     Route::resource('/responsable', 'ResponsableController');
 
 

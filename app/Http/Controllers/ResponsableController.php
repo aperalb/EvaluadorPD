@@ -18,6 +18,8 @@ class ResponsableController extends Controller
     {
         $paciente = Paciente::find($id);
         $responsables = $paciente->responsables;
+
+
         return view('responsable.index', ['responsables'=>$responsables, 'paciente'=>$paciente]);
     }
 
@@ -66,10 +68,11 @@ class ResponsableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show2($idResponsable, $idPaciente)
     {
-        $responsables = Paciente::find($id)->responsables;
-        return view('responsable.show', ['responsables'=>$responsables, 'pacienteid'=>$id]);
+        $responsable = Responsable::find($idResponsable);
+        $paciente = Paciente::find($idPaciente);
+        return view('responsable.show', ['responsable'=>$responsable,'paciente'=>$paciente]);
     }
 
     /**

@@ -6,6 +6,14 @@
         </ul>
     </div>
 @endif
+@if (\Session::has('danger'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{!! \Session::get('danger') !!}</li>
+        </ul>
+    </div>
+@endif
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -16,21 +24,24 @@
                     <div class="panel-body">
                         <table class="table table-striped table-bordered" >
                             <tr>
+                                <th>Parentesco</th>
                                 <th>Nombre</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th align ="center" colspan ="2">Acciones</th>
+                                <th align ="center" colspan ="3">Acciones</th>
                             </tr>
                             @foreach($responsables as $responsable)
+                                @php $responsableID = $responsable->id @endphp
                                 <tr>
+                                    <td>{{ $responsable->getParentesco($paciente->id,$responsableID)}}</td>
                                     <td>{{ $responsable->getFullsurnameAttribute() }}</td>
-                                    <td>{{ $responsable->numerotel }}</td>
-                                    <td>{{ $responsable->direccion}}</td>
                                     <td>
-                                        <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a>
-                                    </td>
+                                        {!! Form::open(['route' => ['responsable.show2','idResponsable'=>$responsable->id,'idPaciente'=> $paciente->id], 'method' => 'get']) !!}
+                                        {!! Form::submit('Perfil', ['class'=> 'btn btn-info','style'=>"width: 100%"])!!}
+                                        {!! Form::close() !!}                                    </td>
                                     <td>
                                         <a href={{url('/responsable/delete/?responsableID='.$responsable->id.'&&pacienteID='.$paciente->id )}} class="btn btn-info">Eliminar</a>
+                                    </td>
+                                    <td>
+                                        <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a>
                                     </td>
                                 </tr>
                             @endforeach

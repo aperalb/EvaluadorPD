@@ -21,7 +21,8 @@ class CreateResponsablesTable extends Migration
             $table->string('apellido2');
             $table->string('numerotel')->nullable();
             $table->string('direccion');
-            $table->string('fotografia')->nullable();
+            $table->string('email')->nullable();
+            $table->text('fotografia')->nullable();
 
         });
     }

@@ -25,6 +25,13 @@
                                     <td>{{ $responsable->direccion }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Email</th>
+                                    <td>{{ $responsable->direccion }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Parentesco</th>
+                                    <td>{{ $responsable->getParentesco($paciente->id, $responsable->id) }}</td>
+                                </tr>
 
                             </table>
 
@@ -47,8 +54,10 @@
 
                                 </tr>
 
+
                                 <tr>
-                                    <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a
+                                    <td> <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a> </td>
+
                                 </tr>
                                 <tr>
                                     <td> <a href={{url('/responsable/delete/'.$responsable->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este responsable?');" >Eliminar</a> </td>

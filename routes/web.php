@@ -37,11 +37,11 @@ Route::group(['middlewere'=>['web']], function(){
     Route::resource('/responsable', 'ResponsableController');
 
 
-    /*Tratamientos*/
+    /*TRATAMIENTOS*/
     Route::get('/tratamiento/index/{id}', 'TratamientoController@index');
     Route::resource('/tratamiento', 'TratamientoController');
 
-    /*Tratamientos*/
+    /*SINTOMAS*/
     Route::get('/sintoma/index/{id}', 'SintomaController@index');
     Route::resource('/sintoma', 'SintomaController');
 

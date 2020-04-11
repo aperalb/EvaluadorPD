@@ -25,7 +25,7 @@ class CreatePacientesTable extends Migration
             $table->string('numerotel')->nullable();
             $table->date('fechainiciopd');
             $table->text('observaciones')->nullable();
-            $table->string('fotografia')->nullable();
+            $table->text('fotografia')->nullable();
         });
     }
 

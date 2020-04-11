@@ -19,15 +19,18 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Síntomas</div>
-
+                    <h4>Síntomas</h4>
+                    <br>
                     <div class="panel-body">
 
 
 
                         @foreach(array_keys($categoriaYSintoma) as $catSintomas)
 
-                            <h4><button onclick="myFunction('{{$catSintomas}}')" class="btn btn-link" style="font-size:20px">{{$catSintomas}}</button></h4>
+                            <h4><button onclick="myFunction('{{$catSintomas}}')" class="btn btn-secondary " style="font-size:17px; width: 100%">{{$catSintomas}}
+
+                                    <span class="little-arrow" style="color: white; font-size:14px; display: inline-block">&#8711</span>
+                                </button></h4>
                             <hr>
 
                             <div id="{{$catSintomas}}" style="display: none">
@@ -45,12 +48,12 @@
                                             </td>
                                             <td>
                                                 {!! Form::open(['route' => ['sintoma.destroy',$sintoma->id], 'method' => 'delete']) !!}
-                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este Síntoma?");'])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3"><a>  <pre><textarea readonly cols="140" rows="4">{{$sintoma->detalles}}</textarea></pre></a></td>
+                                            <td colspan="3"><a>  <pre><textarea readonly cols="100%" rows="4" style="background-color: whitesmoke">{{$sintoma->detalles}}</textarea></pre></a></td>
                                         </tr>
                                         <div>
 
@@ -81,10 +84,13 @@
         function myFunction(idDiv) {
 
             var x = document.getElementById(idDiv);
+
             if (x.style.display === "none") {
                 x.style.display = "block";
+
             } else {
                 x.style.display = "none";
+
             }
         }
     </script>

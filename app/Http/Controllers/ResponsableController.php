@@ -41,7 +41,6 @@ class ResponsableController extends Controller
     public function store(Request $request)
     {
 
-
         $id=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
         $paciente = Paciente::find($id);
@@ -54,6 +53,8 @@ class ResponsableController extends Controller
         $responsable->apellido2 = $request->get('apellido2');
         $responsable->numerotel = $request->get('numerotel');
         $responsable->direccion = $request->get('direccion');
+        $responsable->fotografia = $request->get('fotografia');
+
         $responsable->save();
         $responsable->pacientes()->attach($paciente ->id,["parentesco"=>$parentesco]);
 
@@ -108,7 +109,10 @@ class ResponsableController extends Controller
         $responsable->fill($request->all());
         $responsable->save();
         $responsable->pacientes()->updateExistingPivot($pacienteID,["parentesco"=>$parentesco]);
-        return redirect()->route('paciente.index');
+
+//        return redirect()->route('responsable.show2',['idResponsable'=>$responsable->id, 'idPaciente' => $pacienteID])->with('success', 'Elemento editado correctamente');
+        return redirect('responsable/'.$responsable->id.'/'.$pacienteID)->with('succes', 'Elemento editado correctamente');
+
     }
 
     /**
@@ -123,6 +127,6 @@ class ResponsableController extends Controller
         $pacienteID = $request->get('pacienteID');
         $responsable = Responsable::find($responsableID);
         $responsable->delete();
-        return redirect('responsable/index/'.$pacienteID)->with('success', 'Elemento eliminado correctamente');
+        return redirect('responsable/index/'.$pacienteID)->with('danger', 'Elemento eliminado correctamente');
     }
 }

@@ -88,6 +88,10 @@
                                 <td colspan="10">Datos cuantitativos</td>
                             </tr>
                         </table>
+
+                        <td>
+                            <a href={{ route('index.paciente') }} class="btn btn-info">Volver</a>
+                        </td>
                     </div>
 
                 </div>

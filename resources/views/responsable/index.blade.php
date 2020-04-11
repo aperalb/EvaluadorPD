@@ -38,7 +38,7 @@
                                         {!! Form::submit('Perfil', ['class'=> 'btn btn-info','style'=>"width: 100%"])!!}
                                         {!! Form::close() !!}                                    </td>
                                     <td>
-                                        <a href={{url('/responsable/delete/?responsableID='.$responsable->id.'&&pacienteID='.$paciente->id )}} class="btn btn-info">Eliminar</a>
+                                        <a href={{url('/responsable/delete/?responsableID='.$responsable->id.'&&pacienteID='.$paciente->id )}} class="btn btn-info"  onclick="return confirm('¿Seguro que deseas eliminar este Responsable?')">Eliminar</a>
                                     </td>
                                     <td>
                                         <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a>

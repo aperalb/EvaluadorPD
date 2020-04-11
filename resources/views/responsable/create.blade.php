@@ -2,100 +2,98 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Introduzca los datos del Nuevo Responsable</div>
-                    <div>
+        {!! Form::open(['route' => 'responsable.store', 'class'=>'form-inline']) !!}
+        <div class="row">
+            <div >
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="floatLeft">
 
-                        {{--<td>{{$paciente['1']}}</td>--}}
+                            <h4>Añadir Responsable</h4>
+
+                            <table class="table table-striped table-bordered">
+
+
+                                <tr>
+                                    <div class="form-group">
+                                        <th>Nombre</th>
+                                        <td>{!! Form::text('nombre',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <th>Apellido 1</th>
+                                    <td>{!! Form::text('apellido1',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Apellido 2</th>
+                                    <td> {!! Form::text('apellido2',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Número Telefono</th>
+                                    <td>{!! Form::text('numerotel',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <td>{!! Form::text('direccion',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección</th>
+                                    <td>{!! Form::text('email',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Relación</th>
+                                    <td>{!! Form::text('parentesco',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                        <div class="floatRight">
+
+                            <table class="table table-striped table-bordered">
+
+                                <tr>
+                                    <td rowspan="1">
+
+                                        <img src="/images/Default.jpg"
+                                             width="300" height="300"
+                                             onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                             alt="Fotografia" id="fotografia"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <th>
+                                        URL Fotografía
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {!! Form::url('fotografia',null,['class'=>'form-control', 'autofocus','maxlength' => '1000']) !!}
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {!! Form::hidden('pacienteID', $pacienteID) !!}
+
+                                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
                     </div>
-                </div>
-                <div class="panel-body">
-                    {!! Form::open(['route' => 'responsable.store', 'class'=>'form-inline']) !!}
-                    <table id="datosPersonales" width="600" >
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('nombre', 'Nombre ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('nombre',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('apellido1', 'Primer Apellido ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('apellido1',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('apellido2', 'Segundo Apellido ') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('apellido2',null,['class'=>'form-control', 'required', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('numerotel', 'Numero de teléfono') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('numerotel',null,['class'=>'form-control', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('direccion', 'Dirección') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('direccion',null,['class'=>'form-control', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500" >
-                                    {!! Form::label('parentesco', 'Relacion') !!}
-                                </td>
-                                <td width="500">
-                                    {!! Form::text('parentesco',null,['class'=>'form-control', 'autofocus']) !!}
-                                </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="form-group">
-                                <td width="500">
-                                    {!! Form::hidden('pacienteID', $pacienteID) !!}</td>
-                            </div>
-                        </tr>
 
-
-                    </table>
-
-                    {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
-                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
     </div>
-    </div>
+
+
 @endsection
-
-
-

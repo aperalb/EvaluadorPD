@@ -90,7 +90,7 @@
                         </table>
 
                         <td>
-                            <a href={{ route('index.paciente') }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente') }} class="btn btn-info">Volver</a>
                         </td>
                     </div>
 

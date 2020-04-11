@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div >
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="width: 120%">
                     <div class="panel-body">
                         <div class="floatLeft">
 
@@ -67,7 +67,9 @@
                             </table>
                         </div>
 
-
+                        <td>
+                            <a href={{ url('/responsable/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                        </td>
 
 
                     </div>

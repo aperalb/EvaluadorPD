@@ -43,12 +43,12 @@
 
                                             <td>
                                                 {!! Form::open(['route' => ['sintoma.edit',$sintoma->id], 'method' => 'get']) !!}
-                                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                                {!! Form::submit('Editar', ['class'=> 'btn btn-info', 'style'=>"width: 100%"])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                             <td>
                                                 {!! Form::open(['route' => ['sintoma.destroy',$sintoma->id], 'method' => 'delete']) !!}
-                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este Síntoma?");'])!!}
+                                                {!! Form::submit('Eliminar', ['style'=>"width: 100%",'class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este Síntoma?");'])!!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>

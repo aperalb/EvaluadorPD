@@ -16,9 +16,9 @@ class CreateEvaluacionsTable extends Migration
         Schema::create('evaluacions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->date('fechafin');
-            $table->double('altura')->nullable();;
-            $table->double('peso')->nullable();;
+            $table->date('fechafin')->nullable();
+            $table->double('altura')->nullable();
+            $table->double('peso')->nullable();
             $table->double('puntuacionglobal')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');

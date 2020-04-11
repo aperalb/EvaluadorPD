@@ -136,7 +136,7 @@
                             <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Tratamiento</a>
                         </td>
                         <td>
-                            <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
                         </td>
 
 

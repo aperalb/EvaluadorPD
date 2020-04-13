@@ -30,5 +30,9 @@ class Evaluacion extends Model
         return $this->hasMany('App\Respuesta');
     }
 
+    public  function esFinalizada(){
+        return 1;
+    }
+
 
 }

@@ -3,53 +3,93 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div >
                 <div class="panel panel-default">
-                    <div class="panel-heading">Detalle Tratamiento</div>
-
                     <div class="panel-body">
-                        <table class="table table-striped table-bordered" white-space="nowrap" >
+                        <div class="floatLeft">
+
+                            <h4>Detalles de la Evaluación</h4>
+                            <table class="table table-striped table-bordered">
+
+
                                 <tr>
-                                    <th>Medicamento</th>
-                                    <th>{{ $tratamiento->medicamento }}</th>
+                                    <th>Fecha Inicio</th>
+                                    <td>{{date('yy-m-d', strtotime($evaluacion->created_at))}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Dosis</td>
-                                    <td>{{ $tratamiento->dosis }}</td>
+                                    <th>Estado</th>
+                                @if($evaluacion->esFinalizada())
+                                    <td>{{'Finalizada ' .date('yy-m-d', strtotime($evaluacion->fechafin))}}</td>
+                                    @else
+                                    <td>En curso</td>
+                                    @endif
+                                </tr>
+
+                                <tr>
+                                    <th>Peso actual del paciente</th>
+                                    <td>{{ $evaluacion->peso .' kg'}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Frecuencia Diaria</td>
-                                    <td>{{ $tratamiento->frecuencia }}</td>
+                                    <th>Altura actual del paciente</th>
+                                    <td>{{ $evaluacion->altura . ' m' }}</td>
                                 </tr>
-                                <tr>
-                                    <td>Fecha Fin</td>
-                                    <td>{{ $tratamiento->fechainicio }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Fecha Fin</td>
-                                    <td>{{ $tratamiento->fechafin }}</td>
-                                </tr>
-                            <tr>
-                                <td>Detalles</td>
-                                <td style="display: inline-block;">
-                                    <p>{{ $tratamiento->detalles }}</p>
-                                </td>
-                            </tr>
+
                             </table>
-                        <tr>
+                            <br>
                             <div>
-                                <td>
-                                    {!! Form::open(['route' => ['responsable.create'], 'method' => 'get']) !!}
-                                    {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
-                                    {!! Form::close() !!}
-                                    <br/>
-                                    <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
-                                </td>
+                                <h4>Observaciones</h4>
+                                <a>  <pre><textarea readonly cols="80" rows="10">//TODO: OBSERVACIONES DE LA EVALUACION</textarea></pre></a>
                             </div>
-                        </tr>
+
+                        </div>
+
+                        <div class="floatRight">
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <td rowspan="1"  style="text-align: center; font-size: 30px">
+
+                                        <a>Puntuación</a>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td rowspan="1"  style="text-align: center; font-size: 50px">
+
+                                        <a>69</a>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+
+
+
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <td colspan="10">Formularios disponibles</td>
+                            </tr>
+
+                            @foreach($formularios as $formulario)
+                                <tr>
+                                    <td> <a href={{url('/formulario/create/'.$formulario->id)}}  >{{$formulario->nombre}}</a> </td>
+
+                                </tr>
+
+                            @endforeach
+                        </table>
+
+
+                        <td>
+                            <a href={{ url('/paciente') }} class="btn btn-info">Volver</a>
+                        </td>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

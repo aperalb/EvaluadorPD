@@ -45,9 +45,12 @@ Route::group(['middlewere'=>['web']], function(){
     Route::get('/sintoma/index/{id}', 'SintomaController@index');
     Route::resource('/sintoma', 'SintomaController');
 
-    /*Evaluaciones*/
+    /*EVALUACIONES*/
     Route::get('/evaluacion/index/{id}', 'EvaluacionController@index');
     Route::resource('/evaluacion', 'EvaluacionController');
+
+    /*FORMULARIOS*/
+    Route::resource('/formulario', 'FormularioController');
 
 
 });

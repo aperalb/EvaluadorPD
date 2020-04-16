@@ -9,9 +9,10 @@ class Pregunta extends Model
     //
     protected $fillable = [
         'valor',
-        'respuestaposible',
-        'tipopregunta',
+        'tiporespuesta',
+        'titulo',
         'enunciado',
+        'rango',
         ];
 
     //Relaciones
@@ -30,3 +31,4 @@ class Pregunta extends Model
     //Una pregunta tiene N respuestas (texto predefinido)
     //to-do
 }
+

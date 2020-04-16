@@ -37,7 +37,7 @@
                                 {!! Form::label('fechafin', 'Fecha fin') !!}
                             </td>
                             <td width="500">
-                                {!! Form::date('fechafin',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                {!! Form::date('fechafin',null,['class'=>'form-control', 'autofocus']) !!}
                             </td>
                         </div>
                     </tr>
@@ -47,7 +47,7 @@
                                 {!! Form::label('puntuacionglobal', 'Puntuacion Global') !!}
                             </td>
                             <td width="500">
-                                {!! Form::text('puntuacionglobal',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                {!! Form::text('puntuacionglobal',null,['class'=>'form-control', 'autofocus']) !!}
                             </td>
                         </div>
                     </tr>

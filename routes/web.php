@@ -51,6 +51,7 @@ Route::group(['middlewere'=>['web']], function(){
 
     /*FORMULARIOS*/
     Route::resource('/formulario', 'FormularioController');
+    Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
 
 
 });

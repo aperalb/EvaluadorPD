@@ -20,6 +20,6 @@ class Formulario extends Model
 
     public function preguntas()
     {
-        return $this->belongsToMany('App\Pregunta');
+        return $this->hasMany('App\Pregunta');
     }
 }

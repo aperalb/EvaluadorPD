@@ -18,11 +18,10 @@
                                 </tr>
                                 <tr>
                                     <th>Estado</th>
-                                @if($evaluacion->esFinalizada())
-                                    <td>{{'Finalizada ' .date('yy-m-d', strtotime($evaluacion->fechafin))}}</td>
+                                @if($evaluacion->fechafin == "")
+                                        <td>En curso</td>
                                     @else
-                                    <td>En curso</td>
-                                    @endif
+                                        <td>{{'Finalizada ' .date('yy-m-d', strtotime($evaluacion->fechafin))}}</td>                                    @endif
                                 </tr>
 
                                 <tr>
@@ -74,9 +73,15 @@
 
                             @foreach($formularios as $formulario)
                                 <tr>
-                                    <td> <a href={{url('/formulario/create/'.$formulario->id)}}  >{{$formulario->nombre}}</a> </td>
-
+                                    <td>
+                                        {!! Form::open(['route' => ['formulario.create','idFormulario'=>$formulario->id,'idEvaluacion'=> $evaluacion->id], 'method' => 'get']) !!}
+                                        {!! Form::submit($formulario->nombre, ['class'=> 'btn btn-link','style'=>"width: 100%; text-align:left"])!!}
+                                        {!! Form::close() !!}
+                                    </td>
                                 </tr>
+                                <td>
+
+                                <td>
 
                             @endforeach
                         </table>

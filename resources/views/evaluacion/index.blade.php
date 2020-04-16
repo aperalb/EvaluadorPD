@@ -26,7 +26,12 @@
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
                                     <td>{{ date('yy-m-d', strtotime($evaluacion->created_at)) }}</td>
-                                    <td>{{ date('yy-m-d', strtotime($evaluacion->fechafin)) }}</td>                                    <td>{{ $evaluacion->altura }}</td>
+                                    @if($evaluacion->fechafin == "")
+                                        <td>{{ 'No finalizada' }}</td>
+                                    @else
+                                        <td>{{ date('yy-m-d', strtotime($evaluacion->fechafin)) }}</td>
+                                    @endif
+                                    <td>{{ $evaluacion->altura }}</td>
                                     <td>{{ $evaluacion->peso}}</td>
                                     <td>{{ $evaluacion->puntuacionglobal}}</td>
                                     <td>

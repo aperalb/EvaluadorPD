@@ -2,54 +2,72 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Detalle Tratamiento</div>
+        {!! Form::open(['route' =>['formulario.show',$formulario->id,$evaluacion->id], 'method'=>'POST','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered" white-space="nowrap" >
-                                <tr>
-                                    <th>Medicamento</th>
-                                    <th>{{ $tratamiento->medicamento }}</th>
-                                </tr>
-                                <tr>
-                                    <td>Dosis</td>
-                                    <td>{{ $tratamiento->dosis }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Frecuencia Diaria</td>
-                                    <td>{{ $tratamiento->frecuencia }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Fecha Fin</td>
-                                    <td>{{ $tratamiento->fechainicio }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Fecha Fin</td>
-                                    <td>{{ $tratamiento->fechafin }}</td>
-                                </tr>
-                            <tr>
-                                <td>Detalles</td>
-                                <td style="display: inline-block;">
-                                    <p>{{ $tratamiento->detalles }}</p>
-                                </td>
-                            </tr>
-                            </table>
+                <h4>{{$formulario->nombre }}</h4>
+                {{--<table class="table table-striped table-bordered">--}}
+
+                @foreach($respuestas as $respuesta)
+
+                    <table>
                         <tr>
-                            <div>
-                                <td>
-                                    {!! Form::open(['route' => ['responsable.create'], 'method' => 'get']) !!}
-                                    {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
-                                    {!! Form::close() !!}
-                                    <br/>
-                                    <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
-                                </td>
-                            </div>
+                            <td><h5><pre style="text-align:justify;white-space: pre-line;" >{{$respuesta->pregunta->titulo}}</pre></h5></td>
                         </tr>
-                    </div>
-                </div>
+                        <tr>
+                            <td width="50%"><pre style="text-align:justify;white-space: pre-line;" >{{$respuesta->pregunta->enunciado}}</pre></td>
+                        </tr>
+                        <tr>
+                            @if($respuesta->pregunta->tiporespuesta == "numerico")
+                                @php
+                                    $bottom = 0;
+                                    $top = 0;
+                                    $array = mb_split('-',$respuesta->pregunta->rango);
+                                    $bottom = $array[0];
+                                    $top = $array[1];
+                                @endphp
+
+
+                                <td>
+
+                                    <div style="display: inline">
+                                        @for ($i = $bottom; $i <= $top; $i++)
+                                            @if($i==$respuesta->valor)
+                                                <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked>{{$i}}
+
+                                            @else
+                                                <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}">{{$i}}
+                                            @endif
+                                        @endfor
+                                    </div>
+                                </td>
+                            @else
+                                <td>
+                                    <div style="display: inline">
+                                        <a>  <pre>{!! Form::textarea($respuesta->pregunta->id,$respuesta->valor,['class'=>'form-control', 'autofocus',' cols="80" rows="10"']) !!}</pre></a>
+                                    </div>
+                                </td>
+                            @endif
+
+                        </tr>
+                    </table>
+                @endforeach
+
+
             </div>
+
         </div>
+        <br>
+        {!! Form::submit('Guardar',['class'=>'btn-primary btn','style'=>'margin-left:17%;']) !!}
+        {!! Form::close() !!}
     </div>
+
 @endsection
+
+
+
+
+
+
+

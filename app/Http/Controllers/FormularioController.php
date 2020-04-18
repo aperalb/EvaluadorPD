@@ -7,6 +7,7 @@ use App\Formulario;
 use App\Evaluacion;
 use App\Pregunta;
 use App\Respuesta;
+use DB;
 
 class FormularioController extends Controller
 {
@@ -29,8 +30,7 @@ class FormularioController extends Controller
     {
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
-        // Con esto creamos el registro que relaciona la evaluacion con el formulario en la tabla pivo de la relación N a N
-//        $evaluacion->formularios()->attach($formulario->id);
+
 
         $preguntas = $formulario->preguntas;
 
@@ -51,9 +51,34 @@ class FormularioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $idFormulario, $idEvaluacion)
     {
-        //
+//        dd($request);
+
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulario = Formulario::find($idFormulario);
+
+        $existe=DB::table('evaluacion_formulario')->where('evaluacion_id', $idEvaluacion)->where('formulario_id',$idFormulario)->value('id');
+        if($existe == ''){
+            $evaluacion->formularios()->attach($formulario->id);
+
+            $preguntas = $formulario->preguntas;
+            foreach($preguntas as $pregunta){
+                $respuestaValor = $request->get($pregunta->id);
+                $respuesta = new Respuesta();
+                $respuesta-> valor = $respuestaValor;
+                $respuesta-> respuestaposible = '';
+                $respuesta-> tipopregunta = '';
+                $respuesta-> enunciado = '';
+                $respuesta-> pregunta_id = $pregunta->id;
+                $respuesta->evaluacion_id = $evaluacion->id;
+                $respuesta->save();
+            }
+        }else{
+           return redirect('evaluacion/'.$idEvaluacion)->with('success', 'Este formulario ya ha sido completado');
+        }
+        return redirect('evaluacion/'.$idEvaluacion)->with('success', 'Elemento agregado correctamente');
+
     }
 
     /**
@@ -62,11 +87,20 @@ class FormularioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $idFormulario, $idEvaluacion)
     {
-        //
-    }
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulario = Formulario::find($idFormulario);
+        $preguntas=$formulario->preguntas;
+        $idFormulariosPreguntas = [];
+        foreach ($formulario->preguntas as $pregunta){
+            array_push($idFormulariosPreguntas, $pregunta->id);
+        }
 
+        $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
+//        dd($respuestas[0]);
+        return view('formulario/show', ['evaluacion'=>$evaluacion, 'formulario'=>$formulario, 'preguntas'=>$preguntas, 'respuestas'=>$respuestas]);
+    }
     /**
      * Show the form for editing the specified resource.
      *

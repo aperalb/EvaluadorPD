@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Paciente;
 use App\Evaluacion;
+use App\Formulario;
 use DB;
 
 
@@ -70,7 +71,20 @@ class EvaluacionController extends Controller
     {
         $evaluacion = Evaluacion::find($id);
         $formularios=DB::table('formularios')->get();
-        return view('evaluacion.show', ['evaluacion'=>$evaluacion,'formularios'=>$formularios]);    }
+        $idFormulariosRealizados=DB::table('evaluacion_formulario')->where('evaluacion_id', $evaluacion->id)->get('formulario_id');
+        $IdsFormulariosRealizados=[];
+        $formulariosRealizados=[];
+        foreach ($idFormulariosRealizados as $formularioID){
+            $buscaID=($formularioID->formulario_id);
+            array_push($IdsFormulariosRealizados,$buscaID);
+            $formularioTemp=Formulario::find($buscaID);
+            array_push($formulariosRealizados,$formularioTemp);
+        }
+        $formulariosNoRealizados=DB::table('formularios')->whereNotIn('id',$IdsFormulariosRealizados )->get();
+
+
+        return view('evaluacion.show', ['evaluacion'=>$evaluacion, 'formulariosRealizados'=>$formulariosRealizados, 'formulariosNorealizados'=>$formulariosNoRealizados]);
+    }
 
     /**
      * Show the form for editing the specified resource.

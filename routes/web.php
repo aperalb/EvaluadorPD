@@ -50,8 +50,10 @@ Route::group(['middlewere'=>['web']], function(){
     Route::resource('/evaluacion', 'EvaluacionController');
 
     /*FORMULARIOS*/
-    Route::resource('/formulario', 'FormularioController');
+//    Route::resource('/formulario', 'FormularioController');
     Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
+    Route::post('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@store')->name('formulario.store');
+    Route::get('/formulario/show/{idFormulario}/{idEvaluacion}', 'FormularioController@show')->name('formulario.show');
 
 
 });

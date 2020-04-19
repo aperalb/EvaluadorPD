@@ -1,8 +1,17 @@
 @extends('layouts.app')
-
+@if ($mensaje ?? ''!=null)
+    <div class="alert alert-success">
+        <ul>
+            <li>{{$mensaje ?? ''}}</li>
+        </ul>
+    </div>
+@endif
 @section('content')
+
     <div class="container">
-        {!! Form::open(['route' =>['formulario.show',$formulario->id,$evaluacion->id], 'method'=>'POST','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+
+
+        {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -59,11 +68,12 @@
 
         </div>
         <br>
-        {!! Form::submit('Guardar',['class'=>'btn-primary btn','style'=>'margin-left:17%;']) !!}
+        {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");', 'style'=>'margin-left:17%;']) !!}
         {!! Form::close() !!}
     </div>
 
 @endsection
+
 
 
 

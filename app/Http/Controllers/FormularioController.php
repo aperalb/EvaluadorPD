@@ -87,7 +87,7 @@ class FormularioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $idFormulario, $idEvaluacion)
+    public function show(Request $request, $idFormulario, $idEvaluacion,$mensaje=null)
     {
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
@@ -98,8 +98,15 @@ class FormularioController extends Controller
         }
 
         $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
-//        dd($respuestas[0]);
-        return view('formulario/show', ['evaluacion'=>$evaluacion, 'formulario'=>$formulario, 'preguntas'=>$preguntas, 'respuestas'=>$respuestas]);
+
+
+        if($mensaje!=null){
+
+            return view('formulario/show', ['evaluacion'=>$evaluacion, 'formulario'=>$formulario, 'preguntas'=>$preguntas, 'respuestas'=>$respuestas,'mensaje'=>$mensaje]);
+        }
+        else{
+            return view('formulario/show', ['evaluacion'=>$evaluacion, 'formulario'=>$formulario, 'preguntas'=>$preguntas, 'respuestas'=>$respuestas]);
+        }
     }
     /**
      * Show the form for editing the specified resource.
@@ -119,10 +126,32 @@ class FormularioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, $idFormulario,$idEvaluacion)
     {
-        //
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulario = Formulario::find($idFormulario);
+        $idFormulariosPreguntas = [];
+
+        foreach ($formulario->preguntas as $pregunta){
+            array_push($idFormulariosPreguntas, $pregunta->id);
+        }
+        $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
+
+        foreach($respuestas as $respuesta){
+            $respuestaValor = $request->get($pregunta->id);
+            $respuesta-> valor = $respuestaValor;
+            $respuesta-> respuestaposible = '';
+            $respuesta-> tipopregunta = '';
+            $respuesta-> enunciado = '';
+            $respuesta->save();
+        }
+        $mensaje="Resolución editada correctamente";
+
+        return $this->show($request, $idFormulario,$idEvaluacion,$mensaje);
+
     }
+
 
     /**
      * Remove the specified resource from storage.

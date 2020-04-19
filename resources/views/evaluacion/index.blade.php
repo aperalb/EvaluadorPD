@@ -21,7 +21,7 @@
                                 <th>Altura</th>
                                 <th>Peso</th>
                                 <th>Puntuación Global</th>
-                                <th align ="center" colspan ="3">Acciones</th>
+                                <th align ="center" colspan ="2">Acciones</th>
                             </tr>
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
@@ -39,13 +39,10 @@
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['evaluacion.edit',$evaluacion->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}                                    </td>
+
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
@@ -56,7 +53,7 @@
                             <a href={{url('/evaluacion/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Evaluación</a>
                         </td>
                         <td>
-                            <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
+                            <a href={{ '/paciente/'.$paciente->id }} class="btn btn-info">Volver</a>
                         </td>
 
 

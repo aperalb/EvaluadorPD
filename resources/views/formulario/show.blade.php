@@ -9,20 +9,23 @@
 @section('content')
 
     <div class="container">
-
-
         {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div >
+                <h3><b>{{$formulario->nombre }}</b></h3>
+                <div style="text-align: right">
+                    <h4>{{'Paciente: '.$evaluacion->paciente->getFullsurnameAttribute()}}</h4>
+                </div>
+                <hr>
 
-                <h4>{{$formulario->nombre }}</h4>
-                {{--<table class="table table-striped table-bordered">--}}
+            </div>
+            <div class="col-md-8">
 
                 @foreach($respuestas as $respuesta)
 
-                    <table>
+                    <table class="table table-active" style="border-spacing: 20px 10px; background-color: #e4eeee ">
                         <tr>
-                            <td><h5><pre style="text-align:justify;white-space: pre-line;" >{{$respuesta->pregunta->titulo}}</pre></h5></td>
+                            <td><h4><pre style="text-align:justify;white-space: pre-line;" >{{$respuesta->pregunta->titulo}}</pre></h4></td>
                         </tr>
                         <tr>
                             <td width="50%"><pre style="text-align:justify;white-space: pre-line;" >{{$respuesta->pregunta->enunciado}}</pre></td>
@@ -41,14 +44,19 @@
                                 <td>
 
                                     <div style="display: inline">
-                                        @for ($i = $bottom; $i <= $top; $i++)
-                                            @if($i==$respuesta->valor)
-                                                <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked>{{$i}}
+                                        <label style="font-size:17px; display: inline;">
+                                            Respuesta:
+                                            @for ($i = $bottom; $i <= $top; $i++)
+                                                @if($i==$respuesta->valor)
 
-                                            @else
-                                                <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}">{{$i}}
-                                            @endif
-                                        @endfor
+                                                    <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked style="height:15px; width:15px; ">{{$i}}
+
+                                                @else
+                                                    <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" style="height:15px; width:15px;">{{$i}}
+                                                @endif
+
+                                            @endfor
+                                        </label>
                                     </div>
                                 </td>
                             @else
@@ -62,14 +70,20 @@
                         </tr>
                     </table>
                 @endforeach
-
+                <br>
 
             </div>
 
         </div>
-        <br>
-        {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");', 'style'=>'margin-left:17%;']) !!}
-        {!! Form::close() !!}
+
+        <div style="align-content: center;display: inline; margin-left: 17%">
+            {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");']) !!}
+            {!! Form::close() !!}
+
+
+            <a href={{ url('/evaluacion/'.$evaluacion->id) }} class="btn btn-info" >Volver</a>
+        </div>
+
     </div>
 
 @endsection

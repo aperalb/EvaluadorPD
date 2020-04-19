@@ -106,7 +106,10 @@ class EvaluacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $evaluacion = Evaluacion::find($id);
+        $evaluacion->fill($request->all());
+        $evaluacion->save();
+        return redirect('evaluacion/'.$evaluacion->id)->with('success', 'Elemento editado correctamente');
     }
 
     /**
@@ -117,6 +120,9 @@ class EvaluacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $evaluacion = Evaluacion::find($id);
+        $pacienteID = $evaluacion->paciente->id;
+        $evaluacion->delete();
+        return $this->index($pacienteID);
     }
 }

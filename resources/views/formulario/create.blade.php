@@ -5,16 +5,19 @@
         {!! Form::open(['route' =>['formulario.store',$formulario->id,$evaluacion->id], 'method'=>'POST','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
 
         <div class="row justify-content-center">
+            <div >
+                <h3><b>{{$formulario->nombre }}</b></h3>
+                <div style="text-align: right">
+                    <h4>{{'Paciente: '.$evaluacion->paciente->getFullsurnameAttribute()}}</h4>
+                </div>
+                <hr>
+            </div>
             <div class="col-md-8">
 
-
-                <h4>{{'Nueva resolución del formulario '.$formulario->nombre }}</h4>
-                {{--<table class="table table-striped table-bordered">--}}
-
                 @foreach($preguntas as $pregunta)
-                    <table>
+                    <table class="table table-active" style="border-spacing: 20px 10px; background-color: #e4eeee ">
                         <tr>
-                            <td><h5><pre style="text-align:justify;white-space: pre-line;" >{{$pregunta->titulo}}</pre></h5></td>
+                            <td><h4><pre style="text-align:justify;white-space: pre-line;" >{{$pregunta->titulo}}</pre></h4></td>
                         </tr>
                         <tr>
                             <td width="50%"><pre style="text-align:justify;white-space: pre-line;" >{{$pregunta->enunciado}}</pre></td>
@@ -33,6 +36,8 @@
                                 <td>
 
                                     <div style="display: inline">
+                                        <label style="font-size:17px; display: inline;">
+                                            Respuesta:
                                         @for ($i = $bottom; $i <= $top; $i++)
                                             @if($i==0)
                                                 <input type="radio" name="{{$pregunta->id}}"id="{{$pregunta->id}}" value="{{$i}}" checked>{{$i}}
@@ -41,6 +46,7 @@
                                                 <input type="radio" name="{{$pregunta->id}}"id="{{$pregunta->id}}" value="{{$i}}">{{$i}}
                                             @endif
                                         @endfor
+                                        </label>
                                     </div>
                                 </td>
                             @else
@@ -61,9 +67,16 @@
             </div>
 
         </div>
+
+        <div style="align-content: center;display: inline; margin-left: 17%">
+            {!! Form::submit('Guardar',['class'=>'btn-success btn']) !!}
+            {!! Form::close() !!}
+
+
+            <a href={{ url('/evaluacion/'.$evaluacion->id) }} class="btn btn-info" >Volver</a>
+        </div>
         <br>
-        {!! Form::submit('Guardar',['class'=>'btn-primary btn','style'=>'margin-left:17%;']) !!}
-        {!! Form::close() !!}
+
     </div>
 @endsection
 

@@ -10,8 +10,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Evaluaciones</div>
+                <div class="panel-body">
+                    <h4>Evaluaciones</h4>
+                    <hr>
 
                     <div class="panel-body">
                         <table class="table table-striped table-bordered" >
@@ -21,13 +22,13 @@
                                 <th>Altura</th>
                                 <th>Peso</th>
                                 <th>Puntuación Global</th>
-                                <th align ="center" colspan ="2">Acciones</th>
+                                <th align ="center" colspan ="3">Acciones</th>
                             </tr>
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
                                     <td>{{ date('yy-m-d', strtotime($evaluacion->created_at)) }}</td>
-                                    @if($evaluacion->fechafin == "")
-                                        <td>{{ 'No finalizada' }}</td>
+                                    @if($evaluacion->fechafin == null)
+                                        <td>No Finalizada</td>
                                     @else
                                         <td>{{ date('yy-m-d', strtotime($evaluacion->fechafin)) }}</td>
                                     @endif
@@ -42,22 +43,72 @@
 
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach
                         </table>
 
-                        <td>
-                            <a href={{url('/evaluacion/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Evaluación</a>
-                        </td>
-                        <td>
-                            <a href={{ '/paciente/'.$paciente->id }} class="btn btn-info">Volver</a>
-                        </td>
+
+                        <div>
+                            <td>
+                                <a href={{ '/paciente/'.$paciente->id }} class="btn btn-info">Volver</a>
+                            </td>
+                        </div>
 
 
                     </div>
+
+                    <div>
+                        <br>
+                        <br>
+                        <h5>Añadir Evaluación</h5>
+                        <hr>
+                        {!! Form::open(['route' => 'evaluacion.store', 'class'=>'form-inline']) !!}
+
+                        <table id="addEvaluacion" class=" table-bordered table-striped">
+                            <tr>
+                                <div class="form-group">
+                                    <td width="100" >
+                                        {!! Form::label('altura', 'Altura ') !!}
+                                    </td>
+                                    <td width="">
+                                        {!! Form::number('altura',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="form-group">
+                                    <td width="100" >
+                                        {!! Form::label('peso', 'Peso') !!}
+                                    </td>
+                                    <td width="">
+                                        {!! Form::number('peso',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
+                                    </td>
+                                </div>
+                            </tr>
+                            <tr style="display: none">
+                                <div class="form-group">
+                                    <td width="">
+                                        {!! Form::hidden('pacienteID', $paciente->id) !!}</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="form-group">
+                                    <td colspan="2">
+                                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                </div>
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+
+
                 </div>
             </div>
         </div>

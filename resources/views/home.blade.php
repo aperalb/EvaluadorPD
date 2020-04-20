@@ -82,7 +82,7 @@
                                 <tr ><td></td></tr>
                                 <tr>
                                     <td rowspan="1">
-                                        <a href="{{url('/medico/create')}}" class="btn"><strong>Mis evaluaciones</strong>
+                                        <a href="{{route('evaluacion.misEvaluaciones')}}" class="btn"><strong>Mis evaluaciones</strong>
                                             <img src="/images/evaluaciones.png"
                                                  width="200" height="200"
                                                  alt="Evaluaciones"

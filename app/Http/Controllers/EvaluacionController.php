@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Paciente;
 use App\Evaluacion;
 use App\Formulario;
+use App\User;
+use Auth;
+use App\Medico;
 use DB;
 
 
@@ -23,6 +26,25 @@ class EvaluacionController extends Controller
         $paciente = Paciente::find($id);
         $evaluaciones = $paciente->evaluaciones;
         return view('evaluacion.index', ['evaluaciones'=>$evaluaciones, 'paciente'=>$paciente]);
+    }
+
+    public function index2()
+    {
+//        dd('hola');
+        $idMedico = Auth::user()->medico->id;
+        $medico = Medico::find($idMedico);
+        $pacientes = $medico->pacientes;
+
+        $evaluaciones = [];
+        foreach ($pacientes as $p){
+            $evaluacionesPaciente = $p->evaluaciones;
+            foreach($evaluacionesPaciente as $ep){
+                array_push($evaluaciones, $ep);
+
+            }
+        }
+
+        return view('evaluacion/indexMisEvaluaciones', ['evaluaciones'=>$evaluaciones]);
     }
 
     /**
@@ -124,5 +146,10 @@ class EvaluacionController extends Controller
         $pacienteID = $evaluacion->paciente->id;
         $evaluacion->delete();
         return $this->index($pacienteID);
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }

@@ -47,12 +47,12 @@ Route::group(['middlewere'=>['web']], function(){
 
     /*EVALUACIONES*/
     Route::post('/evaluacion/attach/{id}', 'EvaluacionController@attach')->name('evaluacion.attach');
+    Route::get('/evaluacion/indexMisEvaluaciones', 'EvaluacionController@index2')->name('evaluacion.misEvaluaciones');
     Route::get('/evaluacion/index/{id}', 'EvaluacionController@index');
     Route::resource('/evaluacion', 'EvaluacionController');
 
 
     /*Formularios*/
-
     Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
     Route::get('/formulario/show/{idFormulario}/{idEvaluacion}/{mensaje?}', 'FormularioController@show')->name('formulario.show');
     Route::post('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@store')->name('formulario.store');

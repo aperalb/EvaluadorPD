@@ -129,6 +129,7 @@ class FormularioController extends Controller
 
     public function update(Request $request, $idFormulario,$idEvaluacion)
     {
+//        dd($request);
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
         $idFormulariosPreguntas = [];
@@ -137,9 +138,9 @@ class FormularioController extends Controller
             array_push($idFormulariosPreguntas, $pregunta->id);
         }
         $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
-
+//        dd($respuestas);
         foreach($respuestas as $respuesta){
-            $respuestaValor = $request->get($pregunta->id);
+            $respuestaValor = $request->get($respuesta->pregunta->id);
             $respuesta-> valor = $respuestaValor;
             $respuesta-> respuestaposible = '';
             $respuesta-> tipopregunta = '';

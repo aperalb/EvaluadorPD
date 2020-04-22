@@ -49,6 +49,10 @@
                                     <td>{!! Form::text('numerotel',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
+                                    <th>Dirección</th>
+                                    <td>{!! Form::text('direccion',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
                                     <th>Fecha de inicio PD</th>
                                     <td>{!! Form::date('fechainiciopd',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>

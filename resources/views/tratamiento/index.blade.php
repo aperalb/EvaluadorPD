@@ -35,7 +35,7 @@
                             </tr>
                             @foreach($tratamientos as $tratamiento)
 
-                                @if(date('Y-m-d') <= $tratamiento->fechafin)
+                                @if(date('Y-m-d') <= $tratamiento->fechafin || $tratamiento->fechafin == '')
 
 
 
@@ -87,7 +87,7 @@
 
                             @foreach($tratamientos as $tratamiento)
 
-                                @if(date('Y-m-d') > $tratamiento->fechafin)
+                                @if(date('Y-m-d') > $tratamiento->fechafin && $tratamiento->fechafin != '')
 
 
                                     <tr>

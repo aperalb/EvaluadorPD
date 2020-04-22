@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Todas las evaluaciones</div>
+                    <div class="panel-heading">Todas mis evaluaciones</div>
 
                     <div class="panel-body">
                         <table class="table table-striped table-bordered" >
@@ -33,7 +33,6 @@
                                     @endif
                                     <td>{{ $evaluacion->altura }}</td>
                                     <td>{{ $evaluacion->peso}}</td>
-                                    <td>{{ $evaluacion->puntuacionglobal}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.show',$evaluacion->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}

@@ -44,10 +44,10 @@
                     <tr>
                         <div class="form-group">
                             <td width="500" >
-                                {!! Form::label('puntuacionglobal', 'Puntuacion Global') !!}
+                                {!! Form::label('Observaciones', 'Puntuacion Global') !!}
                             </td>
                             <td width="500">
-                                {!! Form::text('puntuacionglobal',null,['class'=>'form-control', 'autofocus']) !!}
+                                {!! Form::textarea('descripcion',null,['class'=>'form-control', 'autofocus']) !!}
                             </td>
                         </div>
                     </tr>

@@ -13,6 +13,7 @@ class Responsable extends Model
         'apellido2',
         'numerotel',
         'direccion',
+        'email',
         'fotografia',
     ];
 

@@ -26,7 +26,7 @@
                                 </tr>
                                 <tr>
                                     <th>Email</th>
-                                    <td>{{ $responsable->direccion }}</td>
+                                    <td>{{ $responsable->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>Parentesco</th>

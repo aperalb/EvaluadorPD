@@ -17,7 +17,7 @@
                                 <tr>
                                     <div class="form-group">
                                         <th>Nombre</th>
-                                        <td>{!! Form::text('nombre',$user->name,['class'=>'form-control', 'required', 'autofocus', 'size = 50']) !!}</td>
+                                        <td>{!! Form::text('name',$user->name,['class'=>'form-control', 'required', 'autofocus', 'size = 50']) !!}</td>
                                     </div>
                                 </tr>
                                 <tr>

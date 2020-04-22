@@ -53,6 +53,7 @@ class ResponsableController extends Controller
         $responsable->apellido2 = $request->get('apellido2');
         $responsable->numerotel = $request->get('numerotel');
         $responsable->direccion = $request->get('direccion');
+        $responsable->email = $request->get('email');
         $responsable->fotografia = $request->get('fotografia');
 
         $responsable->save();

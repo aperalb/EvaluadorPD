@@ -67,9 +67,9 @@ class FormularioController extends Controller
                 $respuestaValor = $request->get($pregunta->id);
                 $respuesta = new Respuesta();
                 $respuesta-> valor = $respuestaValor;
-                $respuesta-> respuestaposible = '';
-                $respuesta-> tipopregunta = '';
-                $respuesta-> enunciado = '';
+//                $respuesta-> respuestaposible = '';
+//                $respuesta-> tipopregunta = '';
+//                $respuesta-> enunciado = '';
                 $respuesta-> pregunta_id = $pregunta->id;
                 $respuesta->evaluacion_id = $evaluacion->id;
                 $respuesta->save();
@@ -142,9 +142,9 @@ class FormularioController extends Controller
         foreach($respuestas as $respuesta){
             $respuestaValor = $request->get($respuesta->pregunta->id);
             $respuesta-> valor = $respuestaValor;
-            $respuesta-> respuestaposible = '';
-            $respuesta-> tipopregunta = '';
-            $respuesta-> enunciado = '';
+//            $respuesta-> respuestaposible = '';
+//            $respuesta-> tipopregunta = '';
+//            $respuesta-> enunciado = '';
             $respuesta->save();
         }
         $mensaje="Resolución editada correctamente";

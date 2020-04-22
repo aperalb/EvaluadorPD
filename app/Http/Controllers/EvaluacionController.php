@@ -75,7 +75,7 @@ class EvaluacionController extends Controller
         $evaluacion->fechafin=$request->get('fechafin');
         $evaluacion->altura=$request->get('altura');
         $evaluacion->peso = $request->get('peso');
-        $evaluacion->puntuacionglobal = $request->get('puntuacionglobal');
+        $evaluacion->descripcion = $request->get('descripcion');
         $evaluacion->paciente_id = $pacienteID;
         $evaluacion->save();
 
@@ -128,6 +128,7 @@ class EvaluacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request);
         $evaluacion = Evaluacion::find($id);
         $evaluacion->fill($request->all());
         $evaluacion->save();

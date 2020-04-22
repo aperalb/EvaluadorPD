@@ -36,10 +36,10 @@
                                     <th>Dirección</th>
                                     <td>{!! Form::text('direccion',$responsable->direccion,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
-                                {{--<tr>--}}
-                                    {{--<th>Email</th>--}}
-                                    {{--<td>{!! Form::text('email',$responsable->email,['class'=>'form-control', 'autofocus']) !!}</td>--}}
-                                {{--</tr>--}}
+                                <tr>
+                                    <th>Email</th>
+                                    <td>{!! Form::email('email',$responsable->email,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
                                 <tr>
                                     <th>Relación</th>
                                     <td>{!! Form::text('parentesco',$responsable->getParentesco($pacienteID, $responsable->id),['class'=>'form-control', 'required', 'autofocus']) !!}</td>

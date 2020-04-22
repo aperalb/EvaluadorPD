@@ -33,6 +33,10 @@
                                     <td>{{ $paciente->numerotel }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Dirección</th>
+                                    <td>{{ $paciente->direccion }}</td>
+                                </tr>
+                                <tr>
                                     <th>Año de inicio PD</th>
                                     <td>{{ $paciente->getAgeInitPD() }}</td>
                                 </tr>
@@ -85,7 +89,7 @@
 
                         <table class="table table-striped table-bordered">
                             <tr>
-                                <td colspan="10">Datos cuantitativos</td>
+                                <td style="display:none" colspan="10">Datos cuantitativos</td>
                             </tr>
                         </table>
 

@@ -68,7 +68,7 @@
                                 <h4>Observaciones</h4>
                                 <a>
 
-                                    <pre>{!! Form::textarea('observaciones',$evaluacion->observaciones,['id'=>'observaciones','cols'=>'80','rows'=>'10','required','readonly', 'autofocus']) !!}</pre>
+                                    <pre>{!! Form::textarea('descripcion',$evaluacion->descripcion,['id'=>'observaciones','cols'=>'80','rows'=>'10','required','readonly', 'autofocus']) !!}</pre>
                                 </a>
 
                             </div>

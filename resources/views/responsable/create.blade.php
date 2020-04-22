@@ -37,8 +37,8 @@
                                     <td>{!! Form::text('direccion',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
-                                    <th>Dirección</th>
-                                    <td>{!! Form::text('email',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                    <th>Email</th>
+                                    <td>{!! Form::email('email',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Relación</th>

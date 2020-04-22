@@ -21,7 +21,6 @@
                                 <th>Fecha Fin</th>
                                 <th>Altura</th>
                                 <th>Peso</th>
-                                <th>Puntuación Global</th>
                                 <th align ="center" colspan ="3">Acciones</th>
                             </tr>
                             @foreach($evaluaciones as $evaluacion)
@@ -34,7 +33,6 @@
                                     @endif
                                     <td>{{ $evaluacion->altura }}</td>
                                     <td>{{ $evaluacion->peso}}</td>
-                                    <td>{{ $evaluacion->puntuacionglobal}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.show',$evaluacion->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}

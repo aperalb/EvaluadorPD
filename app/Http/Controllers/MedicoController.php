@@ -90,6 +90,7 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request);
         $user = User::find($id);
         $medico = $user->medico;
         $user->fill($request->all());

@@ -54,6 +54,8 @@
 
                             {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
                             {!! Form::close() !!}
+                            <a href={{ url('/sintoma/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
+
 
                         </div>
 

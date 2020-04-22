@@ -67,7 +67,7 @@
                                     {!! Form::label('detalles', 'Detalles ') !!}
                                 </th>
                                 <td width="500">
-                                    {!! Form::textarea('detalles',$tratamiento->detalles,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                    {!! Form::textarea('detalles',$tratamiento->detalles,['class'=>'form-control', 'autofocus']) !!}
                                 </td>
                             </div>
                         </tr>
@@ -77,9 +77,16 @@
                             {{  Form::hidden('url',URL::previous())  }}
                         </tr>
                     </table>
-                    {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
-                    {!! Form::close() !!}
-                </div>
+                    <table>
+                        <td>
+                            {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                        <td>{{'              '}}</td>
+                        <td>
+                            <a href={{ url('/paciente/'.$tratamiento->paciente->id) }} class="btn btn-info">Volver</a>
+                        </td>
+                    </table>
             </div>
         </div>
     </div>

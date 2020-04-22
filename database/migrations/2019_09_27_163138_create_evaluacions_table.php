@@ -19,7 +19,7 @@ class CreateEvaluacionsTable extends Migration
             $table->date('fechafin')->nullable();
             $table->double('altura')->nullable();
             $table->double('peso')->nullable();
-            $table->double('puntuacionglobal')->nullable();
+            $table->text('descripcion')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');

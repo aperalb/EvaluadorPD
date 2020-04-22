@@ -23,6 +23,7 @@ class CreatePacientesTable extends Migration
             $table->string('nuhsa');
             $table->date('fechanac');
             $table->string('numerotel')->nullable();
+            $table->string('direccion')->nullable();
             $table->date('fechainiciopd');
             $table->text('observaciones')->nullable();
             $table->text('fotografia')->nullable();

@@ -10,8 +10,7 @@ class Evaluacion extends Model
         'fechafin',
         'altura',
         'peso',
-        'puntuacionglobal',
-
+        'observaciones'
     ];
     //La evaluación pertenece a un paciente
     public function paciente()

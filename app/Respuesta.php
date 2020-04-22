@@ -9,9 +9,7 @@ class Respuesta extends Model
     //
     protected $fillable = [
         'valor',
-//        'respuestaposible',
-//        'tipopregunta',
-//        'enunciado',
+
     ];
 
     //Una respuesta corresonde a 1 pregunta

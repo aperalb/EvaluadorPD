@@ -17,9 +17,6 @@ class CreateRespuestasTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('valor');
-            $table->string('respuestaposible');
-            $table->string('tipopregunta');
-            $table->text('enunciado');
             /**Constraints*/
             $table->unsignedBigInteger('pregunta_id');
             $table->foreign('pregunta_id')->references('id')->on('preguntas')->onDelete('cascade');

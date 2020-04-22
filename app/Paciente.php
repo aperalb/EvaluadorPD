@@ -15,6 +15,7 @@ class Paciente extends Model
         'nuhsa',
         'fechanac',
         'numerotel',
+        'direccion',
         'fechainiciopd',
         'observaciones',
     ];

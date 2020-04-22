@@ -81,6 +81,8 @@
 
                                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
                                         {!! Form::close() !!}
+                                        <a href={{ url('/responsable/index/'.$pacienteID) }} class="btn btn-info">Volver</a>
+
                                     </td>
                                 </tr>
 
@@ -89,6 +91,7 @@
                         </div>
 
                     </div>
+
 
                 </div>
             </div>

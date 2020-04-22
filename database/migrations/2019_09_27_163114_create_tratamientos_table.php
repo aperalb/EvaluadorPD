@@ -20,7 +20,7 @@ class CreateTratamientosTable extends Migration
             $table->double('dosis');
             $table->integer('frecuencia');
             $table->date('fechainicio');
-            $table->date('fechafin');
+            $table->date('fechafin')->nullable();
             $table->text('detalles')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');

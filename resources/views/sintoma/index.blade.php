@@ -70,7 +70,7 @@
                             Síntoma</a>
                         </td>
                         <td>
-                            <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-info">Volver</a>
                         </td>
 
 

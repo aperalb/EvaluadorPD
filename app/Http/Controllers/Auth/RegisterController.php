@@ -8,8 +8,15 @@ use App\Medico;
 use App\Administrador;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Image;
+
+use Illuminate\Auth\Events\Registered;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -49,6 +56,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all(),$request)));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -66,14 +88,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data, Request $request)
     {
+
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'apellido1' => $data['apellido1'],
             'apellido2' => $data['apellido2'],
             'password' => Hash::make($data['password'])]);
+        if (isset($data['fotografia'])) {
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
 
         if($data['consulta']!=null && $data['numerotel']!=null && $data['especialidad']!=null){
             $medico = new Medico();
@@ -85,11 +112,6 @@ class RegisterController extends Controller
             $medico->save();
         }
 
-//        if($data['soyAdmin']==1){
-//            $administrador = new Administrador();
-//            $administrador->user_id = $user->id;
-//            $administrador->save();
-//        }
 
         return $user;
 

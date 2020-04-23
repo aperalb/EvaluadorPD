@@ -8,7 +8,7 @@
                     <div class="card-header">Registrarse como Médico</div>
 
                     <div class="card-body" style="height:75%; width:75%;">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="panel-body">
                                 <div class="floatLeft">
@@ -151,7 +151,8 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input id="fotografia" type="url" class="form-control{{ $errors->has('fotografia') ? ' is-invalid' : '' }}" name="fotografia" autofocus maxlength="1000">
+
+                                                <input id="fotografia" type="file" class="form-control{{ $errors->has('fotografia') ? ' is-invalid' : '' }}" name="fotografia" autofocus maxlength="1000">
 
                                             </td>
 
@@ -163,8 +164,6 @@
                                                 </button>
                                             </td>
                                         </tr>
-
-
 
                                     </table>
 

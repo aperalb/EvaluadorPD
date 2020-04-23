@@ -31,10 +31,11 @@
                                 <tr>
                                     <td rowspan="1">
 
-                                        <img src="{{Auth::user()->medico->fotografia}}"
-                                             width="300" height="300"
+                                        <img src="{{Auth::user()->getFirstMediaUrl('fotografias') }}"
+                                             width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
-                                             alt="Fotografia" />
+                                             alt="Fotografia" /
+                                        />
 
                                     </td>
 

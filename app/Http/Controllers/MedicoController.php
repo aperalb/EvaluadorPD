@@ -90,31 +90,27 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
         $user = User::find($id);
         $medico = $user->medico;
         $user->fill($request->all());
+        if($request->hasFile('fotografia')){
+            try {
+                $user->getMedia('fotografias')[0]->delete();
+            }catch(Exception $e){
+                // Si no puede eliminar, que incluya la nueva imagen y punto.
+            }
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
         $user->save();
+
         $medico->fill($request->all());
         $medico->save();
-
-//        $user ->name = $request->get('name');
-//        $user ->apellido1 = $request->get('apellido1');
-//        $user ->apellido2 = $request->get('apellido2');
-//        $user ->email = $request->get('email');
-//        $user ->update();
-//
-//        $medico->numerotel = $request->get('numerotel');
-//        $medico->consulta = $request->get('consulta');
-//        $medico->especialidad = $request->get('especialidad');
-//        $medico->fotografia = $request->get('fotografia');
-
-//        $medico->update();
 
         return redirect()->route('home');
 
 
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Form::model($user, [ 'route' => ['medico.update',$user->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+        {!! Form::model($user, [ 'route' => ['medico.update',$user->id], 'files' => 'true','method'=>'PUT', 'class'=>'form-inline', 'enctype'=>'multipart/form-data']) !!}
         <div class="row">
             <div >
                 <div class="panel panel-default">
@@ -57,7 +57,7 @@
                                 <tr>
                                     <td rowspan="1">
 
-                                        <img src="{{$user->medico->fotografia}}"
+                                        <img src="{{Auth::user()->getFirstMediaUrl('fotografias')}}"
                                              width="300" height="300"
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                              alt="Fotografia" />
@@ -67,13 +67,13 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        URL Fotografía
+                                       Imagen
                                     </th>
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::URL('fotografia',$user->medico -> fotografia,['class'=>'form-control', 'autofocus','maxlength="1000"','size=40%']) !!}
+                                        {!! Form::file('fotografia',['id'=>'fotografia','name'=>'fotografia','class'=>'form-control', 'autofocus','size=40%']) !!}
                                     </td>
 
                                 </tr>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(User::showRol() == 'PACIENTE'){
+            $paciente = Auth::user()->paciente;
+            return view('paciente.show', ['paciente'=>$paciente]);
+        }else if(User::showRol() == 'RESPONSABLE'){
+            $pacientes = Auth::user()->responsable->pacientes;
+            return view('paciente.index', ['pacientes'=>$pacientes]);
+        }
+
+        User::validaRol('MEDICO');
         return view('home');
     }
 }

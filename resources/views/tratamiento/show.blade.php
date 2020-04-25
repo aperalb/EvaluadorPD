@@ -38,6 +38,7 @@
                             </table>
                         <tr>
                             <div>
+                                @if(Auth::user()->showRol()=='MEDICO')
                                 <td>
                                     {!! Form::open(['route' => ['responsable.create'], 'method' => 'get']) !!}
                                     {!! Form::submit('Añadir', ['class'=> 'btn btn-info'])!!}
@@ -45,6 +46,7 @@
                                     <br/>
                                     <a href={{ url()->previous() }} class="btn btn-info">Volver</a>
                                 </td>
+                                    @endif
                             </div>
                         </tr>
                     </div>

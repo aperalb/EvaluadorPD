@@ -14,7 +14,7 @@
 
                                 <tr>
                                     <th>Nombre</th>
-                                    <td>{{ $paciente->getFullsurnameAttribute() }}</td>
+                                    <td>{{ $paciente->user->getFullsurnameAttribute() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Sexo</th>
@@ -70,6 +70,7 @@
                                     </td>
 
                                 </tr>
+                                @if(Auth::user()->showRol()=='MEDICO')
                                 <tr>
                                     <td>
                                         {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
@@ -80,8 +81,7 @@
                                 <tr>
                                     <td> <a href={{url('/paciente/delete/'.$paciente->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este paciente?');" >Eliminar</a> </td>
                                 </tr>
-
-
+                                @endif
                             </table>
                         </div>
 
@@ -92,10 +92,11 @@
                                 <td style="display:none" colspan="10">Datos cuantitativos</td>
                             </tr>
                         </table>
-
+                        @if(Auth::user()->showRol()=='MEDICO')
                         <td>
                             <a href={{ url('/paciente') }} class="btn btn-info">Volver</a>
                         </td>
+                        @endif
                     </div>
 
                 </div>

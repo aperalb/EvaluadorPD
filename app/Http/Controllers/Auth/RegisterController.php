@@ -97,6 +97,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'apellido1' => $data['apellido1'],
             'apellido2' => $data['apellido2'],
+            'rol' => 'MEDICO',
             'password' => Hash::make($data['password'])]);
         if (isset($data['fotografia'])) {
             $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');

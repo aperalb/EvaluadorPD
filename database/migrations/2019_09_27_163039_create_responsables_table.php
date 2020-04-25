@@ -16,13 +16,13 @@ class CreateResponsablesTable extends Migration
         Schema::create('responsables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('nombre');
-            $table->string('apellido1');
-            $table->string('apellido2');
             $table->string('numerotel')->nullable();
             $table->string('direccion');
             $table->string('email')->nullable();
             $table->text('fotografia')->nullable();
+            /**Constraints*/
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

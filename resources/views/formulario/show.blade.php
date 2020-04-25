@@ -9,12 +9,14 @@
 @section('content')
 
     <div class="container">
-        {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+        @if(Auth::User()->showRol()=='MEDICO')
+            {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+        @endif
         <div class="row justify-content-center">
             <div >
                 <h3><b>{{$formulario->nombre }}</b></h3>
                 <div style="text-align: right">
-                    <h4>{{'Paciente: '.$evaluacion->paciente->getFullsurnameAttribute()}}</h4>
+                    <h4>{{'Paciente: '.$evaluacion->paciente->user->getFullsurnameAttribute()}}</h4>
                 </div>
                 <hr>
 
@@ -43,21 +45,44 @@
 
                                 <td>
 
-                                    <div style="display: inline">
-                                        <label style="font-size:17px; display: inline;">
-                                            Respuesta:
-                                            @for ($i = $bottom; $i <= $top; $i++)
-                                                @if($i==$respuesta->valor)
+                                    @if(Auth::User()->showRol()=='MEDICO')
+                                        <div style="display: inline">
+                                            <label style="font-size:17px; display: inline;">
+                                                Respuesta:
+                                                @for ($i = $bottom; $i <= $top; $i++)
+                                                    @if($i==$respuesta->valor)
 
-                                                    <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked style="height:15px; width:15px; ">{{$i}}
+                                                        <input type="radio"  name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked style="height:15px; width:15px; ">{{$i}}
 
-                                                @else
-                                                    <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" style="height:15px; width:15px;">{{$i}}
-                                                @endif
+                                                    @else
+                                                        <input type="radio" name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" style="height:15px; width:15px;">{{$i}}
+                                                    @endif
 
-                                            @endfor
-                                        </label>
-                                    </div>
+                                                @endfor
+                                            </label>
+                                        </div>
+                                    @else
+                                        <div style="display: inline">
+                                            <label style="font-size:17px; display: inline;">
+                                                Respuesta:
+                                                @for ($i = $bottom; $i <= $top; $i++)
+                                                    @if($i==$respuesta->valor)
+
+                                                        <input type="radio" disabled='disabled' name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" checked style="height:15px; width:15px; ">{{$i}}
+
+                                                    @else
+                                                        <input type="radio" disabled='disabled' name="{{$respuesta->pregunta->id}}"id="{{$respuesta->pregunta->id}}" value="{{$i}}" style="height:15px; width:15px;">{{$i}}
+                                                    @endif
+
+                                                @endfor
+                                            </label>
+                                        </div>
+
+
+                                    @endif
+
+
+
                                 </td>
                             @else
                                 <td>
@@ -77,9 +102,10 @@
         </div>
 
         <div style="align-content: center;display: inline; margin-left: 17%">
-            {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");']) !!}
-            {!! Form::close() !!}
-
+            @if(Auth::User()->showRol()=='MEDICO')
+                {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");']) !!}
+                {!! Form::close() !!}
+            @endif
 
             <a href={{ url('/evaluacion/'.$evaluacion->id) }} class="btn btn-info" >Volver</a>
         </div>

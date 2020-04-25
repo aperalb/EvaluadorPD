@@ -7,6 +7,8 @@ use Auth;
 use App\Paciente;
 use App\Medico;
 use Flash;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class PacienteController extends Controller
 {
@@ -17,6 +19,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
+        User::validaRol('MEDICO');
+
         $medico = Medico::find(Auth::user()->medico->id);
         $pacientes = $medico->pacientes;
 
@@ -30,15 +34,26 @@ class PacienteController extends Controller
      */
     public function create()
     {
+        User::validaRol('MEDICO');
         return view('paciente/create');
     }
 
     public function store(Request $request)
     {
+        User::validaRol('MEDICO');
         $this->validate($request, []);
+
+        $user = User::create([
+            'name' => $request->get('nombre'),
+            'rol' => 'PACIENTE',
+            'apellido1' =>  $request->get('apellido1'),
+            'apellido2' =>  $request->get('apellido2'),
+            'email' => $request->get('email'),
+            'password' => Hash::make( $request->get('password'))]);
 
         /** Creamos el nuevo paciente*/
         $paciente = new Paciente($request->all());
+        $paciente->user_id = $user->id;
         $paciente->save();
         $medico = Auth::user()->medico;
         $paciente->medicos()->attach($medico->id);
@@ -48,6 +63,7 @@ class PacienteController extends Controller
         return redirect()->route('paciente.show',[$paciente->id]);
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -56,6 +72,7 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
+
         $paciente = Paciente::find($id);
         return view('paciente.show', ['paciente'=>$paciente]);
     }
@@ -68,6 +85,7 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
+        User::validaRol('MEDICO');
         $paciente  = Paciente::find($id);
         return view('paciente/edit', ['paciente'=>$paciente] );
 
@@ -83,7 +101,18 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        User::validaRol('MEDICO');
         $paciente = Paciente::find($id);
+        $user = $paciente->user;
+        $user->fill($request->all());
+        $user->name=$request->get('nombre');
+        $user->save();
+
+//        if (isset($data['fotografia'])) {
+//            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+//        }
+
+
         $paciente->fill($request->all());
         $paciente->save();
         return redirect()->route('paciente.show',[$paciente->id]);
@@ -97,6 +126,7 @@ class PacienteController extends Controller
      */
     public function delete($id)
     {
+        User::validaRol('MEDICO');
         $paciente = Paciente::find($id);
         $paciente->delete();
         return redirect()->route('paciente.index');

@@ -32,7 +32,7 @@
                                 @php $responsableID = $responsable->id @endphp
                                 <tr>
                                     <td>{{ $responsable->getParentesco($paciente->id,$responsableID)}}</td>
-                                    <td>{{ $responsable->getFullsurnameAttribute() }}</td>
+                                    <td>{{ $responsable->user->getFullsurnameAttribute() }}</td>
                                     <td>
                                         {!! Form::open(['route' => ['responsable.show2','idResponsable'=>$responsable->id,'idPaciente'=> $paciente->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Perfil', ['class'=> 'btn btn-info','style'=>"width: 100%"])!!}
@@ -46,13 +46,13 @@
                                 </tr>
                             @endforeach
                         </table>
-
+                        @if(Auth::User()->showRol()=='MEDICO')
                         <td>
                             <a href={{url('/responsable/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Crear Responsable</a>
                         </td>
-
+                        @endif
                         <td>
-                            <a href={{ url('/paciente/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/responsable/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
                         </td>
 
 

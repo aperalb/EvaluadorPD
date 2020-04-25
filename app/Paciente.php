@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Paciente extends Model
 {
     protected $fillable = [
-        'nombre',
-        'apellido1',
-        'apellido2',
+//        'nombre',
+//        'apellido1',
+//        'apellido2',
         'fotografia',
         'sexo',
         'nuhsa',
@@ -20,6 +20,10 @@ class Paciente extends Model
         'observaciones',
     ];
     //Relaciones
+    // Un paciente pertenece a un
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
     //Un paciente tiene N responsables
     public function responsables(){
         return $this->belongsToMany('App\Responsable');

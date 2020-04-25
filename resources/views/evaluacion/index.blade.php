@@ -21,7 +21,12 @@
                                 <th>Fecha Fin</th>
                                 <th>Altura</th>
                                 <th>Peso</th>
+                                @if(Auth::User()->showRol()=='MEDICO')
                                 <th align ="center" colspan ="3">Acciones</th>
+                                @else
+                                    <th align ="center" colspan ="1">Acciones</th>
+                                @endif
+
                             </tr>
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
@@ -38,12 +43,14 @@
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
+                                    @if(Auth::User()->showRol()=='MEDICO')
 
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
                                         {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </table>
@@ -57,7 +64,7 @@
 
 
                     </div>
-
+                    @if(Auth::User()->showRol()=='MEDICO')
                     <div>
                         <br>
                         <br>
@@ -72,7 +79,7 @@
                                         {!! Form::label('altura', 'Altura ') !!}
                                     </td>
                                     <td width="">
-                                        {!! Form::number('altura',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
+                                        {!! Form::number('altura',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.01']) !!}
                                     </td>
                                 </div>
                             </tr>
@@ -82,7 +89,7 @@
                                         {!! Form::label('peso', 'Peso') !!}
                                     </td>
                                     <td width="">
-                                        {!! Form::number('peso',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
+                                        {!! Form::number('peso',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.01']) !!}
                                     </td>
                                 </div>
                             </tr>
@@ -103,6 +110,7 @@
                         </table>
 
                     </div>
+                    @endif
 
 
 

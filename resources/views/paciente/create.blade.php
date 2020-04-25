@@ -28,6 +28,14 @@
                                     <th>Apellido 2</th>
                                     <td> {!! Form::text('apellido2',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td> {!! Form::text('email',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
+                                    <th>Contraseña</th>
+                                    <td> {!! Form::password('password',null,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                </tr>
 
 
                                 <tr>

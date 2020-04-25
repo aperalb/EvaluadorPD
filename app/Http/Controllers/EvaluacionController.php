@@ -30,7 +30,7 @@ class EvaluacionController extends Controller
 
     public function index2()
     {
-//        dd('hola');
+        User::validaRol('MEDICO');
         $idMedico = Auth::user()->medico->id;
         $medico = Medico::find($idMedico);
         $pacientes = $medico->pacientes;
@@ -54,6 +54,7 @@ class EvaluacionController extends Controller
      */
     public function create(Request $request)
     {
+        User::validaRol('MEDICO');
         $pacienteID = $request->get('pacienteID');
         return view('evaluacion/create', ['pacienteID'=>$pacienteID]);
     }
@@ -66,6 +67,7 @@ class EvaluacionController extends Controller
      */
     public function store(Request $request)
     {
+        User::validaRol('MEDICO');
         $pacienteID=$request->get('pacienteID');
         $paciente = Paciente::find($pacienteID);
         $this->validate($request, []);
@@ -128,7 +130,7 @@ class EvaluacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
+        User::validaRol('MEDICO');
         $evaluacion = Evaluacion::find($id);
         $evaluacion->fill($request->all());
         $evaluacion->save();
@@ -143,6 +145,7 @@ class EvaluacionController extends Controller
      */
     public function destroy($id)
     {
+        User::validaRol('MEDICO');
         $evaluacion = Evaluacion::find($id);
         $pacienteID = $evaluacion->paciente->id;
         $evaluacion->delete();

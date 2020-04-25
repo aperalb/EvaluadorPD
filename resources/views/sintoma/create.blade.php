@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         <div class="floatLeft">
 
-                            <h4>Añadir Sintoma de {{$paciente->getFullsurnameAttribute()}}</h4>
+                            <h4>Añadir Sintoma de {{$paciente->user->getFullsurnameAttribute()}}</h4>
                             <hr/>
                             <table class="table table-striped table-bordered">
 

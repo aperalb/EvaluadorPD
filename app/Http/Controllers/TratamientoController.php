@@ -8,6 +8,7 @@ use App\Paciente;
 use App\Medico;
 use App\Tratamiento;
 use Redirect;
+use App\User;
 
 class TratamientoController extends Controller
 {
@@ -29,6 +30,7 @@ class TratamientoController extends Controller
      */
     public function create(Request $request)
     {
+        User::validaRol('MEDICO');
         $pacienteID = $request->get('pacienteID');
 
         return view('tratamiento/create', ['pacienteID'=>$pacienteID]);
@@ -44,7 +46,7 @@ class TratamientoController extends Controller
     public function store(Request $request)
     {
 
-
+        User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
         $paciente = Paciente::find($id);
         $this->validate($request, []);
@@ -87,8 +89,8 @@ class TratamientoController extends Controller
      */
     public function edit($id)
     {
+        User::validaRol('MEDICO');
         $tratamiento  = Tratamiento::find($id);
-
         return view('tratamiento/edit', ['tratamiento'=>$tratamiento]);
     }
 

@@ -17,18 +17,17 @@
                                 <tr>
                                     <div class="form-group">
                                         <th>Nombre</th>
-                                        <td>{!! Form::text('nombre',$paciente->nombre,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                        <td>{!! Form::text('nombre',$paciente->user->name,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                     </div>
                                 </tr>
                                 <tr>
                                     <th>Apellido 1</th>
-                                    <td>{!! Form::text('apellido1',$paciente->apellido1,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                    <td>{!! Form::text('apellido1',$paciente->user->apellido1,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Apellido 2</th>
-                                    <td> {!! Form::text('apellido2',$paciente -> apellido2,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                    <td> {!! Form::text('apellido2',$paciente->user -> apellido2,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
-
 
                                 <tr>
                                     <th>Sexo</th>

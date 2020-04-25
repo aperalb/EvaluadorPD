@@ -39,7 +39,7 @@ class SintomaController extends Controller
      */
     public function create(Request $request)
     {
-
+        User::validaRol('MEDICO');
         $pacienteID = $request->get('pacienteID');
         $paciente = Paciente::find($pacienteID);
         return view('sintoma/create', ['paciente'=>$paciente]);
@@ -53,7 +53,7 @@ class SintomaController extends Controller
      */
     public function store(Request $request)
     {
-
+        User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
         $paciente = Paciente::find($id);
         $this->validate($request, []);
@@ -113,6 +113,7 @@ class SintomaController extends Controller
      */
     public function edit($id)
     {
+        User::validaRol('MEDICO');
         $sintoma  = Sintoma::find($id);
         return view('sintoma/edit', ['sintoma'=>$sintoma] );
     }
@@ -126,6 +127,7 @@ class SintomaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        User::validaRol('MEDICO');
         $sintoma = Sintoma::find($id);
         $sintoma->fill($request->all());
 //        dd($sintoma);
@@ -164,6 +166,7 @@ class SintomaController extends Controller
      */
     public function destroy($id)
     {
+        User::validaRol('MEDICO');
         $sintoma = Sintoma::find($id);
         $sintoma->delete();
         return redirect()->back()->with('danger', 'Sintoma eliminado con éxito.');

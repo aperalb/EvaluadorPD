@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Responsable;
 use App\Paciente;
 use DB;
+use App\User;
+use Auth;
 
 class ResponsableController extends Controller
 {
@@ -16,6 +18,7 @@ class ResponsableController extends Controller
      */
     public function index($id)
     {
+
         $paciente = Paciente::find($id);
         $responsables = $paciente->responsables;
 
@@ -32,15 +35,15 @@ class ResponsableController extends Controller
      */
     public function create(Request $request)
     {
+        User::validaRol('MEDICO');
         $pacienteID = $request->get('pacienteID');
-
         return view('responsable/create', ['pacienteID'=>$pacienteID]);
     }
 
 
     public function store(Request $request)
     {
-
+        User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
         $paciente = Paciente::find($id);
@@ -72,6 +75,7 @@ class ResponsableController extends Controller
      */
     public function show2($idResponsable, $idPaciente)
     {
+
         $responsable = Responsable::find($idResponsable);
         $paciente = Paciente::find($idPaciente);
         return view('responsable.show', ['responsable'=>$responsable,'paciente'=>$paciente]);
@@ -85,6 +89,7 @@ class ResponsableController extends Controller
      */
     public function editar(Request $request)
     {
+        User::validaRol('MEDICO');
         $idResponsable=$request->get('responsableID');
         $pacienteID=$request->get('pacienteID');
         $responsable  = Responsable::find($idResponsable);
@@ -104,6 +109,7 @@ class ResponsableController extends Controller
      */
     public function update(Request $request, $id)
     {
+        User::validaRol('MEDICO');
         $pacienteID=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
         $responsable = Responsable::find($id);
@@ -124,6 +130,7 @@ class ResponsableController extends Controller
      */
     public function delete(Request $request)
     {
+        User::validaRol('MEDICO');
         $responsableID = $request->get('responsableID');
         $pacienteID = $request->get('pacienteID');
         $responsable = Responsable::find($responsableID);

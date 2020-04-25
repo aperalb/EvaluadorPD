@@ -18,6 +18,10 @@ class Responsable extends Model
     ];
 
     //Relaciones
+    //El responsable corresponde a un User
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
     //Un responsable tiene N pacientes
     public function pacientes(){
         return $this->belongsToMany('App\Paciente');
@@ -29,9 +33,6 @@ class Responsable extends Model
         return $parentesco;
     }
 
-    public function getFullsurnameAttribute()
-    {
-        return $this->nombre.' '. $this->apellido1.' '.$this->apellido2;
-    }
+
 }
 

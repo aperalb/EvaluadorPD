@@ -16,9 +16,6 @@ class CreatePacientesTable extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('nombre');
-            $table->string('apellido1');
-            $table->string('apellido2');
             $table->string('sexo');
             $table->string('nuhsa');
             $table->date('fechanac');
@@ -27,6 +24,9 @@ class CreatePacientesTable extends Migration
             $table->date('fechainiciopd');
             $table->text('observaciones')->nullable();
             $table->text('fotografia')->nullable();
+            /**Constraints*/
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

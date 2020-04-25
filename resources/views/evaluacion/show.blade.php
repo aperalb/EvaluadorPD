@@ -20,8 +20,9 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="floatLeft">
-                            {!! Form::model($evaluacion, [ 'route' => ['evaluacion.update',$evaluacion->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
-
+                            @if(Auth::User()->showRol()=='MEDICO')
+                                {!! Form::model($evaluacion, [ 'route' => ['evaluacion.update',$evaluacion->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+                            @endif
                             <h4>Detalles de la Evaluación</h4>
                             <table class="table table-striped table-bordered" >
 
@@ -72,19 +73,19 @@
                                 </a>
 
                             </div>
+                            @if(Auth::User()->showRol()=='MEDICO')
+                                <div style="align-content: center; margin-left: 7%">
+                                    <a> <input class="btn btn-info" type="button" id="Editar" value="Editar" onclick="edit()"></a>
 
-                            <div style="align-content: center; margin-left: 7%">
-                                <a> <input class="btn btn-info" type="button" id="Editar" value="Editar" onclick="edit()"></a>
+                                    {!! Form::submit('Guardar',['id'=>'guardar','style'=>'display:none','class'=>'btn-success btn']) !!}
+                                    {!! Form::close() !!}
 
-                                {!! Form::submit('Guardar',['id'=>'guardar','style'=>'display:none','class'=>'btn-success btn']) !!}
-                                {!! Form::close() !!}
-
-                                {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
-                                <br>
-                                {!! Form::submit('Eliminar', ['id'=>'eliminar','style'=>'display:none','class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta evaluación?");'])!!}
-                                {!! Form::close() !!}
-                            </div>
-
+                                    {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
+                                    <br>
+                                    {!! Form::submit('Eliminar', ['id'=>'eliminar','style'=>'display:none','class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta evaluación?");'])!!}
+                                    {!! Form::close() !!}
+                                </div>
+                            @endif
 
                         </div>
 
@@ -110,23 +111,24 @@
                             </table>
                         </div>
 
-                        <table class="table table-striped table-bordered">
-
-                            <tr>
-                                <td colspan="10">Formularios Pendientes</td>
-                            </tr>
-
-                            @foreach($formulariosNorealizados as $formulario)
+                        @if(Auth::User()->showRol()=='MEDICO')
+                            <table class="table table-striped table-bordered">
                                 <tr>
-                                    <td>
-                                        {!! Form::open(['route' => ['formulario.create','idFormulario'=>$formulario->id,'idEvaluacion'=> $evaluacion->id], 'method' => 'get']) !!}
-                                        {!! Form::submit($formulario->nombre, ['class'=> 'btn btn-link','style'=>"width: 100%; text-align:left"])!!}
-                                        {!! Form::close() !!}
-                                    </td>
+                                    <td colspan="10">Formularios Pendientes</td>
                                 </tr>
 
-                            @endforeach
-                        </table>
+                                @foreach($formulariosNorealizados as $formulario)
+                                    <tr>
+                                        <td>
+                                            {!! Form::open(['route' => ['formulario.create','idFormulario'=>$formulario->id,'idEvaluacion'=> $evaluacion->id], 'method' => 'get']) !!}
+                                            {!! Form::submit($formulario->nombre, ['class'=> 'btn btn-link','style'=>"width: 100%; text-align:left"])!!}
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                            </table>
+                        @endif
 
                         <table class="table table-striped table-bordered">
                             <tr>

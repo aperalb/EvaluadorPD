@@ -8,6 +8,8 @@ use App\Evaluacion;
 use App\Pregunta;
 use App\Respuesta;
 use DB;
+use App\User;
+use Auth;
 
 class FormularioController extends Controller
 {
@@ -28,6 +30,7 @@ class FormularioController extends Controller
      */
     public function create($idFormulario,$idEvaluacion)
     {
+        User::validaRol('MEDICO');
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
 
@@ -53,7 +56,7 @@ class FormularioController extends Controller
      */
     public function store(Request $request, $idFormulario, $idEvaluacion)
     {
-//        dd($request);
+        User::validaRol('MEDICO');
 
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
@@ -129,7 +132,7 @@ class FormularioController extends Controller
 
     public function update(Request $request, $idFormulario,$idEvaluacion)
     {
-//        dd($request);
+//        User::validaRol('MEDICO');
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
         $idFormulariosPreguntas = [];

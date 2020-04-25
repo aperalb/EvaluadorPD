@@ -31,7 +31,9 @@
                                 <th>Frecuencia Diaria</th>
                                 <th>Fecha de Inicio del Tratamiento</th>
                                 <th>Fecha de Fin del Tratamiento</th>
-                                <th align ="center" colspan ="2">Acciones</th>
+                                @if(Auth::User()->showRol()=='MEDICO')
+                                    <th align ="center" colspan ="2">Acciones</th>
+                                @endif
                             </tr>
                             @foreach($tratamientos as $tratamiento)
 
@@ -45,16 +47,17 @@
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->frecuencia }}</td>
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechafin}}</td>
-
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}                                    </td>
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        @if(Auth::User()->showRol()=='MEDICO')
+                                            <td>
+                                                {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
+                                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                                {!! Form::close() !!}                                    </td>
+                                            <td>
+                                                {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
+                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        @endif
                                     </tr>
 
                                     <tr id="vigentes.{{$tratamiento->id}}" style="display: none;">
@@ -82,7 +85,9 @@
                                 <th>Frecuencia Diaria</th>
                                 <th>Fecha de Inicio del Tratamiento</th>
                                 <th>Fecha de Fin del Tratamiento</th>
-                                <th align ="center" colspan ="2">Acciones</th>
+                                @if(Auth::User()->showRol()=='MEDICO')
+                                    <th align ="center" colspan ="2">Acciones</th>
+                                @endif
                             </tr>
 
                             @foreach($tratamientos as $tratamiento)
@@ -98,16 +103,17 @@
                                         <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>
                                         <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechafin}}</td>
 
-
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}                                    </td>
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
-                                            {!! Form::close() !!}
-                                        </td>
+                                        @if(Auth::User()->showRol()=='MEDICO')
+                                            <td>
+                                                {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
+                                                {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
+                                                {!! Form::close() !!}                                    </td>
+                                            <td>
+                                                {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
+                                                {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
+                                                {!! Form::close() !!}
+                                            </td>
+                                        @endif
                                     </tr>
 
 
@@ -131,10 +137,11 @@
                         </table>
 
 
-
-                        <td>
-                            <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Tratamiento</a>
-                        </td>
+                        @if(Auth::User()->showRol()=='MEDICO')
+                            <td>
+                                <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Tratamiento</a>
+                            </td>
+                        @endif
                         <td>
                             <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-info">Volver</a>
                         </td>

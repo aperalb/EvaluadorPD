@@ -33,7 +33,7 @@
 
                 <table class="table table-striped table-bordered" id="indexPacientes">
                     <tr>
-                        <th>{{ $paciente->getFullsurnameAttribute() }}</th>
+                        <th>{{ $paciente->user->getFullsurnameAttribute() }}</th>
                     </tr>
                     <tr>
                         <td rowspan="1">

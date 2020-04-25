@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Auth;
 
 use App\Medico;
 
@@ -24,6 +25,7 @@ class User extends Authenticatable implements HasMedia
         'name',
         'apellido1',
         'apellido2',
+        'rol',
         'email',
         'password',
     ];
@@ -52,14 +54,28 @@ class User extends Authenticatable implements HasMedia
 
     }
 
+    public static function showRol(){
+        return Auth::user()->rol;
+    }
+
+    public static function validaRol($rol){
+        if(Auth::user()->rol != $rol){
+            return abort(401, "No tiene permiso para acceder a esta información.");
+        }
+
+    }
 
 
     //Relaciones
     public function Medico(){
         return $this->hasOne('App\Medico');
     }
-    public function adminsitrador(){
-        return $this->hasOne('App\Administrador');
+    public function Paciente(){
+        return $this->hasOne('App\Paciente');
+    }
+
+    public function Responsable(){
+        return $this->hasOne('App\Responsable');
     }
 
 

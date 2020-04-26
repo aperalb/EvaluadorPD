@@ -7,6 +7,7 @@ use App\Formulario;
 use App\Evaluacion;
 use App\Pregunta;
 use App\Respuesta;
+use App\Paciente;
 use DB;
 use App\User;
 use Auth;
@@ -92,7 +93,9 @@ class FormularioController extends Controller
      */
     public function show(Request $request, $idFormulario, $idEvaluacion,$mensaje=null)
     {
+
         $evaluacion = Evaluacion::find($idEvaluacion);
+        Paciente::compruebaPertenencia($evaluacion->paciente_id);
         $formulario = Formulario::find($idFormulario);
         $preguntas=$formulario->preguntas;
         $idFormulariosPreguntas = [];
@@ -132,7 +135,7 @@ class FormularioController extends Controller
 
     public function update(Request $request, $idFormulario,$idEvaluacion)
     {
-//        User::validaRol('MEDICO');
+        User::validaRol('MEDICO');
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulario = Formulario::find($idFormulario);
         $idFormulariosPreguntas = [];

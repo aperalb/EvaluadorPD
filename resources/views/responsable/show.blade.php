@@ -14,7 +14,7 @@
 
                                 <tr>
                                     <th>Nombre</th>
-                                    <td>{{ $responsable->getFullsurnameAttribute() }}</td>
+                                    <td>{{ $responsable->user->getFullsurnameAttribute() }}</td>
                                 </tr>
                                 <tr>
                                     <th>Telefono</th>
@@ -26,7 +26,7 @@
                                 </tr>
                                 <tr>
                                     <th>Email</th>
-                                    <td>{{ $responsable->email }}</td>
+                                    <td>{{ $responsable->user->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>Parentesco</th>
@@ -54,7 +54,7 @@
 
                                 </tr>
 
-
+                                @if(Auth::User()->showRol()=='MEDICO')
                                 <tr>
                                     <td> <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} class="btn btn-info">Editar</a> </td>
 
@@ -62,7 +62,7 @@
                                 <tr>
                                     <td> <a href={{url('/responsable/delete/'.$responsable->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este responsable?');" >Eliminar</a> </td>
                                 </tr>
-
+                                @endif
 
                             </table>
                         </div>

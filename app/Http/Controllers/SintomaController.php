@@ -15,6 +15,7 @@ class SintomaController extends Controller
      */
     public function index($id)
     {
+        Paciente::compruebaPertenencia($id);
         $paciente = Paciente::find($id);
         $sintomas = $paciente->sintomas;
         $categoriaYSintomas=[];

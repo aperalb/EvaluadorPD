@@ -18,7 +18,6 @@ class CreateResponsablesTable extends Migration
             $table->timestamps();
             $table->string('numerotel')->nullable();
             $table->string('direccion');
-            $table->string('email')->nullable();
             $table->text('fotografia')->nullable();
             /**Constraints*/
             $table->unsignedBigInteger('user_id');

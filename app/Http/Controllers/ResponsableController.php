@@ -8,6 +8,8 @@ use App\Paciente;
 use DB;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class ResponsableController extends Controller
 {
@@ -18,7 +20,7 @@ class ResponsableController extends Controller
      */
     public function index($id)
     {
-
+        Paciente::compruebaPertenencia($id);
         $paciente = Paciente::find($id);
         $responsables = $paciente->responsables;
 
@@ -50,20 +52,23 @@ class ResponsableController extends Controller
         $this->validate($request, []);
 
         /** Creamos el nuevo paciente*/
-        $responsable = new Responsable();
-        $responsable->nombre=$request->get('nombre');
-        $responsable->apellido1=$request->get('apellido1');
-        $responsable->apellido2 = $request->get('apellido2');
-        $responsable->numerotel = $request->get('numerotel');
-        $responsable->direccion = $request->get('direccion');
-        $responsable->email = $request->get('email');
-        $responsable->fotografia = $request->get('fotografia');
+        $user = new User();
+        $user->fill($request->all());
+        $user->name=$request->get('nombre');
+        $user->password = Hash::make( $request->get('password'));
+        $user->rol = 'RESPONSABLE';
 
+        $responsable = new Responsable();
+        $responsable->fill($request->all());
+
+        $user->save();
+
+        $responsable->user_id = $user->id;
         $responsable->save();
         $responsable->pacientes()->attach($paciente ->id,["parentesco"=>$parentesco]);
 
         /** Sacamos mensaje flash */
-        /** Volvemos al índice de los Pacientes*/
+        /** Volvemos al índice de los Responsables*/
         return redirect('responsable/index/'.$id)->with('success', 'Elemento agregado correctamente');
     }
 
@@ -75,7 +80,7 @@ class ResponsableController extends Controller
      */
     public function show2($idResponsable, $idPaciente)
     {
-
+        Paciente::compruebaPertenencia($idPaciente);
         $responsable = Responsable::find($idResponsable);
         $paciente = Paciente::find($idPaciente);
         return view('responsable.show', ['responsable'=>$responsable,'paciente'=>$paciente]);

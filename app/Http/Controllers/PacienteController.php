@@ -20,7 +20,6 @@ class PacienteController extends Controller
     public function index()
     {
         User::validaRol('MEDICO');
-
         $medico = Medico::find(Auth::user()->medico->id);
         $pacientes = $medico->pacientes;
 
@@ -72,7 +71,7 @@ class PacienteController extends Controller
      */
     public function show($id)
     {
-
+        Paciente::compruebaPertenencia($id);
         $paciente = Paciente::find($id);
         return view('paciente.show', ['paciente'=>$paciente]);
     }

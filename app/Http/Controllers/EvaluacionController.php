@@ -22,7 +22,7 @@ class EvaluacionController extends Controller
      */
     public function index($id)
     {
-//        dd($id);
+        Paciente::compruebaPertenencia($id);
         $paciente = Paciente::find($id);
         $evaluaciones = $paciente->evaluaciones;
         return view('evaluacion.index', ['evaluaciones'=>$evaluaciones, 'paciente'=>$paciente]);
@@ -94,6 +94,7 @@ class EvaluacionController extends Controller
     public function show($id)
     {
         $evaluacion = Evaluacion::find($id);
+        Paciente::compruebaPertenencia($evaluacion->paciente_id);
         $formularios=DB::table('formularios')->get();
         $idFormulariosRealizados=DB::table('evaluacion_formulario')->where('evaluacion_id', $evaluacion->id)->get('formulario_id');
         $IdsFormulariosRealizados=[];

@@ -19,6 +19,7 @@ class TratamientoController extends Controller
      */
     public function index($id)
     {
+        Paciente::compruebaPertenencia($id);
         $paciente = Paciente::find($id);
         $tratamientos = $paciente->tratamientos;
         return view('tratamiento.index', ['tratamientos'=>$tratamientos, 'paciente'=>$paciente]);
@@ -76,6 +77,7 @@ class TratamientoController extends Controller
     public function show($id)
     {
         $tratamiento = Tratamiento::find($id);
+        Paciente::compruebaPertenencia($tratamiento->paciente_id);
         return view('tratamiento.show', ['tratamiento'=>$tratamiento]);
 
         //

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Auth;
 
 class Paciente extends Model
 {
@@ -60,6 +62,27 @@ class Paciente extends Model
     public function getFullsurnameAttribute()
     {
         return $this->nombre.' '. $this->apellido1.' '.$this->apellido2;
+    }
+
+    public static function compruebaPertenencia($id)
+    {
+        $rolLogueado = User::showRol();
+        if($rolLogueado == 'PACIENTE'){
+            if(Auth::user()->paciente->id != $id){
+
+                abort(401, "No tiene permiso para acceder a esta página");
+            }
+        }else if($rolLogueado == 'RESPONSABLE'){
+            $pacientes = (Auth::user()->responsable->pacientes);
+
+            $paciente = Paciente::find($id);
+            if(!$pacientes->contains($paciente)){
+                abort(401, "No tiene permiso para acceder a esta página");
+            }
+
+
+        }
+
     }
 
 }

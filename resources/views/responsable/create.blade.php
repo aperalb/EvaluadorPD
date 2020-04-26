@@ -41,6 +41,10 @@
                                     <td>{!! Form::email('email',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
+                                    <th>Password</th>
+                                    <td>{!! Form::password('password',null,['class'=>'form-control', 'autofocus']) !!}</td>
+                                </tr>
+                                <tr>
                                     <th>Relación</th>
                                     <td>{!! Form::text('parentesco',null,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>

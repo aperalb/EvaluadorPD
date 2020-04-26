@@ -37,12 +37,15 @@
                                         {!! Form::open(['route' => ['responsable.show2','idResponsable'=>$responsable->id,'idPaciente'=> $paciente->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Perfil', ['class'=> 'btn btn-info','style'=>"width: 100%"])!!}
                                         {!! Form::close() !!}                                    </td>
+                                    @if(Auth::User()->showRol()=='MEDICO')
+
                                     <td>
                                         <a href={{url('/responsable/delete/?responsableID='.$responsable->id.'&&pacienteID='.$paciente->id )}} style="width: 100%" class="btn btn-danger"  onclick="return confirm('¿Seguro que deseas eliminar este Responsable?')">Eliminar</a>
                                     </td>
                                     <td>
                                         <a href={{url('/responsable/editar/?responsableID='.$responsable->id."&&pacienteID=".$paciente->id)}} style="width: 100%" class="btn btn-info">Editar</a>
                                     </td>
+                                        @endif
                                 </tr>
                             @endforeach
                         </table>
@@ -52,7 +55,7 @@
                         </td>
                         @endif
                         <td>
-                            <a href={{ url('/responsable/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-info">Volver</a>
                         </td>
 
 

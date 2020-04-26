@@ -8,12 +8,9 @@ use DB;
 class Responsable extends Model
 {
     protected $fillable = [
-        'nombre',
-        'apellido1',
-        'apellido2',
+
         'numerotel',
         'direccion',
-        'email',
         'fotografia',
     ];
 

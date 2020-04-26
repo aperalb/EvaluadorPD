@@ -96,7 +96,7 @@ class MedicoController extends Controller
         if($request->hasFile('fotografia')){
             try {
                 $user->getMedia('fotografias')[0]->delete();
-            }catch(Exception $e){
+            }catch(\Exception $e){
                 // Si no puede eliminar, que incluya la nueva imagen y punto.
             }
             $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');

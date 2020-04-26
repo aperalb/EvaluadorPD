@@ -57,7 +57,9 @@ class ResponsableController extends Controller
         $user->name=$request->get('nombre');
         $user->password = Hash::make( $request->get('password'));
         $user->rol = 'RESPONSABLE';
-
+        if($request->hasFile('fotografia')){
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
         $responsable = new Responsable();
         $responsable->fill($request->all());
 
@@ -115,9 +117,23 @@ class ResponsableController extends Controller
     public function update(Request $request, $id)
     {
         User::validaRol('MEDICO');
+
+        $responsable = Responsable::find($id);
         $pacienteID=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
-        $responsable = Responsable::find($id);
+        $user = $responsable->user;
+        $user->fill($request->all());
+        $user->name=$request->get('nombre');
+
+        if($request->hasFile('fotografia')){
+            try {
+                $user->getMedia('fotografias')[0]->delete();
+            }catch(\Exception $e){
+                // Si no puede eliminar, que incluya la nueva imagen y punto.
+            }
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
+        $user->save();
         $responsable->fill($request->all());
         $responsable->save();
         $responsable->pacientes()->updateExistingPivot($pacienteID,["parentesco"=>$parentesco]);

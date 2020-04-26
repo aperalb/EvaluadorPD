@@ -109,7 +109,6 @@ class RegisterController extends Controller
             $medico->especialidad=$data['especialidad'];
             $medico->numerotel=$data['numerotel'];
             $medico->user_id = $user->id;
-            $medico->fotografia = $data['fotografia'];
             $medico->save();
         }
 

@@ -45,8 +45,8 @@
                                 <tr>
                                     <td rowspan="1">
 
-                                        <img src="{{$responsable->fotografia}}"
-                                             width="300" height="300"
+                                        <img src="{{$responsable->user->getFirstMediaUrl('fotografias') }}"
+                                             width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                              alt="Fotografia" />
 

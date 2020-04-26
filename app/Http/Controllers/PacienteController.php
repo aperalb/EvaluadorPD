@@ -39,6 +39,7 @@ class PacienteController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request);
         User::validaRol('MEDICO');
         $this->validate($request, []);
 
@@ -53,6 +54,11 @@ class PacienteController extends Controller
         /** Creamos el nuevo paciente*/
         $paciente = new Paciente($request->all());
         $paciente->user_id = $user->id;
+//        dd($request['fotografia']);
+        if ($request['fotografia']) {
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
+        $user->save();
         $paciente->save();
         $medico = Auth::user()->medico;
         $paciente->medicos()->attach($medico->id);
@@ -105,11 +111,16 @@ class PacienteController extends Controller
         $user = $paciente->user;
         $user->fill($request->all());
         $user->name=$request->get('nombre');
-        $user->save();
 
-//        if (isset($data['fotografia'])) {
-//            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
-//        }
+        if($request->hasFile('fotografia')){
+            try {
+                $user->getMedia('fotografias')[0]->delete();
+            }catch(\Exception $e){
+                // Si no puede eliminar, que incluya la nueva imagen y punto.
+            }
+            $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
+        }
+        $user->save();
 
 
         $paciente->fill($request->all());

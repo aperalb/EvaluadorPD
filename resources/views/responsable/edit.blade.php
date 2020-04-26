@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Form::model($responsable, [ 'route' => ['responsable.update',$responsable->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+        {!! Form::model($responsable, [ 'route' => ['responsable.update',$responsable->id], 'method'=>'PUT', 'class'=>'form-inline', 'enctype'=>'multipart/form-data']) !!}
         <div class="row">
             <div >
                 <div class="panel panel-default">
@@ -17,16 +17,16 @@
                                 <tr>
                                     <div class="form-group">
                                         <th>Nombre</th>
-                                        <td>{!! Form::text('nombre',$responsable->nombre,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                        <td>{!! Form::text('nombre',$responsable->user->name,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                     </div>
                                 </tr>
                                 <tr>
                                     <th>Apellido 1</th>
-                                    <td>{!! Form::text('apellido1',$responsable->apellido1,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                    <td>{!! Form::text('apellido1',$responsable->user->apellido1,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Apellido 2</th>
-                                    <td> {!! Form::text('apellido2',$responsable -> apellido2,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
+                                    <td> {!! Form::text('apellido2',$responsable->user -> apellido2,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Numero de teléfono</th>
@@ -35,10 +35,6 @@
                                 <tr>
                                     <th>Dirección</th>
                                     <td>{!! Form::text('direccion',$responsable->direccion,['class'=>'form-control', 'required', 'autofocus']) !!}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>{!! Form::email('email',$responsable->email,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Relación</th>
@@ -55,13 +51,12 @@
                                 <tr>
                                     <td rowspan="1">
 
-                                        <img src="{{$responsable->fotografia}}"
-                                             width="300" height="300"
+                                        <img src="{{$responsable->user->getFirstMediaUrl('fotografias') }}"
+                                             width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                              alt="Fotografia" />
 
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <th>
@@ -71,10 +66,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::url('fotografia',$responsable -> fotografia,['class'=>'form-control', 'autofocus','maxlength="1000"']) !!}
+                                        <input id="fotografia" type="file" class="form-control" name="fotografia" autofocus >
                                     </td>
-
                                 </tr>
+
                                 {!! Form::hidden('pacienteID', $pacienteID) !!}</td>
 
                                 <tr>

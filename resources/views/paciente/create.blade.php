@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Form::open(['route' => 'paciente.store', 'class'=>'form-inline']) !!}
+        {!! Form::open(['route' => 'paciente.store', 'class'=>'form-inline', 'enctype'=>'multipart/form-data']) !!}
         <div class="row">
             <div >
                 <div class="panel panel-default">
@@ -90,13 +90,13 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        URL Fotografía
+                                        Fotografía
                                     </th>
 
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::url('fotografia',null,['class'=>'form-control', 'autofocus','maxlength' => '1000']) !!}
+                                        <input id="fotografia" type="file" class="form-control" name="fotografia" autofocus >
                                     </td>
 
                                 </tr>

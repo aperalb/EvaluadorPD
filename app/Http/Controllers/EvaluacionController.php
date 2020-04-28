@@ -95,7 +95,6 @@ class EvaluacionController extends Controller
     {
         $evaluacion = Evaluacion::find($id);
         Paciente::compruebaPertenencia($evaluacion->paciente_id);
-        $formularios=DB::table('formularios')->get();
         $idFormulariosRealizados=DB::table('evaluacion_formulario')->where('evaluacion_id', $evaluacion->id)->get('formulario_id');
         $IdsFormulariosRealizados=[];
         $formulariosRealizados=[];

@@ -11,8 +11,8 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
+                    @if(!empty($evaluaciones)){
                     <div class="panel-heading">Todas mis evaluaciones</div>
-
                     <div class="panel-body">
                         <table class="table table-striped table-bordered" >
                             <tr>
@@ -23,6 +23,7 @@
                                 <th>Puntuación Global</th>
                                 <th align ="center" colspan ="2">Acciones</th>
                             </tr>
+
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
                                     <td>{{ date('yy-m-d', strtotime($evaluacion->created_at)) }}</td>
@@ -48,6 +49,7 @@
                             @endforeach
                         </table>
 
+
                         <td>
                             <a href={{url('/evaluacion/create/?pacienteID='.$evaluacion->paciente_id)}} class="btn btn-info">Añadir Evaluación</a>
                         </td>
@@ -55,8 +57,10 @@
                             <a href={{ '/paciente/'.$evaluacion->paciente_id }} class="btn btn-info">Volver</a>
                         </td>
 
-
                     </div>
+                    @endif
+                        <div class="panel-heading">No tienes evaluaciones todavía</div>
+
                 </div>
             </div>
         </div>

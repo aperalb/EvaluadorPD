@@ -20,4 +20,10 @@ class Tratamiento extends Model
     public function paciente(){
         return $this->belongsTo('App\Paciente');
     }
+
+//    public function medicamentos(){
+//        return $this->belongsTo('App\Medicamento');
+//    }
+
+
 }

@@ -15,8 +15,6 @@ class CreateTratamientosTable extends Migration
     {
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->string('medicamento');
             $table->double('dosis');
             $table->integer('frecuencia');
             $table->date('fechainicio');
@@ -25,6 +23,8 @@ class CreateTratamientosTable extends Migration
             /**Constraints*/
             $table->unsignedBigInteger('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('pacientes')->onDelete('cascade');
+            $table->unsignedBigInteger('medicamento_id');
+            $table->foreign('medicamento_id')->references('id')->on('medicamentos')->onDelete('cascade');
 
         });
     }

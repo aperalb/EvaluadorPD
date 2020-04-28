@@ -34,8 +34,7 @@
                                         <img src="{{Auth::user()->getFirstMediaUrl('fotografias') }}"
                                              width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
-                                             alt="Fotografia" /
-                                        />
+                                             alt="Fotografia" align="center"/>
 
                                     </td>
 
@@ -93,7 +92,20 @@
 
                                     </td>
                                 </tr>
+                                <td></td>
+                                <tr>
+                                    <td rowspan="1">
+                                        {{--{{route('medicamento.index')}}--}}
+                                        <a href="" class="btn"><strong>Medicamentos</strong>
+                                            <img src="/images/medicamentos.png"
+                                                 width="200" height="200"
+                                                 alt="Medicamentos"
 
+                                            />
+                                        </a>
+
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>

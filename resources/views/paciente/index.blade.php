@@ -40,7 +40,7 @@
                         <td rowspan="1">
 
                             <img src="{{$paciente->user->getFirstMediaUrl('fotografias') }}"
-                                 width="300" height="300",
+                                 width="200" height="200",
                                  onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                  alt="Fotografia" />
 

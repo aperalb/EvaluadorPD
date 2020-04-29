@@ -96,7 +96,7 @@
                                 <tr>
                                     <td rowspan="1">
                                         {{--{{route('medicamento.index')}}--}}
-                                        <a href="" class="btn"><strong>Medicamentos</strong>
+                                        <a href="{{route('medicamento.index')}}" class="btn"><strong>Medicamentos</strong>
                                             <img src="/images/medicamentos.png"
                                                  width="200" height="200"
                                                  alt="Medicamentos"

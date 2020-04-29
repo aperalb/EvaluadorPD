@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
-                    <h4>Síntomas</h4>
+                    <h4>Medicamentos dados de alta en la aplicacion</h4>
                     <br>
                     <div class="panel-body">
 

@@ -52,9 +52,12 @@ Route::group(['middlewere'=>['web']], function(){
     Route::resource('/evaluacion', 'EvaluacionController');
 
 
-    /*Formularios*/
+    /*MEDICAMENTOS*/
     Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
     Route::get('/formulario/show/{idFormulario}/{idEvaluacion}/{mensaje?}', 'FormularioController@show')->name('formulario.show');
     Route::post('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@store')->name('formulario.store');
     Route::put('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@update')->name('formulario.update');
+
+    /*MEDICAMENTOS*/
+    Route::get('/medicamento', 'MedicamentoController@index')->name('medicamento.index');
 });

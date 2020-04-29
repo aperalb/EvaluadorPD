@@ -17,6 +17,7 @@ class CreateMedicamentosTable extends Migration
 
             $table->bigIncrements('id');
             $table->String('nombre');
+            $table->String('categoria');
             $table->text('descripcion')->nullable();
 
         });

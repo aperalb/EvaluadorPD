@@ -9,7 +9,7 @@ class Medicamento extends Model
     protected $fillable = [
     'nombre',
     'descripcion',
-
+        'categoria'
     ];
 
 //    public function tratamientos(){

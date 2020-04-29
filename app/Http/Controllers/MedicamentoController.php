@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\user;
+use App\Medicamento;
 use Auth;
 
 class MedicamentoController extends Controller
@@ -15,8 +17,8 @@ class MedicamentoController extends Controller
     public function index()
     {
         User::validaRol('MEDICO');
-        $medicamentos = Medicamento::all();
-        return view('medicamento.index', medicamento
+//        $medicamentos = Medicamento::all();
+        return view('medicamento.index');
     }
 
     /**

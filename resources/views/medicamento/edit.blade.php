@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h4>Crear Medicamento</h4>
+                <h4>Editar Medicamento</h4>
 
                 <hr>
                 <div class="panel-body">
@@ -16,7 +16,7 @@
                                     {!! Form::label('categoria', 'Categoria ') !!}
                                 </th>
                                 <td width="500">
-                                    {!! Form::select('categoriaExistente',$categorias,3,['class'=>'form-control', 'autofocus']) !!}
+                                    {!! Form::select('categoriaExistente',$categorias,$pos,['class'=>'form-control', 'autofocus']) !!}
                                     <br>
                                     <br>
                                     <a> <input class="btn btn-info" type="button" id="Editar" value="Otra categoría" onclick="nuevaCategoria()"></a>

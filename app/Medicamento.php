@@ -26,7 +26,15 @@ class Medicamento extends Model
         return $categorias->all();
     }
 
-    
+    public static function posicionCategoria($medicamento){
+        $categorias = Medicamento::categorias();
+        $pos = 0;
+        for($i=0; $i<count($categorias); $i++){
+            if($medicamento->categoria == $categorias[$i] ){
+                return $i;
+            }
+        }
+    }
 
 
 

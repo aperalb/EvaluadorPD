@@ -87,7 +87,8 @@ class MedicamentoController extends Controller
         User::validaRol('MEDICO');
         $medicamento = Medicamento::find($id);
         $categorias = Medicamento::categorias();
-        return view('medicamento.edit', ['medicamento'=>$medicamento, 'categorias'=>$categorias]);
+        $pos = Medicamento::posicionCategoria($medicamento);
+        return view('medicamento.edit', ['medicamento'=>$medicamento, 'categorias'=>$categorias, 'pos'=>$pos]);
 
     }
 
@@ -100,7 +101,19 @@ class MedicamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::validaRol('MEDICO');
+        $medicamento = Medicamento::find($id);
+        if($request->get('categoriaNueva') != '' && $request->get('categoriaNueva') != null ){
+            $medicamento->categoria = $request->get('categoriaNueva');
+        }else{
+            $categoria = Medicamento::categorias()[$request->get('categoriaExistente')];
+            $medicamento->categoria = $categoria;
+        }
+        $medicamento->nombre = $request->get('nombre');
+        $medicamento->descripcion = $request->get('descripcion');
+        $medicamento->save();
+        return redirect('medicamento')->with('success', 'Elemento editado correctamente');
+
     }
 
     /**

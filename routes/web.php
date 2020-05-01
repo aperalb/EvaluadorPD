@@ -60,4 +60,11 @@ Route::group(['middlewere'=>['web']], function(){
 
     /*MEDICAMENTOS*/
     Route::get('/medicamento', 'MedicamentoController@index')->name('medicamento.index');
+    Route::get('/medicamento/create', 'MedicamentoController@create')->name('medicamento.create');
+    Route::post('/medicamento', 'MedicamentoController@store')->name('medicamento.store');
+    Route::get('/medicamento/delete/{id}', 'MedicamentoController@delete');
+    Route::get('/medicamento/edit/{id}', 'MedicamentoController@edit')->name('medicamento.edit');
+    Route::put('/medicamento/{id}', 'MedicamentoController@update')->name('medicamento.update');
+    Route::get('/medicamento/show/{idMedicamento}', 'MedicamentoController@show')->name('medicamento.show');
+
 });

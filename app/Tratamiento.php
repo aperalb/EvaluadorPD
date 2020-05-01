@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tratamiento extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'medicamento',
         'dosis',

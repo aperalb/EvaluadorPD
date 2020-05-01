@@ -3,16 +3,34 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
+
 
 class Medicamento extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
-    'nombre',
-    'descripcion',
-        'categoria'
+        'nombre',
+        'categoria',
+        'descripcion',
+
     ];
+
 
 //    public function tratamientos(){
 //        return $this->hasMany('App\Tratamiento');
 //    }
+
+    public static function categorias(){
+        $categorias=DB::table('medicamentos')->groupBy('categoria')->orderBy('categoria')->pluck('categoria');
+        return $categorias->all();
+    }
+
+    
+
+
+
+
+
+
 }

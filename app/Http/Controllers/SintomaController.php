@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sintoma;
 use App\Paciente;
+use Auth;
+use App\User;
+use DB;
 
 class SintomaController extends Controller
 {

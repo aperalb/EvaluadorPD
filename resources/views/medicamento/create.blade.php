@@ -2,69 +2,85 @@
 
 @section('content')
     <div class="container">
-        {!! Form::open(['route' => 'sintoma.store', 'class'=>'form-inline']) !!}
-        <div class="row">
-            <div >
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="floatLeft">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h4>Crear Medicamento</h4>
 
-                            <h4>Añadir Sintoma de {{$paciente->user->getFullsurnameAttribute()}}</h4>
-                            <hr/>
-                            <table class="table table-striped table-bordered">
+                <hr>
+                <div class="panel-body">
+                    {!! Form::open(['route' => 'medicamento.store', 'class'=>'form-inline']) !!}
+                    <table id="datosPersonales" width="600" class="table table-striped table-bordered">
+                        <tr>
+                            <div class="form-group">
+                                <th width="500" >
+                                    {!! Form::label('categoria', 'Categoria ') !!}
+                                </th>
+                                <td width="500">
+                                    {!! Form::select('categoriaExistente',$categorias,['class'=>'form-control', 'autofocus']) !!}
+                                    <br>
+                                    <br>
+                                    <a> <input class="btn btn-info" type="button" id="Editar" value="Otra categoría" onclick="nuevaCategoria()"></a>
+                                    {!! Form::text('categoriaNueva',null,['style'=>'display:none', 'id'=>'categoriaNueva', 'class'=>'form-control', 'autofocus']) !!}
 
-
-                                <tr>
-                                    <div class="form-group">
-                                        <div class="panel-body">
-                                            {!! Form::open(['route' => 'sintoma.store', 'class'=>'form-inline']) !!}
-                                            <div class="form-group">
-                                                <select id="nombre" name="nombre" >
-                                                    <option value="" disabled selected>Seleccione síntoma</option>
-                                                    <optgroup label="Motores">
-                                                        @foreach (config('enumSintomas.Motores') as $sintomaMotor)
-                                                            <option>{{$sintomaMotor}}</option>
-                                                        @endforeach
-                                                    </optgroup>
-                                                    <optgroup label="No Motores">
-                                                        @foreach (array_keys(config('enumSintomas.No_Motores')) as $catNoMotor)
-                                                            <optgroup label="{{$catNoMotor}}">
-                                                                @foreach(config('enumSintomas.No_Motores.'.$catNoMotor) as $valNoMotor)
-                                                                    <option>{{$valNoMotor}}</option>
-                                                                @endforeach
-                                                            </optgroup>
-                                                        @endforeach
-                                                    </optgroup>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </tr>
-                                <br/>
-
-
-
-                            </table>
-
-                            <div>
-                                <h4>Detalles de la expresión del síntoma:</h4>
-                                <a>  <pre>{!! Form::textarea('detalles',null,['class'=>'form-control', 'autofocus',' cols="120" rows="10"']) !!}</pre></a>
+                                </td>
                             </div>
-                            {!! Form::hidden('pacienteID', $paciente->id) !!}</td>
+                        </tr>
 
-                            {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
-                            {!! Form::close() !!}
-                            <a href={{ url('/sintoma/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                        <tr>
+                            <div class="form-group">
+                                <th width="500" >
+                                    {!! Form::label('nombre', 'Nombre ') !!}
+                                </th>
+                                <td width="500">
+                                    {!! Form::text('nombre',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <th width="500" >
+                                    {!! Form::label('descripcion', 'Descripcion') !!}
+                                </th>
+                                <td width="500">
+                                    {!! Form::textarea('descripcion',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                                </td>
+                            </div>
+                        </tr>
 
+
+                        <div class="form-group">
 
                         </div>
 
-                    </div>
+                    </table>
+                    <table>
+                        <td>
+                            {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                            {!! Form::close() !!}
+                        </td>
+                        <td>{{'              '}}</td>
+                        <td>
+                            <a href={{ url('/medicamento/') }} class="btn btn-info">Volver</a>
+                        </td>
+                    </table>
 
+                    </td>
                 </div>
             </div>
         </div>
     </div>
 
+<script type="application/javascript">
+    function nuevaCategoria() {
+        var nuevaCategoria=document.getElementById('categoriaNueva');
+        nuevaCategoria.style.display="";
+
+    }
+</script>
 
 @endsection
+
+
+
+
+

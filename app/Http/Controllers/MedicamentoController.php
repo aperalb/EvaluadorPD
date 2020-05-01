@@ -17,9 +17,19 @@ class MedicamentoController extends Controller
     public function index()
     {
         User::validaRol('MEDICO');
-//        $medicamentos = Medicamento::all();
-        return view('medicamento.index');
+        $medicamentos=Medicamento::all();
+        $categorias= Medicamento::categorias();
+        return view('medicamento.index',['medicamentos'=>$medicamentos,'categorias'=>$categorias]);
     }
+
+
+
+    public function show($id)
+{
+    User::validaRol('MEDICO');
+    $medicamento=Medicamento::find($id);
+    return view('medicamento.show',['medicamento'=>$medicamento]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +38,11 @@ class MedicamentoController extends Controller
      */
     public function create()
     {
-        //
+        User::validaRol('MEDICO');
+        $categorias= Medicamento::categorias();
+
+        return view('medicamento.create', ['categorias'=>$categorias]);
+
     }
 
     /**
@@ -39,7 +53,20 @@ class MedicamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::validaRol('MEDICO');
+        $medicamento = new Medicamento();
+        if($request->get('categoriaNueva') != '' && $request->get('categoriaNueva') != null ){
+            $medicamento->categoria = $request->get('categoriaNueva');
+        }else{
+            $categoria = Medicamento::categorias()[$request->get('categoriaExistente')];
+            $medicamento->categoria = $categoria;
+        }
+        $medicamento->nombre = $request->get('nombre');
+        $medicamento->descripcion = $request->get('descripcion');
+        $medicamento->save();
+        return redirect('medicamento')->with('success', 'Elemento agregado correctamente');
+
+
     }
 
     /**
@@ -48,10 +75,6 @@ class MedicamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -61,7 +84,11 @@ class MedicamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        User::validaRol('MEDICO');
+        $medicamento = Medicamento::find($id);
+        $categorias = Medicamento::categorias();
+        return view('medicamento.edit', ['medicamento'=>$medicamento, 'categorias'=>$categorias]);
+
     }
 
     /**
@@ -85,5 +112,12 @@ class MedicamentoController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function delete($id)
+    {
+        User::validaRol('MEDICO');
+        $medicamento = Medicamento::find($id);
+        $medicamento->delete();
+        return redirect()->route('medicamento.index')->with('danger', 'Elemento eliminado correctamente');
     }
 }

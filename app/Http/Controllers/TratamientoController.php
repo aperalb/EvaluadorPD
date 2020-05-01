@@ -54,7 +54,7 @@ class TratamientoController extends Controller
 
         /** Creamos el nuevo paciente*/
         $tratamiento = new Tratamiento();
-        $tratamiento->medicamento=$request->get('medicamento');
+//        $tratamiento->medicamento=$request->get('medicamento');
         $tratamiento->dosis=$request->get('dosis');
         $tratamiento->frecuencia=$request->get('frecuencia');
         $tratamiento->fechainicio = $request->get('fechainicio');

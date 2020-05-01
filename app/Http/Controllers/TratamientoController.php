@@ -9,6 +9,7 @@ use App\Medico;
 use App\Tratamiento;
 use Redirect;
 use App\User;
+use App\Medicamento;
 
 class TratamientoController extends Controller
 {
@@ -33,8 +34,9 @@ class TratamientoController extends Controller
     {
         User::validaRol('MEDICO');
         $pacienteID = $request->get('pacienteID');
-
-        return view('tratamiento/create', ['pacienteID'=>$pacienteID]);
+        $medicamentos = Medicamento::all();
+        $categorias = Medicamento::categorias();
+        return view('tratamiento/create', ['pacienteID'=>$pacienteID, 'medicamentos'=>$medicamentos, 'categorias'=>$categorias]);
     }
 
 

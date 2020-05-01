@@ -20,14 +20,12 @@
     <div class="container">
 
 
-
-
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>Categoría
 
-                    <select name="categorias" id="categorias" style="margin-left: 10%; width: 25%">
+                    <select name="categorias" id="categorias" style="margin-left: 10%; width: 40%">
                         <option value="">Todas</option>
                         @foreach($categorias as $categoria)
                             <option value="{{$categoria}}">{{$categoria}}</option>
@@ -36,7 +34,7 @@
                 </th>
                 <th>Nombre
                     <input id="tableSearch" type="text"
-                           placeholder="Filtro nombre" style="margin-left: 10%; width: 25%">
+                           placeholder="Filtro nombre" style="margin-left: 10%; width: 40%">
                 </th>
 
                 <th>Descripción</th>

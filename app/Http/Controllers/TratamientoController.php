@@ -48,6 +48,7 @@ class TratamientoController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request);
 
         User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
@@ -56,13 +57,13 @@ class TratamientoController extends Controller
 
         /** Creamos el nuevo paciente*/
         $tratamiento = new Tratamiento();
-//        $tratamiento->medicamento=$request->get('medicamento');
         $tratamiento->dosis=$request->get('dosis');
         $tratamiento->frecuencia=$request->get('frecuencia');
         $tratamiento->fechainicio = $request->get('fechainicio');
         $tratamiento->fechafin = $request->get('fechafin');
         $tratamiento->detalles = $request->get('detalles');
         $tratamiento->paciente_id = $id;
+        $tratamiento->medicamento_id = $request->get('medicamentoSelect');
         $tratamiento->save();
 
         /** Sacamos mensaje flash */
@@ -95,7 +96,9 @@ class TratamientoController extends Controller
     {
         User::validaRol('MEDICO');
         $tratamiento  = Tratamiento::find($id);
-        return view('tratamiento/edit', ['tratamiento'=>$tratamiento]);
+        $medicamentos = Medicamento::all();
+        $categorias = Medicamento::categorias();
+        return view('tratamiento/edit', ['tratamiento'=>$tratamiento, 'medicamentos'=>$medicamentos, 'categorias'=>$categorias]);
     }
 
     /**
@@ -107,11 +110,13 @@ class TratamientoController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request);
         $tratamiento = Tratamiento::find($id);
         $tratamiento->fill($request->all());
+        $tratamiento->medicamento_id = $request->get('medicamentoSelect');
         $tratamiento->save();
         $url=$request->input('url');
-        return redirect($url)->with('success', 'Tratamiento editado con éxito.');
+        return redirect('tratamiento/index/'.$id)->with('success', 'Tratamiento editado con éxito.');
     }
 
     /**

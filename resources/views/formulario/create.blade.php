@@ -39,12 +39,7 @@
                                         <label style="font-size:17px; display: inline;">
                                             Respuesta:
                                         @for ($i = $bottom; $i <= $top; $i++)
-                                            @if($i==0)
-                                                <input type="radio" name="{{$pregunta->id}}"id="{{$pregunta->id}}" value="{{$i}}" checked>{{$i}}
-
-                                            @else
-                                                <input type="radio" name="{{$pregunta->id}}"id="{{$pregunta->id}}" value="{{$i}}">{{$i}}
-                                            @endif
+                                                <input type="radio" name="{{$pregunta->id}}"id="{{$pregunta->id}}" value="{{$i}}" required>{{$i}}
                                         @endfor
                                         </label>
                                     </div>

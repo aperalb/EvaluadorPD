@@ -8,13 +8,13 @@ class Tratamiento extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'medicamento',
         'dosis',
         'frecuencia',
         'fechainicio',
         'fechafin',
         'detalles',
-        'paciente_id',
+//        'paciente_id',
+//        'medicamento_id'
 
     ];
 
@@ -22,9 +22,9 @@ class Tratamiento extends Model
         return $this->belongsTo('App\Paciente');
     }
 
-//    public function medicamentos(){
-//        return $this->belongsTo('App\Medicamento');
-//    }
+    public function medicamento(){
+        return $this->belongsTo('App\Medicamento');
+    }
 
 
 }

@@ -42,7 +42,7 @@
 
 
                                     <tr>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento }}</td>
+                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento->nombre }}</td>
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->dosis }}</td>
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->frecuencia }}</td>
                                         <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>
@@ -97,7 +97,7 @@
 
                                     <tr>
 
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento }}</td>
+                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento->nombre }}</td>
                                         <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->dosis }}</td>
                                         <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->frecuencia }}</td>
                                         <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>

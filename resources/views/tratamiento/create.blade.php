@@ -5,13 +5,13 @@
     <h4 style="margin-left: 40%">Crear tratamiento</h4>
 
     <hr>
-    
+
     <div style="display:block; width:100%">
 
         <div style="float: left; width: 45%; margin-left: 3%">
             {!! Form::open(['route' => 'tratamiento.store', 'class'=>'form-inline']) !!}
 
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="medicamentosTable">
                 <thead>
                 <tr>
                     <th>Categoría
@@ -42,7 +42,7 @@
                         <td><a class="btn btn-info"
                                href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver Mas</a>
                         </td>
-                        <td><input type="radio" name="medicamentoSelect" id="medicamentoSelect"
+                        <td><input onClick="cargaNombre('{{$medicamento->nombre}}')" type="radio" name="medicamentoSelect" id="medicamentoSelect"
                                    value="{{$medicamento->id}}" required style="height:15px; width:15px; ">
                         </td>
                     </tr>
@@ -61,14 +61,14 @@
                             {!! Form::label('medicamento', 'Medicamento ') !!}
                         </th>
                         <td width="500">
-                            {!! Form::text('medicamento',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::text('medicamento',null,['id'=>'medicamentoNombre','class'=>'form-control', 'required', 'autofocus', 'readOnly']) !!}
                         </td>
                     </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                         <th width="500">
-                            {!! Form::label('dosis', 'Dosis ') !!}
+                            {!! Form::label('dosis', 'Dosis (mg)') !!}
                         </th>
                         <td width="500">
                             {!! Form::number('dosis',null,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}
@@ -111,7 +111,9 @@
                             {!! Form::label('detalles', 'Detalles ') !!}
                         </th>
                         <td width="500">
+                            <pre>
                             {!! Form::textarea('detalles',null,['class'=>'form-control', 'autofocus']) !!}
+                            </pre>
                         </td>
                     </div>
                 </tr>
@@ -130,13 +132,81 @@
                 </td>
                 <td>{{'              '}}</td>
                 <td>
-                    <a href={{ url('/paciente/'.$pacienteID) }} class="btn btn-info">Volver</a>
+                    <a href={{ url('/tratamiento/index/'.$pacienteID) }} class="btn btn-info">Volver</a>
                 </td>
             </table>
 
             </td>
 
         </div>
+    </div>
+        <script type="text/javascript">
+        function cargaNombre(medicamentoSeleccionado){
+
+        var medicamentoNombre = document.getElementById('medicamentoNombre');
+        medicamentoNombre.setAttribute('value', medicamentoSeleccionado );
+
+        }
+
+        $(document).ready(function(){
+
+            $('#tableSearch').keyup(function(){
+                // Search Text
+                var search = $(this).val();
+                var searchCategory=$('#categorias').val();
+                // Hide all table tbody rows
+                $('#medicamentosTable tbody tr').hide();
+
+                // Count total search result
+                var len = $('table tbody tr:not(.notfound) td:nth-child(2):contains("'+search+'")').length;
+
+                if(len > 0){
+                    // Searching text in columns and show match row
+                    $('table tbody tr:not(.notfound) td:nth-child(2):contains("'+search+'")').each(function(){
+                        $(this).closest('tr').show();
+                    });
+                }else{
+                    $('.notfound').show();
+                }
+
+            });
+
+
+            $('#categorias').change(function(){
+                // Search Text
+                var search = $(this).val();
+
+                // Hide all table tbody rows
+                $('#medicamentosTable tbody tr').hide();
+
+                // Count total search result
+                var len = $('table tbody tr:not(.notfound) td:nth-child(1):contains("'+search+'")').length;
+
+                if(len > 0){
+                    // Searching text in columns and show match row
+                    $('table tbody tr:not(.notfound) td:nth-child(1):contains("'+search+'")').each(function(){
+                        $(this).closest('tr').show();
+                    });
+                }else{
+                    $('.notfound').show();
+                }
+
+            });
+
+        });
+
+        // Case-insensitive searching (Note - remove the below script for Case sensitive search )
+        $.expr[":"].contains = $.expr.createPseudo(function(arg) {
+            return function( elem ) {
+                return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+            };
+        });
+
+        function ventanaSecundaria (URL){
+            window.open(URL,"ventana1","width=800,height=800,left=500,scrollbars=YES")
+        }
+
+        </script>
 
 @endsection
 

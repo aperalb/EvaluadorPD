@@ -63,6 +63,30 @@
 
                             </table>
 
+                            <div style="text-align: center">
+                                <table class="table table-striped table-bordered">
+                                    <tr>
+                                        <td rowspan="1">
+                                            <a href="{{route('formulario.index')}}" class="btn"><strong>Formularios</strong>
+                                                <img src="/images/formulario.png"
+                                                     width="200" height="200"
+                                                     alt="Formularios"
+
+                                                />
+                                            </a>
+
+                                        </td>
+                                    </tr>
+
+
+
+                                </table>
+
+
+                            </div>
+
+
+
                         </div>
                         <div style="width: 10%; float: right;">
                             <br><br>

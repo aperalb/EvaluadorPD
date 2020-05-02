@@ -26,6 +26,15 @@ class Formulario extends Model
         return $this->hasMany('App\Pregunta');
     }
 
+    public static function numeroPreguntas($idFormulario)
+    {
+        $formulario = Formulario::find($idFormulario);
+        $preguntas = $formulario->preguntas;
+        $total = count($preguntas);
+        return $total;
+
+    }
+
     public function puntuacionObtenida($idEvaluacion, $idFormulario)
     {
         $evaluacion = Evaluacion::find($idEvaluacion);

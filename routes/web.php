@@ -33,7 +33,6 @@ Route::group(['middlewere'=>['web']], function(){
     Route::get('/responsable/editar', 'ResponsableController@editar');
     Route::get('/responsable/index/{id}', 'ResponsableController@index');
     Route::get('/responsable/{idResponsable}/{idPaciente}', 'ResponsableController@show2')->name('responsable.show2');
-
     Route::resource('/responsable', 'ResponsableController');
 
 
@@ -52,11 +51,14 @@ Route::group(['middlewere'=>['web']], function(){
     Route::resource('/evaluacion', 'EvaluacionController');
 
 
-    /*MEDICAMENTOS*/
+    /*FORMULARIOS*/
+    Route::get('/formulario/showList/{idFormulario}', 'FormularioController@showList')->name('formulario.showList');
     Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
     Route::get('/formulario/show/{idFormulario}/{idEvaluacion}/{mensaje?}', 'FormularioController@show')->name('formulario.show');
     Route::post('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@store')->name('formulario.store');
     Route::put('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@update')->name('formulario.update');
+    Route::get('/formulario/index', 'FormularioController@index')->name('formulario.index');
+
 
     /*MEDICAMENTOS*/
     Route::get('/medicamento', 'MedicamentoController@index')->name('medicamento.index');

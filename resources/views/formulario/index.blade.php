@@ -22,123 +22,47 @@
 
                     <div class="panel-body">
 
-                        <h4>Tratamientos Vigentes</h4>
+                        <h4>Formularios disponibles en el sistema</h4>
                         <hr>
-                        <table class="table table-striped table-bordered" >
-                            <tr>
-                                <th>Medicamento</th>
-                                <th>Dosis</th>
-                                <th>Frecuencia Diaria</th>
-                                <th>Fecha de Inicio del Tratamiento</th>
-                                <th>Fecha de Fin del Tratamiento</th>
-                                <th align ="center" colspan ="2">Acciones</th>
-                            </tr>
-                            @foreach($tratamientos as $tratamiento)
-
-                                @if(date('Y-m-d') <= $tratamiento->fechafin)
+                        <div class="panel-body">
+                            <table class="table table-striped table-bordered" >
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Nº preguntas</th>
+                                    <th>Puntuación Máxima</th>
+                                    <th colspan="3">Acciones</th>
 
 
-
+                                </tr>
+                                @foreach($formularios as $formulario)
                                     <tr>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento }}</td>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->dosis }}</td>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->frecuencia }}</td>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>
-                                        <td onmouseover="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('vigentes.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechafin}}</td>
+                                        <td>{{$formulario->nombre }}</td>
+                                        <td>{{$formulario->numeroPreguntas($formulario->id) }}</td>
+                                        <td>{{ $formulario->max}}</td>
+                                        <td>
+                                            <a href={{url('/formulario/showList/'.$formulario->id)}} class="btn btn-info">Ver formulario</a>
+                                        </td>
 
+                                            <td>
+                                                {{--{!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}--}}
+                                                {!! Form::submit('Editar', ['class'=> 'btn btn-success'])!!}
+                                                {{--{!! Form::close() !!}--}}
+                                            </td>
                                         <td>
-                                            {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}                                    </td>
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
-                                            {!! Form::close() !!}
+                                            {{--{!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}--}}
+                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                            {{--{!! Form::close() !!}--}}
                                         </td>
                                     </tr>
+                                @endforeach
+                            </table>
 
-                                    <tr id="vigentes.{{$tratamiento->id}}" style="display: none;">
-                                        <td colspan="7">
-                                            <a >
-                                                <b>
-                                                    Detalles
-                                                    <pre>
-                                                    <textarea readonly cols="60%" rows="4" class="form-control" style="background-color: whitesmoke">{{$tratamiento->detalles}}
-                                                    </textarea>
-                                                </pre>
-                                                </b>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        </table>
-                        <h4>Tratamientos Finalizados</h4>
-                        <hr>
-                        <table class="table table-striped table-bordered" >
-                            <tr>
-                                <th>Medicamento</th>
-                                <th>Dosis</th>
-                                <th>Frecuencia Diaria</th>
-                                <th>Fecha de Inicio del Tratamiento</th>
-                                <th>Fecha de Fin del Tratamiento</th>
-                                <th align ="center" colspan ="2">Acciones</th>
-                            </tr>
-
-                            @foreach($tratamientos as $tratamiento)
-
-                                @if(date('Y-m-d') > $tratamiento->fechafin)
-
-
-                                    <tr>
-
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->medicamento }}</td>
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->dosis }}</td>
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->frecuencia }}</td>
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechainicio}}</td>
-                                        <td onmouseover="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = '';" onmouseout="document.getElementById('finalizados.{{$tratamiento->id}}').style.display = 'none';">{{ $tratamiento->fechafin}}</td>
-
-
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.edit',$tratamiento->id], 'method' => 'get']) !!}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                            {!! Form::close() !!}                                    </td>
-                                        <td>
-                                            {!! Form::open(['route' => ['tratamiento.destroy',$tratamiento->id], 'method' => 'delete']) !!}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar este tratamiento?");'])!!}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-
-
-
-                                    <tr id="finalizados.{{$tratamiento->id}}" style="display: none;">
-                                        <td colspan="7">
-                                            <a >
-                                                <b>
-                                                    Detalles
-                                                    <pre>
-                                                    <textarea readonly cols="60%" rows="4" class="form-control" style="background-color: whitesmoke">{{$tratamiento->detalles}}
-                                                    </textarea>
-                                                </pre>
-                                                </b>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                @endif
-                            @endforeach
-                        </table>
-
-
-
-                        <td>
-                            <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Tratamiento</a>
-                        </td>
-                        <td>
-                            <a href={{ url('/paciente/index/'.$paciente->id) }} class="btn btn-info">Volver</a>
-                        </td>
-
+                            <td>
+                                <a href={{url('/formulario/add')}} class="btn btn-info">Nuevo Formulario</a>
+                            </td>
+                            <td>
+                                <a href={{ url('/home') }} class="btn btn-info">Volver</a>
+                            </td>
 
                     </div>
                 </div>

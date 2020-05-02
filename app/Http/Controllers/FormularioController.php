@@ -21,7 +21,9 @@ class FormularioController extends Controller
      */
     public function index()
     {
-        //
+        User::validaRol('MEDICO');
+        $formularios = Formulario::all();
+        return view('formulario/index', ['formularios'=>$formularios]);
     }
 
     /**
@@ -120,6 +122,17 @@ class FormularioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function showList(Request $request, $idFormulario)
+    {
+        User::validaRol('MEDICO');
+        $formulario = Formulario::find($idFormulario);
+        $preguntas=$formulario->preguntas;
+
+        return view('formulario/showList', ['formulario'=>$formulario, 'preguntas'=>$preguntas]);
+
+    }
+
     public function edit($id)
     {
         //

@@ -8,7 +8,6 @@ class Pregunta extends Model
 {
     //
     protected $fillable = [
-        'valor',
         'tiporespuesta',
         'titulo',
         'enunciado',

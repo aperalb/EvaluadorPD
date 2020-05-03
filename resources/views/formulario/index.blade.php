@@ -43,30 +43,95 @@
                                             <a href={{url('/formulario/showList/'.$formulario->id)}} class="btn btn-info">Ver formulario</a>
                                         </td>
 
-                                            <td>
-                                                {{--{!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}--}}
-                                                {!! Form::submit('Editar', ['class'=> 'btn btn-success'])!!}
-                                                {{--{!! Form::close() !!}--}}
-                                            </td>
                                         <td>
-                                            {{--{!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}--}}
-                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                            {{--{!! Form::open(['route' => ['formulario.edit',$formulario->id], 'method' => 'get']) !!}--}}
+                                            {!! Form::submit('Editar', ['class'=> 'btn btn-success'])!!}
                                             {{--{!! Form::close() !!}--}}
+                                        </td>
+                                        <td>
+                                            {!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}
+                                            {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
+                                            {!! Form::close() !!}
                                         </td>
                                     </tr>
                                 @endforeach
                             </table>
 
                             <td>
-                                <a href={{url('/formulario/add')}} class="btn btn-info">Nuevo Formulario</a>
+                                <a href='#' class="btn-primary btn" onclick='muestraFormulario()'>Nuevo Formulario</a>
                             </td>
                             <td>
-                                <a href={{ url('/home') }} class="btn btn-info">Volver</a>
+                                <a href={{ url('/home') }} class="btn-primary btn">Volver</a>
                             </td>
+
+                        </div>
+
+
+                        {!! Form::open(['route' =>['formulario.altaFormulario', 'method'=>'POST','class'=>'form-inline']]) !!}
+
+                        <br>
+                        <div id="nuevoFormulario" style="visibility: hidden">
+                            <table class="table table-striped table-bordered" >
+                                <tr>
+                                    <th>
+                                        <label for="nombre">Título del nuevo Formulario</label>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" id="nombre" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;" name="nombre" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="descripcion">Introduzca la descripción</label>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                 <pre>
+                                    <textarea class="form-control" name="descripcion" id="descripcion" rows="8" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;" required></textarea>
+                                    </pre>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                                        {!! Form::close() !!}
+
+                                        <a href='#' class="btn-primary btn" style="margin-left: 5%" onclick='ocultaFormulario()'>Cancelar</a>
+                                    </td>
+
+
+                                </tr>
+
+                            </table>
+
+
+                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <script type="text/javascript">
+
+        function muestraFormulario() {
+
+            var x = document.getElementById('nuevoFormulario');
+            x.setAttribute('style',"");
+        }
+
+        function ocultaFormulario() {
+
+            var x = document.getElementById('nuevoFormulario');
+            x.setAttribute('style',"visibility:hidden");
+        }
+
+    </script>
 @endsection

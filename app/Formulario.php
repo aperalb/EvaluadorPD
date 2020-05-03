@@ -54,4 +54,19 @@ class Formulario extends Model
         return $puntuacion;
 
     }
+
+    public static function actualizaMaxPuntacion($idFormulario)
+    {
+        $formulario = Formulario::find($idFormulario);
+        $preguntas = $formulario->preguntas;
+        $puntuacionMaxima = 0;
+
+        foreach($preguntas as $pregunta){
+            $top = 0;
+            $array = mb_split('-',$pregunta->rango);
+            $top = $array[1];
+            $puntuacionMaxima = $puntuacionMaxima + $top;
+        }
+        return $puntuacionMaxima;
+    }
 }

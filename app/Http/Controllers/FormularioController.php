@@ -19,6 +19,8 @@ class FormularioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // METODOS PARA CRUD DE RESOLUCIONES DE FORMULARIOS
+
     public function index()
     {
         User::validaRol('MEDICO');
@@ -26,11 +28,6 @@ class FormularioController extends Controller
         return view('formulario/index', ['formularios'=>$formularios]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create($idFormulario,$idEvaluacion)
     {
         User::validaRol('MEDICO');
@@ -43,13 +40,7 @@ class FormularioController extends Controller
         return view('formulario/create', ['evaluacion'=>$evaluacion, 'formulario'=>$formulario, 'preguntas'=>$preguntas]);
 
     }
-//        dd($preguntas[1]);
-        //
-        // Traer preguntas asociadas a este formulario
-        //
-        //
-        //RETURN Formulario, Evaluacion y Array de Preguntas.
-//    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -123,20 +114,10 @@ class FormularioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function showList(Request $request, $idFormulario)
-    {
-        User::validaRol('MEDICO');
-        $formulario = Formulario::find($idFormulario);
-        $preguntas=$formulario->preguntas;
 
-        return view('formulario/showList', ['formulario'=>$formulario, 'preguntas'=>$preguntas]);
 
-    }
 
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -173,14 +154,57 @@ class FormularioController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    // METODOS PARA CRUD DE FORMULARIOS
+    public function showList(Request $request, $idFormulario)
     {
-        //
+        User::validaRol('MEDICO');
+        $formulario = Formulario::find($idFormulario);
+        $preguntas=$formulario->preguntas;
+
+        return view('formulario/showList', ['formulario'=>$formulario, 'preguntas'=>$preguntas]);
+
+    }
+
+    public function add(){
+
+        return view('formulario/add');
+    }
+
+    public function altaFormulario(Request $request){
+        User::validaRol('MEDICO');
+        $formulario = new Formulario();
+        $formulario->nombre = $request->get('nombre');
+        $formulario->descripcion = $request->get('descripcion');
+        $formulario->max=0;
+        $formulario->save();
+
+        return redirect('/formulario/index')->with('success', 'Elemento añadido correctamente');
+
+    }
+
+    public function edit(Request $request, $idFormulario){
+
+        dd($idFormulario);
+        $formulario = Formulario::find($idFormulario);
+        $pregunta = new Pregunta();
+        $pregunta->nombre = $request->get('tituloCreate');
+        $pregunta->descripcion = $request->get('descripcionCreate');
+        $pregunta->tiporespuesta = 'numerico';
+        $pregunta->rango = $request->get('rangoCreate');
+        $pregunta->formulario_id = $idFormulario;
+        $pregunta->save();
+        $formulario->max = Formulario::actualizaMaxPuntacion($idFormulario);
+        $formulario->save();
+
+        return redirect('/formulario/showList/'.$idFormulario);
+
+    }
+    public function destroy($idFormulario)
+    {
+        User::validaRol('MEDICO');
+        $formulario = Formulario::find($idFormulario);
+        $formulario->delete();
+        return redirect('/formulario/index')->with('danger', 'Elemento eliminado correctamente');
+
     }
 }

@@ -52,12 +52,15 @@ Route::group(['middlewere'=>['web']], function(){
 
 
     /*FORMULARIOS*/
+    Route::post('/formulario/edit/{idFormulario}', 'FormularioController@edit')->name('formulario.edit');
     Route::get('/formulario/showList/{idFormulario}', 'FormularioController@showList')->name('formulario.showList');
     Route::get('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@create')->name('formulario.create');
     Route::get('/formulario/show/{idFormulario}/{idEvaluacion}/{mensaje?}', 'FormularioController@show')->name('formulario.show');
     Route::post('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@store')->name('formulario.store');
     Route::put('/formulario/{idFormulario}/{idEvaluacion}', 'FormularioController@update')->name('formulario.update');
     Route::get('/formulario/index', 'FormularioController@index')->name('formulario.index');
+    Route::post('/formulario', 'FormularioController@altaFormulario')->name('formulario.altaFormulario');
+    Route::delete('/formulario/{idFormulario}', 'FormularioController@destroy')->name('formulario.destroy');
 
 
     /*MEDICAMENTOS*/

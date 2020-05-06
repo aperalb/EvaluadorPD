@@ -5,7 +5,7 @@
         {!! Form::open(['route' =>['formulario.store',$formulario->id,$evaluacion->id], 'method'=>'POST','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
 
         <div class="row justify-content-center">
-            <div >
+            <div style="width: 100%; text-align: center">
                 <h3><b>{{$formulario->nombre }}</b></h3>
                 <div style="text-align: right">
                     <h4>{{'Paciente: '.$evaluacion->paciente->getFullsurnameAttribute()}}</h4>

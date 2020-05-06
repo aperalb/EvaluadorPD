@@ -62,11 +62,20 @@ class Formulario extends Model
         $puntuacionMaxima = 0;
 
         foreach($preguntas as $pregunta){
-            $top = 0;
             $array = mb_split('-',$pregunta->rango);
             $top = $array[1];
             $puntuacionMaxima = $puntuacionMaxima + $top;
         }
         return $puntuacionMaxima;
+    }
+
+    public static function formularioEnUso($idFormulario)
+    {
+        $res = true;
+        $formulario = Formulario::find($idFormulario);
+        if($formulario->evaluacions()->count() > 0){
+        $res = false;
+        }
+        return  $res;
     }
 }

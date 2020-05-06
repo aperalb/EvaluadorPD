@@ -12,8 +12,19 @@ class Pregunta extends Model
         'titulo',
         'enunciado',
         'rango',
-        ];
+    ];
 
+    public function constructorPregunta($titulo, $enunciado, $rango, $formularioID)
+    {
+        $pregunta = new Pregunta();
+        $pregunta->titulo = $titulo;
+        $pregunta->enunciado = $enunciado;
+        $pregunta->rango = '0-'.$rango;
+        $pregunta->tiporespuesta = 'numerico';
+        $pregunta->formulario_id = $formularioID;
+
+        return $pregunta;
+    }
     //Relaciones
     //Una pregunta pertenece a 1 formulario
     public function formulario()

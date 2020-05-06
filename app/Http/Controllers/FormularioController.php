@@ -138,13 +138,9 @@ class FormularioController extends Controller
             array_push($idFormulariosPreguntas, $pregunta->id);
         }
         $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
-//        dd($respuestas);
         foreach($respuestas as $respuesta){
             $respuestaValor = $request->get($respuesta->pregunta->id);
             $respuesta-> valor = $respuestaValor;
-//            $respuesta-> respuestaposible = '';
-//            $respuesta-> tipopregunta = '';
-//            $respuesta-> enunciado = '';
             $respuesta->save();
         }
         $mensaje="Resolución editada correctamente";
@@ -157,10 +153,10 @@ class FormularioController extends Controller
     // METODOS PARA CRUD DE FORMULARIOS
     public function showList(Request $request, $idFormulario)
     {
+
         User::validaRol('MEDICO');
         $formulario = Formulario::find($idFormulario);
         $preguntas=$formulario->preguntas;
-
         return view('formulario/showList', ['formulario'=>$formulario, 'preguntas'=>$preguntas]);
 
     }
@@ -181,16 +177,19 @@ class FormularioController extends Controller
         return redirect('/formulario/index')->with('success', 'Elemento añadido correctamente');
 
     }
-
+       // Este metodo permite añadir preguntas (una a una).
     public function edit(Request $request, $idFormulario){
+        User::validaRol('MEDICO');
+        if(Formulario::formularioEnUso($idFormulario) == false) {
+            return redirect('/formulario/showList/' . $idFormulario)->with('danger', 'No puede editar un formulario que está en uso en alguna evaluación');
+        }
 
-        dd($idFormulario);
         $formulario = Formulario::find($idFormulario);
         $pregunta = new Pregunta();
-        $pregunta->nombre = $request->get('tituloCreate');
-        $pregunta->descripcion = $request->get('descripcionCreate');
+        $pregunta->titulo = $request->get('tituloCreate');
+        $pregunta->enunciado = $request->get('enuncuadoCreate');
         $pregunta->tiporespuesta = 'numerico';
-        $pregunta->rango = $request->get('rangoCreate');
+        $pregunta->rango =  '0-'.$request->get('rangoCreate');
         $pregunta->formulario_id = $idFormulario;
         $pregunta->save();
         $formulario->max = Formulario::actualizaMaxPuntacion($idFormulario);
@@ -199,9 +198,14 @@ class FormularioController extends Controller
         return redirect('/formulario/showList/'.$idFormulario);
 
     }
+
+        // Elimina un formulario
     public function destroy($idFormulario)
     {
         User::validaRol('MEDICO');
+        if(Formulario::formularioEnUso($idFormulario) == false) {
+            return redirect('/formulario/showList/' . $idFormulario)->with('danger', 'No puede editar un formulario que está en uso en alguna evaluación');
+        }
         $formulario = Formulario::find($idFormulario);
         $formulario->delete();
         return redirect('/formulario/index')->with('danger', 'Elemento eliminado correctamente');

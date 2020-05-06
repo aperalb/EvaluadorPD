@@ -72,4 +72,8 @@ Route::group(['middlewere'=>['web']], function(){
     Route::put('/medicamento/{id}', 'MedicamentoController@update')->name('medicamento.update');
     Route::get('/medicamento/show/{idMedicamento}', 'MedicamentoController@show')->name('medicamento.show');
 
+    /*PREGUNTA*/
+    Route::put('/pregunta/{id}', 'PreguntaController@update')->name('pregunta.update');
+    Route::delete('/pregunta/{id}', 'PreguntaController@destroy')->name('pregunta.destroy');
+
 });

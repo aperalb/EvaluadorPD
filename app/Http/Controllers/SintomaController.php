@@ -57,16 +57,21 @@ class SintomaController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request);
         User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
+        $valorSintoma=$request->get('nombre');
+        if(Sintoma::compruebaSintomaExiste( $valorSintoma,$id)){
+            return redirect('sintoma/index/'.$id)->with('danger', 'El paciente ya presenta ese síntoma, valore actualizar el detalle.');
+        }
+        Sintoma::compruebaSintomaExiste( $valorSintoma,$id);
+
         $paciente = Paciente::find($id);
         $this->validate($request, []);
 
         /** Creamos el nuevo paciente*/
         $sintoma = new Sintoma();
-        $valorSintoma=$request->get('nombre');
-
-
+        ;
 
 
         if (in_array($valorSintoma,array_values(config('enumSintomas.Motores')))){
@@ -78,7 +83,7 @@ class SintomaController extends Controller
             $categoriasintoma="No Motor";
             $subcatSintoma="";
             foreach (array_keys(config('enumSintomas.No_Motores')) as $catNoMotor){
-                if(array_search($valorSintoma,config('enumSintomas.No_Motores.'.$catNoMotor))) {
+                if(in_array($valorSintoma,config('enumSintomas.No_Motores.'.$catNoMotor))) {
                     $subcatSintoma = $catNoMotor;
                 }
             }

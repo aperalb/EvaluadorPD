@@ -116,7 +116,7 @@ class TratamientoController extends Controller
         $tratamiento->medicamento_id = $request->get('medicamentoSelect');
         $tratamiento->save();
         $url=$request->input('url');
-        return redirect('tratamiento/index/'.$id)->with('success', 'Tratamiento editado con éxito.');
+        return redirect('tratamiento/index/'.$tratamiento->paciente_id)->with('success', 'Tratamiento editado con éxito.');
     }
 
     /**
@@ -130,7 +130,7 @@ class TratamientoController extends Controller
         $tratamiento = Tratamiento::find($id);
         $tratamiento->delete();
         return redirect()->back();
-        //
+
     }
 
     public function __construct()

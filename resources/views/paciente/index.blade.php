@@ -24,7 +24,7 @@
 
         <br>
         @if(Auth::User()->showRol()=='MEDICO')
-        <a href={{url('/paciente/create')}} class="btn btn-info"><big><strong>Registrar Nuevo</strong></big></a>
+        <a href={{url('/paciente/create')}} class="btn btn-primary"><big><strong>Registrar Nuevo</strong></big></a>
         @endif
 
         <br><br>

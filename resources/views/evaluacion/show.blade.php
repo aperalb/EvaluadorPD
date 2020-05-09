@@ -92,21 +92,23 @@
                         <div class="floatRight" style="margin-top: 3%">
                             <table class="table table-striped table-bordered">
                                 <tr>
-                                    <td rowspan="1"  style="text-align: center; font-size: 30px">
+                                    <td rowspan="1"  style="text-align: center; font-size: 16px">
 
-                                        <a>Puntuación</a>
+                                        <a><b>{{$evaluacion->paciente->user->name}} <br> {{$evaluacion->paciente->user->apellido1.' '.$evaluacion->paciente->user->apellido2}}</b></a>
 
                                     </td>
-
-                                </tr>
                                 <tr>
-                                    <td rowspan="1"  style="text-align: center; font-size: 50px">
+                                     <td rowspan="1">
+                                        <img src="{{$evaluacion->paciente->user->getFirstMediaUrl('fotografias') }}"
+                                                         width="300" height="300",
+                                                         onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                                         alt="Fotografia" />
+                                                </td>
 
-                                        <a>69</a>
+                                            </tr>
 
-                                    </td>
-
-                                </tr>
+                                        </table>
+                                    </div>
 
                             </table>
                         </div>
@@ -134,6 +136,7 @@
                             <tr>
                                 <td colspan="10">Formularios Realizados</td>
                                 <td colspan="2" align="center">Puntuación Obtenida</td>
+                                <td align="center">Acciones</td>
                             </tr>
 
                             @foreach($formulariosRealizados as $formulario)
@@ -144,6 +147,12 @@
                                         {!! Form::close() !!}
                                     </td>
                                     <td colspan="2" align="center">{{$formulario->puntuacionObtenida($evaluacion->id, $formulario->id)." / ".$formulario->max}}</td>
+                                    <td align="center">
+                                        {!! Form::open(['route' => ['evaluacion.destroyResolucion',$formulario->id, $evaluacion->id], 'method' => 'delete']) !!}
+                                        {!! Form::submit('Eliminar', ['style'=>"margin-top: 1%",'class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta pregunta?");'])!!}
+                                        {!! Form::close() !!}
+
+                                    </td>
                                 </tr>
 
                             @endforeach

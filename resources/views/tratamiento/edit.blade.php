@@ -8,10 +8,10 @@
 
     <div style="display:block; width:100%">
 
-        <div style="float: left; width: 45%; margin-left: 3%">
+        <div style="float: left; width: 45%; margin-left: 3%; margin-top:1.7%">
             {!! Form::model($tratamiento, [ 'route' => ['tratamiento.update',$tratamiento->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
 
-            <table class="table table-bordered table-striped" id="medicamentosTable">
+            <table  class="table table-bordered table-striped" style="text-align: center;" id="medicamentosTable">
                 <thead>
                 <tr>
                     <th>Categoría
@@ -27,10 +27,10 @@
                         <input id="tableSearch" type="text"
                                placeholder="Filtro nombre" style="margin-left: 10%; width: 40%">
                     </th>
-                    <th>Seleccionar
+                    <th align-text="center">Detalles
                     </th>
 
-                    <th>Descripción</th>
+                    <th align="center">Seleccionar</th>
 
                 </tr>
                 </thead>
@@ -39,10 +39,10 @@
                     <tr>
                         <td id="search">{{$medicamento->categoria}}</td>
                         <td id="search">{{$medicamento->nombre}}</td>
-                        <td><a class="btn btn-info"
-                               href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver Mas</a>
+                        <td align="center"><a class="btn btn-info" text-align="center"
+                                              href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver descripción</a>
                         </td>
-                        <td>
+                        <td align="center">
                             @if($medicamento->id == $tratamiento->medicamento_id)
                                 <input onClick="cargaNombre('{{$medicamento->nombre}}')" checked type="radio"
                                        name="medicamentoSelect" id="medicamentoSelect"
@@ -60,7 +60,7 @@
 
         </div>
 
-        <div style="float:right; width: 45%">
+        <div style="float:right; width: 45%; margin-right: 2%; margin-top: 1.05%">
 
             <table id="datosPersonales" width="600" class="table table-striped table-bordered">
                 <tr>
@@ -211,10 +211,4 @@
     </script>
 
 @endsection
-
-
-
-
-
-
 

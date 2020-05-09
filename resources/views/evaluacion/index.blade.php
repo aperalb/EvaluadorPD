@@ -47,7 +47,7 @@
 
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('Eliminar', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::submit('Eliminar', ['style'=>"margin-top: 1%",'class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta pregunta?");'])!!}
                                         {!! Form::close() !!}
                                     </td>
                                     @endif

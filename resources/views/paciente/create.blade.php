@@ -102,7 +102,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+
+                                        {!! Form::submit('Guardar',['class'=>'btn btn-success']) !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

@@ -211,4 +211,6 @@ class FormularioController extends Controller
         return redirect('/formulario/index')->with('danger', 'Elemento eliminado correctamente');
 
     }
+
+
 }

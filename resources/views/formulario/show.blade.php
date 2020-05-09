@@ -10,12 +10,12 @@
 
     <div class="container">
         @if(Auth::User()->showRol()=='MEDICO')
-            {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+            {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}
         @endif
         <div class="row justify-content-center">
-            <div >
+            <div style="width: 100%;text-align: center">
                 <h3><b>{{$formulario->nombre }}</b></h3>
-                <div style="text-align: right">
+                <div>
                     <h4>{{'Paciente: '.$evaluacion->paciente->user->getFullsurnameAttribute()}}</h4>
                 </div>
                 <hr>
@@ -113,11 +113,3 @@
     </div>
 
 @endsection
-
-
-
-
-
-
-
-

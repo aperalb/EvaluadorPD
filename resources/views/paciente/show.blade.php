@@ -56,7 +56,7 @@
 
                         </div>
 
-                        <div class="floatRight">
+                        <div class="floatRight" style="margin-top: 4%">
                             <table class="table table-striped table-bordered">
 
                                 <tr>

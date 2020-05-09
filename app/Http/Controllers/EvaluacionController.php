@@ -9,6 +9,7 @@ use App\User;
 use Auth;
 use App\Medico;
 use DB;
+use App\Respuesta;
 
 
 use Illuminate\Http\Request;
@@ -155,5 +156,29 @@ class EvaluacionController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function destroyResolucion($idFormulario, $idEvaluacion)
+    {
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulario = Formulario::find($idFormulario);
+        $idFormulariosPreguntas = [];
+        foreach ($formulario->preguntas as $pregunta){
+            array_push($idFormulariosPreguntas, $pregunta->id);
+        }
+        $respuestas=Respuesta::whereIn('pregunta_id',$idFormulariosPreguntas )->where('evaluacion_id',$evaluacion->id)->get();
+            foreach($respuestas as $respuesta){
+               $respuesta->delete();
+            }
+
+        $pivote = DB::table('evaluacion_formulario')
+            ->where('evaluacion_id', $idEvaluacion)
+            ->where('formulario_id', $idFormulario);
+
+
+        $pivote->delete();
+
+        return redirect()->back()->with('danger', 'Resolución eliminada con éxito.');
+
     }
 }

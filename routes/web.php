@@ -49,7 +49,7 @@ Route::group(['middlewere'=>['web']], function(){
     Route::get('/evaluacion/indexMisEvaluaciones', 'EvaluacionController@index2')->name('evaluacion.misEvaluaciones');
     Route::get('/evaluacion/index/{id}', 'EvaluacionController@index');
     Route::resource('/evaluacion', 'EvaluacionController');
-
+    Route::delete('/evaluacion/respuestas/{idFormulario}/{idEvaluacion}','EvaluacionController@destroyResolucion')->name('evaluacion.destroyResolucion');
 
     /*FORMULARIOS*/
     Route::post('/formulario/edit/{idFormulario}', 'FormularioController@edit')->name('formulario.edit');

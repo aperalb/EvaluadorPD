@@ -1,14 +1,27 @@
 @extends('layouts.app')
-
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+@if (\Session::has('danger'))
+    <div class="alert alert-danger">
+        <ul>
+            <li>{!! \Session::get('danger') !!}</li>
+        </ul>
+    </div>
+@endif
 @section('content')
     <div class="container">
-        {!! Form::open(['route' =>['formulario.store',$formulario->id,$evaluacion->id], 'method'=>'POST','class'=>'form-inline','enctype'=>'multipart/form-data']) !!}
+        {!! Form::open(['route' =>['formulario.store',$formulario->id,$evaluacion->id], 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
 
         <div class="row justify-content-center">
-            <div style="width: 100%; text-align: center">
+            <div style="width: 100%;text-align: center">
                 <h3><b>{{$formulario->nombre }}</b></h3>
-                <div style="text-align: right">
-                    <h4>{{'Paciente: '.$evaluacion->paciente->getFullsurnameAttribute()}}</h4>
+                <div>
+                    <h4>{{'Paciente: '.$evaluacion->paciente->user->getFullsurnameAttribute()}}</h4>
                 </div>
                 <hr>
             </div>

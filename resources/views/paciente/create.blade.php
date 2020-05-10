@@ -105,7 +105,10 @@
 
                                         {!! Form::submit('Guardar',['class'=>'btn btn-success']) !!}
                                         {!! Form::close() !!}
+                                        <a href="{{route('paciente.index')}}" class="btn btn-secondary"><strong>Volver</strong></a>
+
                                     </td>
+
                                 </tr>
 
 

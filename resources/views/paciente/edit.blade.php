@@ -75,10 +75,10 @@
 
                         </div>
 
-                        <div class="floatRight">
+                        <div class="floatRight" style="margin-top:3%">
                             <table class="table table-striped table-bordered">
 
-                                <tr>
+                                <tr style="border: 0px; border-collapse: collapse;" cellpadding="5" cellspacing="5" border="0">
                                     <td rowspan="1">
 
                                         <img src="{{$paciente->user->getFirstMediaUrl('fotografias') }}"
@@ -104,8 +104,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                                        {!! Form::submit('Guardar',['class'=>'btn-success btn']) !!}
                                         {!! Form::close() !!}
+                                        <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-secondary">Volver</a>
+
                                     </td>
                                 </tr>
 

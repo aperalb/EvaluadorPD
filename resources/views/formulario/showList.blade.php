@@ -90,7 +90,7 @@
                                 <a id="botonEditaPregunta{{$pregunta->id}}" href="#botonEditaPregunta{{$pregunta->id}}" class="btn btn-info" onclick="editaPregunta({{$pregunta->id}})" >Editar</a>
                                 {!! Form::submit('Guardar',['style'=>'display:none','id'=>'botonGuardaPregunta'.$pregunta->id,'class'=>'btn-success btn']) !!}
                                 {!! Form::close() !!}
-                                <a id="botonCancelarEditaPregunta{{$pregunta->id}}" style="display: none;" href="#botonCancelarEditaPregunta{{$pregunta->id}}" class="btn btn-info" onclick="CancelarEditaPregunta({{$pregunta->id}})" >Cancelar</a>
+                                <a id="botonCancelarEditaPregunta{{$pregunta->id}}" style="display: none;" href="#botonCancelarEditaPregunta{{$pregunta->id}}" class="btn btn-secondary" onclick="CancelarEditaPregunta({{$pregunta->id}})" >Cancelar</a>
 
                                 {!! Form::open(['route' => ['pregunta.destroy',$pregunta->id], 'method' => 'delete']) !!}
                                 {!! Form::submit('Eliminar', ['style'=>"margin-top: 1%",'class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta pregunta?");'])!!}
@@ -102,8 +102,8 @@
                 <br>
 
                 <div style="align-content: center;display: inline;">
-                    <a href="#nuevapregunta" class="btn btn-success" onclick="muestraFormulario()" >Añadir Pregunta</a>
-                    <a href={{ url('/formulario/index') }} class="btn btn-info" >Volver</a>
+                    <a href="#nuevapregunta" class="btn btn-primary" onclick="muestraFormulario()" >Añadir Pregunta</a>
+                    <a href={{ url('/formulario/index') }} class="btn btn-secondary" >Volver</a>
                 </div>
 
                 <div class="nuevapregunta" id="nuevoFormulario" style="visibility: hidden">
@@ -149,7 +149,7 @@
                                 {!! Form::submit('Guardar',['class'=>'btn-success btn']) !!}
                                 {!! Form::close() !!}
 
-                                <a href='#nuevapregunta' class="btn-primary btn"  onclick='ocultaFormulario()'>Cancelar</a>
+                                <a href='#nuevapregunta' class="btn btn-secondary"  onclick='ocultaFormulario()'>Cancelar</a>
                             </td>
                         </tr>
                         <tr>

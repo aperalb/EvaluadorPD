@@ -21,7 +21,7 @@
                 <div class="panel panel-default">
                     <h4>Síntomas</h4>
                     <br>
-                    <div class="panel-body">
+                    <div class="panel-body" style="width:112%">
 
 
 
@@ -34,7 +34,7 @@
                             <hr>
 
                             <div id="{{$catSintomas}}" style="display: none">
-                                <table class="table table-striped table-bordered">
+                                <table class="table table-striped table-bordered"  style="width:112%">
                                     @foreach($categoriaYSintoma[$catSintomas] as $sintoma)
 
                                         <tr>
@@ -69,11 +69,11 @@
 
                             @if(Auth::User()->showRol()=='MEDICO')
                             <td>
-                            <a href={{url('/sintoma/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir   Síntoma</a>
+                            <a href={{url('/sintoma/create/?pacienteID='.$paciente->id)}} class="btn btn-primary">Añadir   Síntoma</a>
                              </td>
                             @endif
                         <td>
-                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-secondary">Volver</a>
                         </td>
 
 

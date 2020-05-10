@@ -39,7 +39,7 @@
                     <tr>
                         <td id="search">{{$medicamento->categoria}}</td>
                         <td id="search">{{$medicamento->nombre}}</td>
-                        <td align="center"><a class="btn btn-info" text-align="center"
+                        <td align="center"><a class="btn btn-primary" text-align="center"
                                               href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver descripción</a>
                         </td>
                         <td align="center">
@@ -129,12 +129,12 @@
             </table>
             <table>
                 <td>
-                    {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                    {!! Form::submit('Guardar',['class'=>'btn-success btn']) !!}
                     {!! Form::close() !!}
                 </td>
                 <td>{{'              '}}</td>
                 <td>
-                    <a href={{ url('/tratamiento/index/'.$tratamiento->paciente->id) }} class="btn btn-info">Volver</a>
+                    <a href={{ url('/tratamiento/index/'.$tratamiento->paciente->id) }} class="btn btn-secondary">Volver</a>
                 </td>
             </table>
 

@@ -32,14 +32,13 @@
         @foreach ($pacientes as $paciente)
             <div id ="paciente" style="display: inline-block; padding: 10px;">
 
-                <table class="table table-striped table-bordered" id="indexPacientes">
-                    <tr>
-                        <th>{{ $paciente->user->getFullsurnameAttribute() }}</th>
-                    </tr>
+                <table id="indexPacientes" style="border: 0px; border-collapse: collapse;" cellpadding="5" cellspacing="5" border="0">
+
                     <tr>
                         <td rowspan="1">
 
                             <img src="{{$paciente->user->getFirstMediaUrl('fotografias') }}"
+                                 alt="avatar" style="border-radius: 50%;"
                                  width="200" height="200",
                                  onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                  alt="Fotografia" />
@@ -47,7 +46,9 @@
                         </td>
 
                     </tr>
-
+                    <tr >
+                        <th>{{ $paciente->user->getFullsurnameAttribute() }}</th>
+                    </tr>
                     <tr>
                         <td style="text-align: center">
                             {!! Form::open(['route' => ['paciente.show',$paciente->id], 'method' => 'get']) !!}

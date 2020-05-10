@@ -43,10 +43,46 @@
 
                             </table>
                             <div>
-                                <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-info">Tratamientos</a>
-                                <a href={{url('/sintoma/index/'.$paciente->id)}} class="btn btn-info">Síntomas</a>
-                                <a href={{url('/evaluacion/index/'.$paciente->id)}} class="btn btn-info">Evaluaciones</a>
-                                <a href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-info">Responsables</a>
+
+                                <table style="border: 0px; border-collapse: collapse;" cellpadding="5" cellspacing="5" border="0" >
+                                    <tr>
+                                        <td>
+                                            <a href={{url('/tratamiento/index/'.$paciente->id)}} class="btn btn-primary">Tratamientos
+                                            <img src="/images/formulario.png"
+                                                 width="50" height="50"
+                                                 alt="Tratamientos"
+
+                                            />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={{url('/sintoma/index/'.$paciente->id)}} class="btn btn-primary">Síntomas
+                                            <img src="/images/sintomas.png"
+                                                 width="50" height="50"
+                                                 alt="Sintomas"
+                                            />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a style="width:100%" href={{url('/evaluacion/index/'.$paciente->id)}} class="btn btn-primary">Evaluaciones
+                                            <img src="/images/evaluaciones.png"
+                                                 width="50" height="50"
+                                                 alt="Evaluaciones"
+                                            />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a  href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-primary">Responsables
+                                            <img src="/images/responsables.png"
+                                                 width="50" height="50"
+                                                 alt="Responsables"
+                                            />
+                                            </a>
+                                        </td>
+
+                                    <tr>
+
+                                </table>
                             </div>
                             <br>
                             <div>
@@ -56,8 +92,8 @@
 
                         </div>
 
-                        <div class="floatRight" style="margin-top: 4%">
-                            <table class="table table-striped table-bordered">
+                        <div class="floatRight" style="margin-top:3%">
+                            <table style="border: 0px; border-collapse: collapse;" cellpadding="5" cellspacing="5" border="0" >
 
                                 <tr>
                                     <td rowspan="1">
@@ -71,16 +107,16 @@
 
                                 </tr>
                                 @if(Auth::user()->showRol()=='MEDICO')
-                                <tr>
-                                    <td>
-                                        {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
-                                        {!! Form::submit('Editar', ['class'=> 'btn btn-info'])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> <a href={{url('/paciente/delete/'.$paciente->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este paciente?');" >Eliminar</a> </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            {!! Form::open(['route' => ['paciente.edit',$paciente->id], 'method' => 'get']) !!}
+                                            {!! Form::submit('Editar', ['class'=> 'btn btn-info','style'=>'width:100%'])!!}
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <a style="width: 100%" href={{url('/paciente/delete/'.$paciente->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este paciente?');" >Eliminar</a> </td>
+                                    </tr>
                                 @endif
                             </table>
                         </div>
@@ -93,9 +129,9 @@
                             </tr>
                         </table>
                         @if(Auth::user()->showRol()=='MEDICO')
-                        <td>
-                            <a href={{ url('/paciente') }} class="btn btn-info">Volver</a>
-                        </td>
+                            <td>
+                                <a href={{ url('/paciente') }} class="btn btn-secondary">Volver</a>
+                            </td>
                         @endif
                     </div>
 

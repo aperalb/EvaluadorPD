@@ -139,11 +139,11 @@
 
                         @if(Auth::User()->showRol()=='MEDICO')
                             <td>
-                                <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-info">Añadir Tratamiento</a>
+                                <a href={{url('/tratamiento/create/?pacienteID='.$paciente->id)}} class="btn btn-primary">Añadir Tratamiento</a>
                             </td>
                         @endif
                         <td>
-                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-info">Volver</a>
+                            <a href={{ url('/paciente/'.$paciente->id) }} class="btn btn-secondary">Volver</a>
                         </td>
 
 

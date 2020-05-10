@@ -8,10 +8,10 @@
 
     <div style="display:block; width:100%">
 
-        <div style="float: left; width: 45%; margin-left: 3%">
+        <div style="float: left; width: 45%; margin-left: 3%; margin-top:1.7%">
             {!! Form::open(['route' => 'tratamiento.store', 'class'=>'form-inline']) !!}
 
-            <table class="table table-bordered table-striped" id="medicamentosTable">
+            <table class="table table-bordered table-striped" style="text-align: center;" id="medicamentosTable">
                 <thead>
                 <tr>
                     <th>Categoría
@@ -39,8 +39,8 @@
                     <tr>
                         <td id="search">{{$medicamento->categoria}}</td>
                         <td id="search">{{$medicamento->nombre}}</td>
-                        <td><a class="btn btn-info"
-                               href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver Mas</a>
+                        <td><a class="btn btn-primary"
+                               href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver descripción</a>
                         </td>
                         <td><input onClick="cargaNombre('{{$medicamento->nombre}}')" type="radio" name="medicamentoSelect" id="medicamentoSelect"
                                    value="{{$medicamento->id}}" required style="height:15px; width:15px; ">
@@ -52,7 +52,7 @@
 
         </div>
 
-        <div style="float:right; width: 45%">
+        <div style="float:right; width: 45%; margin-right: 2%; margin-top: 1.05%">
 
             <table id="datosPersonales" width="600" class="table table-striped table-bordered">
                 <tr>
@@ -127,12 +127,12 @@
             </table>
             <table>
                 <td>
-                    {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
+                    {!! Form::submit('Guardar',['class'=>'btn-success btn']) !!}
                     {!! Form::close() !!}
                 </td>
                 <td>{{'              '}}</td>
                 <td>
-                    <a href={{ url('/tratamiento/index/'.$pacienteID) }} class="btn btn-info">Volver</a>
+                    <a href={{ url('/tratamiento/index/'.$pacienteID) }} class="btn btn-secondary">Volver</a>
                 </td>
             </table>
 

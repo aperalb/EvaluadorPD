@@ -24,30 +24,23 @@
 
                         <h4>Formularios disponibles en el sistema</h4>
                         <hr>
-                        <div class="panel-body">
-                            <table class="table table-striped table-bordered" >
-                                <tr>
+                        <div class="panel-body" style="text-align:center">
+                            <table class="table table-striped table-bordered"  >
+                                <tr >
                                     <th>Nombre</th>
                                     <th>Nº preguntas</th>
                                     <th>Puntuación Máxima</th>
-                                    <th colspan="3">Acciones</th>
+                                    <th >Acciones</th>
 
 
                                 </tr>
                                 @foreach($formularios as $formulario)
                                     <tr>
-                                        <td>{{$formulario->nombre }}</td>
+                                        <td>
+                                            <a href={{url('/formulario/showList/'.$formulario->id)}} class="btn btn-link">{{$formulario->nombre }}</a>
+                                        </td>
                                         <td>{{$formulario->numeroPreguntas($formulario->id) }}</td>
                                         <td>{{ $formulario->max}}</td>
-                                        <td>
-                                            <a href={{url('/formulario/showList/'.$formulario->id)}} class="btn btn-info">Ver formulario</a>
-                                        </td>
-
-                                        <td>
-                                            {{--{!! Form::open(['route' => ['formulario.edit',$formulario->id], 'method' => 'get']) !!}--}}
-                                            {!! Form::submit('Editar', ['class'=> 'btn btn-success'])!!}
-                                            {{--{!! Form::close() !!}--}}
-                                        </td>
                                         <td>
                                             {!! Form::open(['route' => ['formulario.destroy',$formulario->id], 'method' => 'delete']) !!}
                                             {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
@@ -56,15 +49,15 @@
                                     </tr>
                                 @endforeach
                             </table>
-
-                            <td>
-                                <a href='#' class="btn-primary btn" onclick='muestraFormulario()'>Nuevo Formulario</a>
-                            </td>
-                            <td>
-                                <a href={{ url('/home') }} class="btn-primary btn">Volver</a>
-                            </td>
-
                         </div>
+                            <td>
+                                <a href='#' class="btn btn-primary " onclick='muestraFormulario()'>Nuevo Formulario</a>
+                            </td>
+                            <td>
+                                <a href={{ url('/home') }} class="btn btn-secondary">Volver</a>
+                            </td>
+
+
 
 
                         {!! Form::open(['route' =>['formulario.altaFormulario', 'method'=>'POST','class'=>'form-inline']]) !!}

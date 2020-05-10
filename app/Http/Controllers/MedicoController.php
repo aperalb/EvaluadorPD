@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Medico;
 use App\User;
 
@@ -39,10 +40,7 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, []);
 
-        //dd($request);
-        //$request->add($medico);
 
         /** Creamos el nuevo paciente*/
         $paciente = new Paciente($request->all());
@@ -90,6 +88,18 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        User::validaRol('MEDICO');
+
+        $validatedData = $request->validate([
+            'name' => 'required|alpha',
+            'apellido1'=>'required|alpha',
+            'apellido2'=>'required|alpha',
+            'email'=>['required','email:rfc', Rule::unique('users')->ignore($id)],
+            'numerotel'=> 'required|alpha_num|max:9',
+            'fotografia' => 'mimes:jpeg,bmp,png',
+            'consulta' => 'required|alpha_num',
+            'especialidad' => 'required|alpha_num'
+        ]);
         $user = User::find($id);
         $medico = $user->medico;
         $user->fill($request->all());
@@ -102,11 +112,10 @@ class MedicoController extends Controller
             $user->addMediaFromRequest('fotografia')->toMediaCollection('fotografias');
         }
         $user->save();
-
         $medico->fill($request->all());
         $medico->save();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Los datos han sido editados con éxito');
 
 
     }

@@ -41,8 +41,19 @@ class PacienteController extends Controller
     {
 //        dd($request);
         User::validaRol('MEDICO');
-        $this->validate($request, []);
-
+        $validatedData = $request->validate([
+            'nombre' => 'required|alpha',
+            'apellido1'=>'required|alpha',
+            'apellido2'=>'required|alpha',
+            'email'=> 'required|email:rfc|unique:users',
+            'sexo' => 'required|in:Hombre,Mujer',
+            'numerotel'=> 'alpha_num|max:9',
+            'nuhsa' => 'required|unique:pacientes',
+            'fotografia' => 'mimes:jpeg,bmp,png',
+            'password' => 'required|alpha_num',
+            'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
+            'fechanac' => 'required|befor:strtotime("now")'
+        ]);
         $user = User::create([
             'name' => $request->get('nombre'),
             'rol' => 'PACIENTE',
@@ -107,6 +118,17 @@ class PacienteController extends Controller
     public function update(Request $request, $id)
     {
         User::validaRol('MEDICO');
+        $validatedData = $request->validate([
+            'nombre' => 'required|alpha',
+            'apellido1'=>'required|alpha',
+            'apellido2'=>'required|alpha',
+            'sexo' => 'required|in:Hombre,Mujer',
+            'numerotel'=> 'alpha_num|max:9',
+            'nuhsa' => 'required|unique:pacientes',
+            'fotografia' => 'mimes:jpeg,bmp,png',
+            'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
+            'fechanac' => 'required|before:strtotime("now")'
+        ]);
         $paciente = Paciente::find($id);
         $user = $paciente->user;
         $user->fill($request->all());
@@ -141,6 +163,8 @@ class PacienteController extends Controller
         $paciente->delete();
         return redirect()->route('paciente.index');
     }
+
+
 
     public function __construct()
     {

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+
 use App\Responsable;
 use App\Paciente;
 use DB;
 use App\User;
 use Auth;
-use Illuminate\Support\Facades\Hash;
 
 
 class ResponsableController extends Controller
@@ -46,6 +48,16 @@ class ResponsableController extends Controller
     public function store(Request $request)
     {
         User::validaRol('MEDICO');
+        $validatedData = $request->validate([
+            'nombre' => 'required|alpha',
+            'apellido1'=>'required|alpha',
+            'apellido2'=>'required|alpha',
+            'email'=>['required','email:rfc', Rule::unique('users')],
+            'numerotel'=> 'required|alpha_num|max:9',
+            'fotografia' => 'mimes:jpeg,bmp,png',
+            'parentesco' => 'required|alpha'
+        ]);
+
         $id=$request->get('pacienteID');
         $parentesco=$request->get('parentesco');
         $paciente = Paciente::find($id);
@@ -85,6 +97,7 @@ class ResponsableController extends Controller
         Paciente::compruebaPertenencia($idPaciente);
         $responsable = Responsable::find($idResponsable);
         $paciente = Paciente::find($idPaciente);
+
         return view('responsable.show', ['responsable'=>$responsable,'paciente'=>$paciente]);
     }
 
@@ -117,6 +130,14 @@ class ResponsableController extends Controller
     public function update(Request $request, $id)
     {
         User::validaRol('MEDICO');
+        $validatedData = $request->validate([
+            'nombre' => 'required|alpha',
+            'apellido1'=>'required|alpha',
+            'apellido2'=>'required|alpha',
+            'numerotel'=> 'required|alpha_num|max:9',
+            'fotografia' => 'mimes:jpeg,bmp,png',
+            'parentesco' => 'required|alpha'
+        ]);
 
         $responsable = Responsable::find($id);
         $pacienteID=$request->get('pacienteID');
@@ -138,8 +159,7 @@ class ResponsableController extends Controller
         $responsable->save();
         $responsable->pacientes()->updateExistingPivot($pacienteID,["parentesco"=>$parentesco]);
 
-//        return redirect()->route('responsable.show2',['idResponsable'=>$responsable->id, 'idPaciente' => $pacienteID])->with('success', 'Elemento editado correctamente');
-        return redirect('responsable/'.$responsable->id.'/'.$pacienteID)->with('succes', 'Elemento editado correctamente');
+        return redirect('responsable/'.$responsable->id.'/'.$pacienteID)->with('success', 'Elemento editado correctamente');
 
     }
 

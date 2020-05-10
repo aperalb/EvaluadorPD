@@ -12,7 +12,6 @@ class Paciente extends Model
 //        'nombre',
 //        'apellido1',
 //        'apellido2',
-        'fotografia',
         'sexo',
         'nuhsa',
         'fechanac',
@@ -21,6 +20,9 @@ class Paciente extends Model
         'fechainiciopd',
         'observaciones',
     ];
+
+
+
     //Relaciones
     // Un paciente pertenece a un
     public function user(){

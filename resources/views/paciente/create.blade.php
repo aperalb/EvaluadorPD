@@ -1,10 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
         {!! Form::open(['route' => 'paciente.store', 'class'=>'form-inline', 'enctype'=>'multipart/form-data']) !!}
         <div class="row">
-            <div >
+            <div>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="floatLeft">
@@ -69,7 +80,9 @@
 
                             <div>
                                 <h4>Observaciones</h4>
-                                <a>  <pre>{!! Form::textarea('observaciones',null,['class'=>'form-control', 'autofocus',' cols="80" rows="10"']) !!}</pre></a>
+                                <a>
+                                    <pre>{!! Form::textarea('observaciones',null,['class'=>'form-control', 'autofocus',' cols="80" rows="10"']) !!}</pre>
+                                </a>
                             </div>
 
                         </div>
@@ -96,7 +109,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input id="fotografia" type="file" class="form-control" name="fotografia" autofocus >
+                                        <input id="fotografia" type="file" class="form-control" name="fotografia"
+                                               autofocus>
                                     </td>
 
                                 </tr>
@@ -105,7 +119,8 @@
 
                                         {!! Form::submit('Guardar',['class'=>'btn btn-success']) !!}
                                         {!! Form::close() !!}
-                                        <a href="{{route('paciente.index')}}" class="btn btn-secondary"><strong>Volver</strong></a>
+                                        <a href="{{route('paciente.index')}}"
+                                           class="btn btn-secondary"><strong>Volver</strong></a>
 
                                     </td>
 

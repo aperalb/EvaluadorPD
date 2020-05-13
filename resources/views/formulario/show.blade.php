@@ -7,7 +7,17 @@
     </div>
 @endif
 @section('content')
-
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
         @if(Auth::User()->showRol()=='MEDICO')
             {!! Form::open(['route' =>['formulario.update',$formulario->id,$evaluacion->id], 'method'=>'PUT','enctype'=>'multipart/form-data']) !!}

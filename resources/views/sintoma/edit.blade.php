@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
         {!! Form::model($sintoma, [ 'route' => ['sintoma.update',$sintoma->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
         <div class="row">

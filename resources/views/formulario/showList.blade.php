@@ -14,7 +14,17 @@
     </div>
 @endif
 @section('content')
-
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
 
         <div class="row justify-content-center">
@@ -118,7 +128,7 @@
                             <th><label for="tituloCreate">Titulo</label> </th>
                         </tr>
                         <tr>
-                            <td><h4><pre style="text-align:justify;white-space: pre-line;" ><input type="text" id="tituloCreate" name="tituloCreate" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;"></pre></h4></td>
+                            <td><h4><pre style="text-align:justify;white-space: pre-line;" ><input type="text" id="tituloCreate" name="tituloCreate" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;" required></pre></h4></td>
                         </tr>
                         <tr>
                             <th><label for="enunciadoCreate">Enunciado</label> </th>
@@ -127,7 +137,7 @@
                             <td>
 
                      <pre>
-                         <textarea class="form-control" name="enunciadoCreate" required id="enunciadoCreate" rows="8" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;"></textarea>
+                         <textarea class="form-control" name="enunciadoCreate" required id="enunciadoCreate" rows="8" style="width: 100%; box-sizing: border-box;-webkit-box-sizing:border-box;-moz-box-sizing: border-box;" required></textarea>
                      </pre>
 
                             </td>

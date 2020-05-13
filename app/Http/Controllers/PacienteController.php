@@ -47,12 +47,12 @@ class PacienteController extends Controller
             'apellido2'=>'required|alpha',
             'email'=> 'required|email:rfc|unique:users',
             'sexo' => 'required|in:Hombre,Mujer',
-            'numerotel'=> 'alpha_num|max:9',
+            'numerotel'=> 'nullable|alpha_num|max:9',
             'nuhsa' => 'required|unique:pacientes',
-            'fotografia' => 'mimes:jpeg,bmp,png',
+            'fotografia' => 'nullable|mimes:jpeg,bmp,png',
             'password' => 'required|alpha_num',
             'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
-            'fechanac' => 'required|befor:strtotime("now")'
+            'fechanac' => 'required|before:strtotime("now")'
         ]);
         $user = User::create([
             'name' => $request->get('nombre'),
@@ -123,9 +123,9 @@ class PacienteController extends Controller
             'apellido1'=>'required|alpha',
             'apellido2'=>'required|alpha',
             'sexo' => 'required|in:Hombre,Mujer',
-            'numerotel'=> 'alpha_num|max:9',
+            'numerotel'=> 'nullable|alpha_num|max:9',
             'nuhsa' => 'required|unique:pacientes',
-            'fotografia' => 'mimes:jpeg,bmp,png',
+            'fotografia' => 'nullable|mimes:jpeg,bmp,png',
             'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
             'fechanac' => 'required|before:strtotime("now")'
         ]);

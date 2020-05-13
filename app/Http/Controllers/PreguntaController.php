@@ -82,6 +82,14 @@ class PreguntaController extends Controller
         if(Formulario::formularioEnUso($pregunta->formulario_id) == false) {
             return redirect('/formulario/showList/' . $pregunta->formulario_id)->with('danger', 'No puede editar un formulario que está en uso en alguna evaluación');
         }
+
+        $validatedData = $request->validate([
+            'tituloCreate' => 'required',
+            'enunciadoCreate' => 'required',
+            'rangoCreate' => 'required|integer',
+
+        ]);
+
         $pregunta->titulo = $request->get('tituloCreate');
         $pregunta->enunciado = $request->get('enunciadoCreate');
         $pregunta->rango = '0-'.$request->get('rangoCreate');

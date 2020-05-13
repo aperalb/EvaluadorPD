@@ -1,7 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <h4 style="margin-left: 40%">Crear tratamiento</h4>
 
     <hr>

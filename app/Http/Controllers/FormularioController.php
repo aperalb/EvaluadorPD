@@ -48,6 +48,7 @@ class FormularioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // Crear una resolucion
     public function store(Request $request, $idFormulario, $idEvaluacion)
     {
         User::validaRol('MEDICO');
@@ -57,20 +58,18 @@ class FormularioController extends Controller
 
         $existe=DB::table('evaluacion_formulario')->where('evaluacion_id', $idEvaluacion)->where('formulario_id',$idFormulario)->value('id');
         if($existe == ''){
-            $evaluacion->formularios()->attach($formulario->id);
-
             $preguntas = $formulario->preguntas;
             foreach($preguntas as $pregunta){
+
                 $respuestaValor = $request->get($pregunta->id);
                 $respuesta = new Respuesta();
                 $respuesta-> valor = $respuestaValor;
-//                $respuesta-> respuestaposible = '';
-//                $respuesta-> tipopregunta = '';
-//                $respuesta-> enunciado = '';
                 $respuesta-> pregunta_id = $pregunta->id;
                 $respuesta->evaluacion_id = $evaluacion->id;
                 $respuesta->save();
             }
+            $evaluacion->formularios()->attach($formulario->id);
+
         }else{
            return redirect('evaluacion/'.$idEvaluacion)->with('success', 'Este formulario ya ha sido completado');
         }
@@ -127,6 +126,7 @@ class FormularioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    //Update de una resolucion
     public function update(Request $request, $idFormulario,$idEvaluacion)
     {
         User::validaRol('MEDICO');
@@ -161,13 +161,12 @@ class FormularioController extends Controller
 
     }
 
-    public function add(){
-
-        return view('formulario/add');
-    }
-
+    // Este metodo da el alta a un neuvo formularios
     public function altaFormulario(Request $request){
         User::validaRol('MEDICO');
+        $validatedData = $request->validate([
+            'nombre' => 'required|alpha_num',
+        ]);
         $formulario = new Formulario();
         $formulario->nombre = $request->get('nombre');
         $formulario->descripcion = $request->get('descripcion');
@@ -185,6 +184,12 @@ class FormularioController extends Controller
         }
 
         $formulario = Formulario::find($idFormulario);
+        $validatedData = $request->validate([
+            'tituloCreate' => 'required',
+            'enunciadoCreate' => 'required',
+            'rangoCreate' => 'required|integer',
+
+        ]);
         $pregunta = new Pregunta();
         $pregunta->titulo = $request->get('tituloCreate');
         $pregunta->enunciado = $request->get('enuncuadoCreate');

@@ -54,8 +54,8 @@ class ResponsableController extends Controller
             'apellido2'=>'required|alpha',
             'email'=>['required','email:rfc', Rule::unique('users')],
             'numerotel'=> 'required|alpha_num|max:9',
-            'fotografia' => 'mimes:jpeg,bmp,png',
-            'parentesco' => 'required|alpha'
+            'fotografia' => 'nullable|mimes:jpeg,bmp,png',
+            'parentesco' => 'required'
         ]);
 
         $id=$request->get('pacienteID');
@@ -135,8 +135,8 @@ class ResponsableController extends Controller
             'apellido1'=>'required|alpha',
             'apellido2'=>'required|alpha',
             'numerotel'=> 'required|alpha_num|max:9',
-            'fotografia' => 'mimes:jpeg,bmp,png',
-            'parentesco' => 'required|alpha'
+            'fotografia' => 'nullable|mimes:jpeg,bmp,png',
+            'parentesco' => 'required'
         ]);
 
         $responsable = Responsable::find($id);

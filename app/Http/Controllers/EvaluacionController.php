@@ -71,8 +71,10 @@ class EvaluacionController extends Controller
         User::validaRol('MEDICO');
         $pacienteID=$request->get('pacienteID');
         $paciente = Paciente::find($pacienteID);
-        $this->validate($request, []);
-
+        $validatedData =   $request->validate([
+            'peso'=>'required|numeric',
+            'altura'=> 'required|numeric'
+        ]);
         /** Creamos el nuevo tratamiento*/
         $evaluacion = new Evaluacion();
         $evaluacion->fechafin=$request->get('fechafin');
@@ -132,6 +134,11 @@ class EvaluacionController extends Controller
     public function update(Request $request, $id)
     {
         User::validaRol('MEDICO');
+        $validatedData =   $request->validate([
+            'peso'=>'required|numeric',
+            'altura'=> 'required|numeric',
+            'observaciones' => 'nullable'
+        ]);
         $evaluacion = Evaluacion::find($id);
         $evaluacion->fill($request->all());
         $evaluacion->save();

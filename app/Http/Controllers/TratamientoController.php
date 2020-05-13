@@ -7,6 +7,7 @@ use App\Responsable;
 use App\Paciente;
 use App\Medico;
 use App\Tratamiento;
+use Illuminate\Validation\ValidationException;
 use Redirect;
 use App\User;
 use App\Medicamento;
@@ -49,11 +50,22 @@ class TratamientoController extends Controller
     public function store(Request $request)
     {
 //        dd($request);
-
         User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
         $paciente = Paciente::find($id);
-        $this->validate($request, []);
+
+        $validatedData =   $request->validate([
+                'dosis' => 'required|numeric',
+                'frecuencia' => 'required|numeric',
+                'fechainicio' => 'required|date',
+                'fechafin' => 'required|date',
+                'detalles' => 'nullable',
+                'medicamentoSelect' => 'required|exists:medicamentos,id'
+            ]);
+
+
+
+
 
         /** Creamos el nuevo paciente*/
         $tratamiento = new Tratamiento();
@@ -110,7 +122,15 @@ class TratamientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
+        User::validaRol('MEDICO');
+        $validatedData =   $request->validate([
+            'dosis' => 'required|numeric',
+            'frecuencia' => 'required|numeric',
+            'fechainicio' => 'required|date',
+            'fechafin' => 'required|date',
+            'detalles' => 'nullable',
+            'medicamentoSelect' => 'required|exists:medicamentos,id'
+        ]);
         $tratamiento = Tratamiento::find($id);
         $tratamiento->fill($request->all());
         $tratamiento->medicamento_id = $request->get('medicamentoSelect');
@@ -127,6 +147,7 @@ class TratamientoController extends Controller
      */
     public function destroy($id)
     {
+        User::validaRol('MEDICO');
         $tratamiento = Tratamiento::find($id);
         $tratamiento->delete();
         return redirect()->back();

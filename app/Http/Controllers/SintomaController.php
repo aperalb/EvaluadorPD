@@ -57,7 +57,6 @@ class SintomaController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         User::validaRol('MEDICO');
         $id=$request->get('pacienteID');
         $valorSintoma=$request->get('nombre');
@@ -67,7 +66,6 @@ class SintomaController extends Controller
         Sintoma::compruebaSintomaExiste( $valorSintoma,$id);
 
         $paciente = Paciente::find($id);
-        $this->validate($request, []);
 
         /** Creamos el nuevo paciente*/
         $sintoma = new Sintoma();

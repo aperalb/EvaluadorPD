@@ -14,6 +14,17 @@
     </div>
 @endif
 @section('content')
+    @if(count($errors))
+        <div class="form-group">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
     <div class="container">
         {!! Form::open(['route' =>['formulario.store',$formulario->id,$evaluacion->id], 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
 
@@ -38,8 +49,6 @@
                         <tr>
                             @if($pregunta->tiporespuesta == "numerico")
                                 @php
-                                    $bottom = 0;
-                                    $top = 0;
                                     $array = mb_split('-',$pregunta->rango);
                                     $bottom = $array[0];
                                     $top = $array[1];

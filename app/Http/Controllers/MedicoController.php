@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Medico;
 use App\User;
 
@@ -96,9 +95,9 @@ class MedicoController extends Controller
             'apellido2'=>'required|alpha',
             'email'=>['required','email:rfc', Rule::unique('users')->ignore($id)],
             'numerotel'=> 'required|alpha_num|max:9',
-            'fotografia' => 'mimes:jpeg,bmp,png',
-            'consulta' => 'required|alpha_num',
-            'especialidad' => 'required|alpha_num'
+            'fotografia' => 'nullable|mimes:jpeg,bmp,png',
+            'consulta' => 'required',
+            'especialidad' => 'required'
         ]);
         $user = User::find($id);
         $medico = $user->medico;

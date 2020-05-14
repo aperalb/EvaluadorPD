@@ -45,6 +45,7 @@ Route::group(['middlewere'=>['web']], function(){
     Route::resource('/sintoma', 'SintomaController');
 
     /*EVALUACIONES*/
+
     Route::post('/evaluacion/attach/{id}', 'EvaluacionController@attach')->name('evaluacion.attach');
     Route::get('/evaluacion/indexMisEvaluaciones', 'EvaluacionController@index2')->name('evaluacion.misEvaluaciones');
     Route::get('/evaluacion/index/{id}', 'EvaluacionController@index');
@@ -76,4 +77,6 @@ Route::group(['middlewere'=>['web']], function(){
     Route::put('/pregunta/{id}', 'PreguntaController@update')->name('pregunta.update');
     Route::delete('/pregunta/{id}', 'PreguntaController@destroy')->name('pregunta.destroy');
 
+    /*CHARTS*/
+    Route::get('/evaluacionChart/evolucionPacienteFormulario/{idEvaluacion}', 'EvaluacionController@evolucionPacienteFormulario')->name('evaluacion.evolucionPacienteFormulario');
 });

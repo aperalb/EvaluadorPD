@@ -10,6 +10,8 @@ use Auth;
 use App\Medico;
 use DB;
 use App\Respuesta;
+use App\Charts\EvolucionPacienteFormulario;
+
 
 
 use Illuminate\Http\Request;
@@ -186,6 +188,35 @@ class EvaluacionController extends Controller
         $pivote->delete();
 
         return redirect()->back()->with('danger', 'Resolución eliminada con éxito.');
+
+    }
+
+    public function evolucionPacienteFormulario($idEvaluacion)
+    {
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulariosRealizados = $evaluacion->formularios;
+
+        $chart = new EvolucionPacienteFormulario;
+        $labels = [];
+        $datasetValue = [];
+        foreach($formulariosRealizados as $formulario){
+            $ptos = $formulario->puntuacionObtenida($idEvaluacion, $formulario->id);
+            array_push($datasetValue, $ptos);
+            array_push($labels, $formulario->nombre);
+
+        }
+        $chart->labels($labels);
+        $chart->dataset('try', 'bar', $datasetValue);
+
+
+//        $chart->labels(['One', 'Two', 'Three', 'Four']);
+//        $chart->dataset('My dataset', 'bar', [1, 2, 3, 4]);
+//        $chart->dataset('My dataset 2', 'bar', [4, 3, 2, 1]);
+        return view('evaluacion.evolucionPacienteFormulario',  ['chart' => $chart]);
+
+
+
+
 
     }
 }

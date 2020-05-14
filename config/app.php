@@ -177,6 +177,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Laraveles\Spanish\SpanishServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
 
     ],
 

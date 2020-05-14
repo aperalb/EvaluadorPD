@@ -13,6 +13,8 @@
     <!-- Scripts -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}" ></script>
     <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js')}}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -21,6 +23,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 
 
 </head>

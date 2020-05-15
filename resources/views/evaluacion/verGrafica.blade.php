@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Sales Graphs</h1>
+    <h1>Resumen de la Evaluación</h1>
 
-    <div style="width: 50%">
+    <div tyle="position: relative; maintainAspectRatio:true, height:40vh; width:80vw">
         {!! $chart->container() !!}
         {!! $chart->script() !!}
     </div>

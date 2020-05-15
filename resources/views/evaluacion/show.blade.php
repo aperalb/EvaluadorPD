@@ -32,13 +32,15 @@
                     <div class="panel-body">
                         <div class="floatLeft">
                             @if(Auth::User()->showRol()=='MEDICO')
-                                {!! Form::model($evaluacion, [ 'route' => ['evaluacion.update',$evaluacion->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+                                @if($evaluacion->fechafin == "")
+                                    {!! Form::model($evaluacion, [ 'route' => ['evaluacion.update',$evaluacion->id], 'method'=>'PUT', 'class'=>'form-inline']) !!}
+                                @endif
                             @endif
                             <h4>Detalles de la Evaluación</h4>
                             <table class="table table-striped table-bordered" >
 
 
-                                <tr>
+                                <tr id="estadoActual">
                                     <th>Fecha Inicio</th>
                                     <td>{{date('yy-m-d', strtotime($evaluacion->created_at))}}</td>
                                 </tr>
@@ -49,6 +51,10 @@
                                     @else
                                         <td>{{'Finalizada ' .date('yy-m-d', strtotime($evaluacion->fechafin))}}</td>
                                     @endif
+                                </tr>
+                                <tr id="nuevoEstado" style="display: none;background-color: rgba(0,0,0,.05)">
+                                    <th>Finalizar Evaluación</th>
+                                    <td>No podrá volver a editarla. {!! Form::checkbox('nuevoEstado',null,false,['class'=>'form-control', 'autofocus']) !!}</td>
                                 </tr>
 
                                 <tr id="pesoActual">
@@ -80,22 +86,25 @@
                                 <h4>Observaciones</h4>
                                 <a>
 
-                                    <pre>{!! Form::textarea('descripcion',$evaluacion->descripcion,['id'=>'observaciones','cols'=>'80','rows'=>'10','required','readonly', 'autofocus']) !!}</pre>
+                                    <pre>{!! Form::textarea('descripcion',$evaluacion->descripcion,['id'=>'observaciones','cols'=>'80','rows'=>'10','readonly', 'autofocus']) !!}</pre>
                                 </a>
 
                             </div>
                             @if(Auth::User()->showRol()=='MEDICO')
-                                <div style="align-content: center; margin-left: 7%">
-                                    <a> <input class="btn btn-info" type="button" id="Editar" value="Editar" onclick="edit()"></a>
+                                @if($evaluacion->fechafin == "")
 
-                                    {!! Form::submit('Guardar',['id'=>'guardar','style'=>'display:none','class'=>'btn-success btn']) !!}
-                                    {!! Form::close() !!}
+                                    <div style="align-content: center; margin-left: 7%">
+                                        <a> <input class="btn btn-info" type="button" id="Editar" value="Editar" onclick="edit()"></a>
 
-                                    {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
-                                    <br>
-                                    {!! Form::submit('Eliminar', ['id'=>'eliminar','style'=>'display:none','class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta evaluación?");'])!!}
-                                    {!! Form::close() !!}
-                                </div>
+                                        {!! Form::submit('Guardar',['id'=>'guardar','style'=>'display:none','class'=>'btn-success btn']) !!}
+                                        {!! Form::close() !!}
+
+                                        {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
+                                        <br>
+                                        {!! Form::submit('Eliminar', ['id'=>'eliminar','style'=>'display:none','class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta evaluación?");'])!!}
+                                        {!! Form::close() !!}
+                                    </div>
+                                @endif
                             @endif
 
                         </div>
@@ -109,22 +118,22 @@
 
                                     </td>
                                 <tr>
-                                     <td rowspan="1">
+                                    <td rowspan="1">
                                         <img src="{{$evaluacion->paciente->user->getFirstMediaUrl('fotografias') }}"
-                                                         width="300" height="300",
-                                                         onerror="this.onerror=null; this.src='/images/Default.jpg'"
-                                                         alt="Fotografia" />
-                                                </td>
-
-                                            </tr>
-
-                                        </table>
-                                    </div>
+                                             width="300" height="300",
+                                             onerror="this.onerror=null; this.src='/images/Default.jpg'"
+                                             alt="Fotografia" />
+                                    </td>
+                                </tr>
 
                             </table>
                         </div>
 
-                        @if(Auth::User()->showRol()=='MEDICO')
+                        </table>
+                    </div>
+
+                    @if(Auth::User()->showRol()=='MEDICO')
+                        @if($evaluacion->fechafin == "")
                             <table class="table table-striped table-bordered">
                                 <tr>
                                     <td colspan="10">Formularios Pendientes</td>
@@ -142,44 +151,58 @@
                                 @endforeach
                             </table>
                         @endif
-
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <td colspan="10">Formularios Realizados</td>
-                                <td colspan="2" align="center">Puntuación Obtenida</td>
+                    @endif
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <td colspan="10">Formularios Realizados</td>
+                            <td colspan="2" align="center">Puntuación Obtenida</td>
+                            @if($evaluacion->fechafin == "")
                                 <td align="center">Acciones</td>
-                            </tr>
+                            @endif
 
-                            @foreach($formulariosRealizados as $formulario)
-                                <tr>
-                                    <td colspan="10">
-                                        {!! Form::open(['route' => ['formulario.show','idFormulario'=>$formulario->id,'idEvaluacion'=> $evaluacion->id], 'method' => 'get']) !!}
-                                        {!! Form::submit($formulario->nombre, ['class'=> 'btn btn-link','style'=>"width: 100%; text-align:left"])!!}
-                                        {!! Form::close() !!}
-                                    </td>
-                                    <td colspan="2" align="center">{{$formulario->puntuacionObtenida($evaluacion->id, $formulario->id)." / ".$formulario->max}}</td>
+                        </tr>
+                        @foreach($formulariosRealizados as $formulario)
+                            <tr>
+                                <td colspan="10">
+                                    {!! Form::open(['route' => ['formulario.show','idFormulario'=>$formulario->id,'idEvaluacion'=> $evaluacion->id], 'method' => 'get']) !!}
+                                    {!! Form::submit($formulario->nombre, ['class'=> 'btn btn-link','style'=>"width: 100%; text-align:left"])!!}
+                                    {!! Form::close() !!}
+                                </td>
+                                <td colspan="2" align="center">{{$formulario->puntuacionObtenida($evaluacion->id, $formulario->id)." / ".$formulario->max}}</td>
+                                @if($evaluacion->fechafin == "")
+
                                     <td align="center">
                                         {!! Form::open(['route' => ['evaluacion.destroyResolucion',$formulario->id, $evaluacion->id], 'method' => 'delete']) !!}
                                         {!! Form::submit('Eliminar', ['style'=>"margin-top: 1%",'class'=> 'btn btn-danger','onClick'=>'return confirm("¿Seguro que deseas eliminar esta pregunta?");'])!!}
                                         {!! Form::close() !!}
 
                                     </td>
-                                </tr>
+                                @endif
+                            </tr>
 
-                            @endforeach
-                        </table>
+                        @endforeach
+                    </table>
 
+                    <div class="icon-bar-chart">
+                        {!! $chart->container() !!}
+                        {!! $chart->script() !!}
 
-
-                        <td>
-                            <a href={{ url('/evaluacion/index/'.$evaluacion->paciente_id) }} class="btn btn-info">Volver</a>
-                        </td>
                     </div>
 
+
+                    <td>
+                        <a href={{ url('/evaluacion/index/'.$evaluacion->paciente_id) }} class="btn btn-info">Volver</a>
+                    </td>
                 </div>
+
+
             </div>
         </div>
+
     </div>
+
+    </div>
+
 
 
     <script type="application/javascript">
@@ -188,20 +211,28 @@
             var observaciones = document.getElementById("observaciones");
             var pesoActual=document.getElementById("pesoActual");
             var alturaActual=document.getElementById("alturaActual");
+            var estadoActual=document.getElementById("estadoActual");
             var nuevoPeso = document.getElementById("nuevoPeso");
             var nuevaAltura = document.getElementById("nuevaAltura");
             var guardar=document.getElementById("guardar");
             var eliminar=document.getElementById("eliminar");
+            var nuevoEstado=document.getElementById("nuevoEstado");
             observaciones.removeAttribute('readonly');
             alturaActual.style.display="none";
             pesoActual.style.display="none";
             Editar.style.display="none";
+            estadoActual.style.display="none";
             nuevoPeso.style.display="";
             nuevaAltura.style.display="";
+            nuevoEstado.style.display="";
             guardar.style.display="";
             eliminar.style.display="";
 
+
+
         }
+
+
 
 
     </script>

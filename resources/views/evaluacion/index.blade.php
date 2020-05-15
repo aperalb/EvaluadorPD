@@ -54,6 +54,9 @@
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
+                                    <td>
+                                        <a class="btn btn-info" href="javascript:ventanaSecundaria('/evaluacionGrafica/verGrafica/{{$evaluacion->id}}')">Ver más</a>
+                                    </td>
                                     @if(Auth::User()->showRol()=='MEDICO')
 
                                     <td>
@@ -130,4 +133,9 @@
             </div>
         </div>
     </div>
+    <script>
+        function ventanaSecundaria (URL){
+            window.open(URL,"ventana1","width=800,height=800,left=500,scrollbars=YES")
+        }
+    </script>
 @endsection

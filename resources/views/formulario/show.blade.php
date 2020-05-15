@@ -55,7 +55,7 @@
 
                                 <td>
 
-                                    @if(Auth::User()->showRol()=='MEDICO')
+                                    @if(Auth::User()->showRol()=='MEDICO' && $evaluacion->fechafin == "")
                                         <div style="display: inline">
                                             <label style="font-size:17px; display: inline;">
                                                 Respuesta:
@@ -113,9 +113,11 @@
 
         <div style="align-content: center;display: inline; margin-left: 17%">
             @if(Auth::User()->showRol()=='MEDICO')
-                {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");']) !!}
+                @if($evaluacion->fechafin == "")
+            {!! Form::submit('Actualizar',['class'=> 'btn btn-success','onClick'=>'return confirm("¿Seguro que deseas editar esta resolución?");']) !!}
                 {!! Form::close() !!}
             @endif
+                @endif
 
             <a href={{ url('/evaluacion/'.$evaluacion->id) }} class="btn btn-info" >Volver</a>
         </div>

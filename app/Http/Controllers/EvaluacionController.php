@@ -110,9 +110,26 @@ class EvaluacionController extends Controller
             array_push($formulariosRealizados,$formularioTemp);
         }
         $formulariosNoRealizados=DB::table('formularios')->whereNotIn('id',$IdsFormulariosRealizados )->get();
+        //****CHARTS
+        $formulariosRealizados = $evaluacion->formularios;
+
+        $chart = new EvolucionPacienteFormulario;
+        $labels = [];
+        $datasetValue = [];
+        foreach($formulariosRealizados as $formulario){
+            $ptos = $formulario->puntuacionObtenida($evaluacion->id, $formulario->id);
+            array_push($datasetValue, $ptos);
+            array_push($labels, $formulario->nombre);
+
+        }
+        $chart->labels($labels);
+        $chart->dataset('Resultados obtenidos', 'bar', $datasetValue);
+        $chart->height(1000);
+        $chart->width(1100);
+        //****CHARTS
 
 
-        return view('evaluacion.show', ['evaluacion'=>$evaluacion, 'formulariosRealizados'=>$formulariosRealizados, 'formulariosNorealizados'=>$formulariosNoRealizados]);
+        return view('evaluacion.show', ['evaluacion'=>$evaluacion, 'formulariosRealizados'=>$formulariosRealizados, 'formulariosNorealizados'=>$formulariosNoRealizados, 'chart' => $chart ]);
     }
 
     /**
@@ -135,6 +152,7 @@ class EvaluacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request);
         User::validaRol('MEDICO');
         $validatedData =   $request->validate([
             'peso'=>'required|numeric',
@@ -143,6 +161,9 @@ class EvaluacionController extends Controller
         ]);
         $evaluacion = Evaluacion::find($id);
         $evaluacion->fill($request->all());
+        if($request->get('nuevoEstado')!=''){
+        $evaluacion->fechafin = date('yy-m-d');
+            }
         $evaluacion->save();
         return redirect('evaluacion/'.$evaluacion->id)->with('success', 'Elemento editado correctamente');
     }
@@ -188,6 +209,29 @@ class EvaluacionController extends Controller
         $pivote->delete();
 
         return redirect()->back()->with('danger', 'Resolución eliminada con éxito.');
+
+    }
+
+    public function verGrafica($idEvaluacion){
+        $evaluacion = Evaluacion::find($idEvaluacion);
+        $formulariosRealizados = $evaluacion->formularios;
+
+        $chart = new EvolucionPacienteFormulario;
+        $colours=[];
+        $labels = [];
+        $datasetValue = [];
+        foreach($formulariosRealizados as $formulario){
+            $ptos = $formulario->puntuacionObtenida($idEvaluacion, $formulario->id);
+            array_push($datasetValue, $ptos);
+            array_push($labels, $formulario->nombre);
+            array_push($colours, "rgba(".random_int(0,255).",".random_int(0,255).",".random_int(0,255).", 0.2)");
+
+
+        }
+        $chart->labels($labels);
+        $chart->dataset('try', 'bar', $datasetValue)->color($colours)->backgroundcolor($colours);
+
+        return view('evaluacion.verGrafica',  ['chart' => $chart]);
 
     }
 

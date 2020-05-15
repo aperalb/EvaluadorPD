@@ -47,7 +47,7 @@
                 <tr>
                     <td id="search">{{$medicamento->categoria}}</td>
                     <td id="search">{{$medicamento->nombre}}</td>
-                    <td><a class="btn btn-info" href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver Mas</a></td>
+                    <td><a class="btn btn-info" href="javascript:ventanaSecundaria('/medicamento/show/{{$medicamento->id}}')">Ver más</a></td>
                     <td><a href={{url('/medicamento/edit/'.$medicamento->id)}} class="btn btn-success">Editar</a</td>
                     <td> <a href={{url('/medicamento/delete/'.$medicamento->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este Medicamento?');" >Eliminar</a> </td>
                 </tr>

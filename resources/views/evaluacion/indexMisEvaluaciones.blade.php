@@ -11,8 +11,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
                 <div class="panel panel-default">
-                    @if(!empty($evaluaciones)){
-                    <div class="panel-heading">Todas mis evaluaciones</div>
+                    @if(!empty($evaluaciones))
+                        <div class="panel-heading"><b>Todas mis evaluaciones</b></div>
+                        <hr>
                     <div class="panel-body">
                         <table class="table table-striped table-bordered" >
                             <tr>
@@ -20,15 +21,14 @@
                                 <th>Fecha Fin</th>
                                 <th>Altura</th>
                                 <th>Peso</th>
-                                <th>Puntuación Global</th>
-                                <th align ="center" colspan ="2">Acciones</th>
+                                <th style="text-align:center" colspan ="4">Acciones</th>
                             </tr>
 
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
                                     <td>{{ date('yy-m-d', strtotime($evaluacion->created_at)) }}</td>
                                     @if($evaluacion->fechafin == "")
-                                        <td>{{ 'No finalizada' }}</td>
+                                        <td>{{ 'En curso' }}</td>
                                     @else
                                         <td>{{ date('yy-m-d', strtotime($evaluacion->fechafin)) }}</td>
                                     @endif
@@ -39,7 +39,9 @@
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
                                         {!! Form::close() !!}
                                     </td>
-
+                                    <td>
+                                        <a class="btn btn-info" href="/evaluacionGrafica/verGrafica/{{$evaluacion->id}}">Resumen</a>
+                                    </td>
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.destroy',$evaluacion->id], 'method' => 'delete']) !!}
                                         {!! Form::submit('Eliminar', ['class'=> 'btn btn-danger'])!!}
@@ -58,9 +60,9 @@
                         </td>
 
                     </div>
-                    @endif
+                    @else
                         <div class="panel-heading">No tienes evaluaciones todavía</div>
-
+                    @endif
                 </div>
             </div>
         </div>

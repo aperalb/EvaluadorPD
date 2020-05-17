@@ -183,13 +183,6 @@
                         @endforeach
                     </table>
 
-                    <div class="icon-bar-chart">
-                        {!! $chart->container() !!}
-                        {!! $chart->script() !!}
-
-                    </div>
-
-
                     <td>
                         <a href={{ url('/evaluacion/index/'.$evaluacion->paciente_id) }} class="btn btn-info">Volver</a>
                     </td>

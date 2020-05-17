@@ -110,26 +110,10 @@ class EvaluacionController extends Controller
             array_push($formulariosRealizados,$formularioTemp);
         }
         $formulariosNoRealizados=DB::table('formularios')->whereNotIn('id',$IdsFormulariosRealizados )->get();
-        //****CHARTS
-        $formulariosRealizados = $evaluacion->formularios;
-
-        $chart = new EvolucionPacienteFormulario;
-        $labels = [];
-        $datasetValue = [];
-        foreach($formulariosRealizados as $formulario){
-            $ptos = $formulario->puntuacionObtenida($evaluacion->id, $formulario->id);
-            array_push($datasetValue, $ptos);
-            array_push($labels, $formulario->nombre);
-
-        }
-        $chart->labels($labels);
-        $chart->dataset('Resultados obtenidos', 'bar', $datasetValue);
-        $chart->height(1000);
-        $chart->width(1100);
-        //****CHARTS
 
 
-        return view('evaluacion.show', ['evaluacion'=>$evaluacion, 'formulariosRealizados'=>$formulariosRealizados, 'formulariosNorealizados'=>$formulariosNoRealizados, 'chart' => $chart ]);
+
+        return view('evaluacion.show', ['evaluacion'=>$evaluacion, 'formulariosRealizados'=>$formulariosRealizados, 'formulariosNorealizados'=>$formulariosNoRealizados ]);
     }
 
     /**
@@ -211,7 +195,7 @@ class EvaluacionController extends Controller
         return redirect()->back()->with('danger', 'Resolución eliminada con éxito.');
 
     }
-
+    // Gráfica sencilla de una evaluacion
     public function verGrafica($idEvaluacion){
         $evaluacion = Evaluacion::find($idEvaluacion);
         $formulariosRealizados = $evaluacion->formularios;
@@ -223,17 +207,44 @@ class EvaluacionController extends Controller
         foreach($formulariosRealizados as $formulario){
             $ptos = $formulario->puntuacionObtenida($idEvaluacion, $formulario->id);
             array_push($datasetValue, $ptos);
-            array_push($labels, $formulario->nombre);
+            if(strlen($formulario->nombre)>15){
+                array_push($labels,str_split($formulario->nombre,15));
+            }
+            else{
+                array_push($labels, $formulario->nombre);
+            }
+
             array_push($colours, "rgba(".random_int(0,255).",".random_int(0,255).",".random_int(0,255).", 0.2)");
 
 
         }
         $chart->labels($labels);
-        $chart->dataset('try', 'bar', $datasetValue)->color($colours)->backgroundcolor($colours);
+        $chart->displayLegend(false);
+        $chart->dataset('Puntuación Obtenida', 'bar', $datasetValue)->color($colours)->backgroundcolor($colours);
 
-        return view('evaluacion.verGrafica',  ['chart' => $chart]);
+        return view('evaluacion.verGrafica',  ['chart' => $chart, 'evaluacion'=>$evaluacion]);
 
     }
+    // Gráfica acumulada de las evaluaciones del paciente
+    public function verGraficaAcumulada($idPaciente)
+    {
+        $todasSusEvaluacionesFinalizadas = DB::table('evaluacions')->where(['paciente_id', '=', $idPaciente],
+            ['fechafin', '!=', '']);
+        $formulariosTipo1 = [];
+        $formulariosTipo2 = [];
+        $formulariosTipo3 = [];
+        foreach ($todasSusEvaluacionesFinalizadas as $evaluacion) {
+            $formularios = $evaluacion->formularios;
+            foreach($formularios as $formulario){
+            }
+
+
+        }
+
+
+    }
+
+
 
     public function evolucionPacienteFormulario($idEvaluacion)
     {
@@ -246,16 +257,21 @@ class EvaluacionController extends Controller
         foreach($formulariosRealizados as $formulario){
             $ptos = $formulario->puntuacionObtenida($idEvaluacion, $formulario->id);
             array_push($datasetValue, $ptos);
-            array_push($labels, $formulario->nombre);
+            $newLabel ="";
+            if(strlen($formulario->nombre > 10)){
+
+                $newLabel = substr($formulario->nombre,0,10);
+                $newLabel = $newLabel.'...';
+            }else{
+                $newLabel = $formulario->nombre;
+            }
+
+            array_push($labels, $newLabel);
 
         }
         $chart->labels($labels);
         $chart->dataset('try', 'bar', $datasetValue);
 
-
-//        $chart->labels(['One', 'Two', 'Three', 'Four']);
-//        $chart->dataset('My dataset', 'bar', [1, 2, 3, 4]);
-//        $chart->dataset('My dataset 2', 'bar', [4, 3, 2, 1]);
         return view('evaluacion.evolucionPacienteFormulario',  ['chart' => $chart]);
 
 

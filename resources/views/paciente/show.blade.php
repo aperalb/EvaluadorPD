@@ -117,8 +117,19 @@
                                     <tr>
                                         <td> <a style="width: 100%" href={{url('/paciente/delete/'.$paciente->id)}} class="btn btn-danger" onclick = "return confirm('¿Seguro que deseas eliminar este paciente?');" >Eliminar</a> </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <a  style="width: 100%" href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-primary">Evolución del Paciente
+                                            <br>
+                                            <img src="/images/evolucionPaciente.jpg"
+                                                 width="100%" height="200"
+                                                 alt="Evolución Paciente"
+                                            />
+                                        </td>
+                                    </tr>
                                 @endif
                             </table>
+
                         </div>
 
 

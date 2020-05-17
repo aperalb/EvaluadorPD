@@ -55,7 +55,7 @@
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        <a class="btn btn-info" href="javascript:ventanaSecundaria('/evaluacionGrafica/verGrafica/{{$evaluacion->id}}')">Ver más</a>
+                                        <a class="btn btn-info" href="/evaluacionGrafica/verGrafica/{{$evaluacion->id}}">Resumen</a>
                                     </td>
                                     @if(Auth::User()->showRol()=='MEDICO')
 

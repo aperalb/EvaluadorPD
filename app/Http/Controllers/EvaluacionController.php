@@ -225,58 +225,50 @@ class EvaluacionController extends Controller
         return view('evaluacion.verGrafica',  ['chart' => $chart, 'evaluacion'=>$evaluacion]);
 
     }
+
+
     // Gráfica acumulada de las evaluaciones del paciente
-    public function verGraficaAcumulada($idPaciente)
+    public function evolucionPacienteFormulario($idPaciente)
     {
-        $todasSusEvaluacionesFinalizadas = DB::table('evaluacions')->where(['paciente_id', '=', $idPaciente],
-            ['fechafin', '!=', '']);
-        $formulariosTipo1 = [];
-        $formulariosTipo2 = [];
-        $formulariosTipo3 = [];
-        foreach ($todasSusEvaluacionesFinalizadas as $evaluacion) {
-            $formularios = $evaluacion->formularios;
-            foreach($formularios as $formulario){
+        $paciente = Paciente::find($idPaciente);
+        $graficas = array();
+        $todasSusEvaluacionesFinalizadas = DB::table('evaluacions')->where('paciente_id', $idPaciente)->whereNotNull('fechafin')->get();
+        $formsResult = array();  // nombreFormulario:[PuntuaciónEnEvaluacion1, PuntuaciónEnEvaluación2,]
+
+        foreach ($todasSusEvaluacionesFinalizadas as $evaluacionGet) {
+
+            $evaluacion = Evaluacion::find($evaluacionGet->id);
+
+            $formulariosRealizados = $evaluacion->formularios;
+
+            foreach ($formulariosRealizados as $form) {
+                if (array_key_exists($form->nombre, $formsResult)) {
+                    array_push($formsResult[$form->nombre], array($evaluacion->fechafin, $form->puntuacionObtenida($evaluacion->id, $form->id)));
+                } else {
+                    $formsResult[$form->nombre] = array(array($evaluacion->fechafin, $form->puntuacionObtenida($evaluacion->id, $form->id)));
+                }
             }
-
-
         }
 
-
-    }
-
-
-
-    public function evolucionPacienteFormulario($idEvaluacion)
-    {
-        $evaluacion = Evaluacion::find($idEvaluacion);
-        $formulariosRealizados = $evaluacion->formularios;
-
-        $chart = new EvolucionPacienteFormulario;
-        $labels = [];
-        $datasetValue = [];
-        foreach($formulariosRealizados as $formulario){
-            $ptos = $formulario->puntuacionObtenida($idEvaluacion, $formulario->id);
-            array_push($datasetValue, $ptos);
-            $newLabel ="";
-            if(strlen($formulario->nombre > 10)){
-
-                $newLabel = substr($formulario->nombre,0,10);
-                $newLabel = $newLabel.'...';
-            }else{
-                $newLabel = $formulario->nombre;
+        foreach (array_keys($formsResult) as $form) {
+            $chart = new EvolucionPacienteFormulario;
+            $dataset = [];
+            $labels = [];
+            $colours=[];
+            foreach ($formsResult[$form] as $value) {
+                //$value[0]-> fecha
+                //$value[1]-> puntuacion
+                array_push($labels, $value[0]);
+                array_push($dataset, $value[1]);
             }
+            array_push($colours, "rgba(".random_int(0,255).",".random_int(0,255).",".random_int(0,255).", 0.2)");
 
-            array_push($labels, $newLabel);
+            $chart->labels($labels);
+            $chart->dataset($form, 'line', $dataset)->color($colours)->backgroundcolor($colours);
+            array_push($graficas, $chart);
 
         }
-        $chart->labels($labels);
-        $chart->dataset('try', 'bar', $datasetValue);
-
-        return view('evaluacion.evolucionPacienteFormulario',  ['chart' => $chart]);
-
-
-
-
+        return view('evaluacion.evolucionPacienteFormulario',  ['charts' => $graficas, 'paciente'=>$paciente]);
 
     }
 }

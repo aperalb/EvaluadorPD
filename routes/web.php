@@ -78,7 +78,7 @@ Route::group(['middlewere'=>['web']], function(){
     Route::delete('/pregunta/{id}', 'PreguntaController@destroy')->name('pregunta.destroy');
 
     /*CHARTS*/
-    Route::get('/evaluacionChart/evolucionPacienteFormulario/{idEvaluacion}', 'EvaluacionController@evolucionPacienteFormulario')->name('evaluacion.evolucionPacienteFormulario');
+    Route::get('/evaluacionChart/evolucionPacienteFormulario/{idPaciente}', 'EvaluacionController@evolucionPacienteFormulario')->name('evaluacion.evolucionPacienteFormulario');
     Route::get('/evaluacionGrafica/verGrafica/{id}', 'EvaluacionController@verGrafica')->name('evaluacion.verGrafica');
 
 });

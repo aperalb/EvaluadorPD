@@ -3,38 +3,20 @@
 @section('content')
     <div class="container">
         <div class="col-md-100 col-md-offset-2">
-            <h1 style="text-align: center">Resumen de la Evaluación</h1>
-            {{--@if($evaluacion->fechafin == null)--}}
-                {{--<h3 style="text-align: center">--}}
-                    {{--<img src="/images/noFinalizada.png"--}}
-                         {{--alt="avatar"--}}
-                         {{--width="50" height="50" ,--}}
-                         {{--onerror="this.onerror=null; this.src='/images/Default.jpg'"--}}
-                         {{--alt="Finalizada"/>--}}
-                    {{--En Curso--}}
+            <h1 style="text-align: center">Evolución del paciente en el tiempo.</h1>
+            <h5 style="text-align: center">Evolución del resultado de los formularios resueltos en las sucesivas evaluaciones realizadas al paciente.</h5>
 
-                {{--</h3>--}}
-            {{--@else--}}
-                {{--<h3>--}}
-                    {{--<img src="/images/finalizada.png"--}}
-                         {{--alt="avatar"--}}
-                         {{--width="50" height="50" ,--}}
-                         {{--onerror="this.onerror=null; this.src='/images/Default.jpg'"--}}
-                         {{--alt="Finalizada"/>--}}
-                    {{--{{'Finalizada: '.date('yy-m-d', strtotime($evaluacion->fechafin)) }}--}}
-                {{--</h3>--}}
-            {{--@endif--}}
-            {{--<hr>--}}
-            {{--<table class="table table-striped">--}}
-                {{--<tr>--}}
-                    {{--<th>Paciente:</th>--}}
-                    {{--<td>{{$evaluacion->paciente->user->getFullsurnameAttribute()}}</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<th> Fecha de inicio:</th>--}}
-                    {{--<td>{{date('yy-m-d', strtotime($evaluacion->created_at))}}</td>--}}
-                {{--</tr>--}}
-            {{--</table>--}}
+            <hr>
+            <table class="table table-striped">
+                <tr>
+                    <th style="text-align: center">Paciente:</th>
+                    <td style="text-align: center">{{$paciente->user->getFullsurnameAttribute()}}</td>
+                </tr>
+                <tr style="background-color: rgba(0, 0, 0, .05)">
+                    <th style="text-align: center">Fecha de inicio de la enfermedad:</th>
+                    <td style="text-align: center">{{$paciente->fechainiciopd}}</td>
+                </tr>
+            </table>
             <hr>
             @foreach ($charts as $chart)
             <div tyle="position: relative; maintainAspectRatio:true, height:40vh; width:80vw">

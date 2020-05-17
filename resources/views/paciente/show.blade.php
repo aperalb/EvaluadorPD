@@ -119,7 +119,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a  style="width: 100%" href={{url('/responsable/index/'.$paciente->id)}} class="btn btn-primary">Evolución del Paciente
+                                            <a  style="width: 100%" href={{url('/evaluacionChart/evolucionPacienteFormulario/'.$paciente->id)}} class="btn btn-primary">Evolución del Paciente
                                             <br>
                                             <img src="/images/evolucionPaciente.jpg"
                                                  width="100%" height="200"

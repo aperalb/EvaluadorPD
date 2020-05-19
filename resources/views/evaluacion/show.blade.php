@@ -42,14 +42,14 @@
 
                                 <tr id="estadoActual">
                                     <th>Fecha Inicio</th>
-                                    <td>{{date('yy-m-d', strtotime($evaluacion->created_at))}}</td>
+                                    <td>{{date('Y-m-d', strtotime($evaluacion->created_at))}}</td>
                                 </tr>
                                 <tr>
                                     <th>Estado</th>
                                     @if($evaluacion->fechafin == "")
                                         <td>En curso</td>
                                     @else
-                                        <td>{{'Finalizada ' .date('yy-m-d', strtotime($evaluacion->fechafin))}}</td>
+                                        <td>{{'Finalizada ' .date('Y-m-d', strtotime($evaluacion->fechafin))}}</td>
                                     @endif
                                 </tr>
                                 <tr id="nuevoEstado" style="display: none;background-color: rgba(0,0,0,.05)">
@@ -64,7 +64,7 @@
                                 </tr>
                                 <tr id="nuevoPeso" style="display: none;background-color: rgba(0,0,0,.05)">
                                     <th>Nuevo Peso</th>
-                                    <td>{!! Form::number('peso',$evaluacion->altura,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}</td>
+                                    <td>{!! Form::number('peso',$evaluacion->peso,['class'=>'form-control', 'required', 'autofocus','step' => '0.1']) !!}</td>
 
                                 </tr>
                                 <tr id="alturaActual" style="background-color: transparent">

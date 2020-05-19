@@ -146,7 +146,7 @@ class EvaluacionController extends Controller
         $evaluacion = Evaluacion::find($id);
         $evaluacion->fill($request->all());
         if($request->get('nuevoEstado')!=''){
-        $evaluacion->fechafin = date('yy-m-d');
+        $evaluacion->fechafin = date('Y-m-d');
             }
         $evaluacion->save();
         return redirect('evaluacion/'.$evaluacion->id)->with('success', 'Elemento editado correctamente');

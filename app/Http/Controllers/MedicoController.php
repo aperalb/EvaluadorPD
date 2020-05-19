@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Medico;
 use App\User;
+use Illuminate\Validation\Rule;
 
 class MedicoController extends Controller
 {

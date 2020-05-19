@@ -41,8 +41,8 @@
                                             <th>{{ $sintoma->nombre }}</th>
 
                                             @if(Auth::User()->showRol()=='MEDICO')
-                                            <td><b>Fecha de creación:</b> <br>{{date('yy-m-d', strtotime($sintoma->created_at))}}</td>
-                                            <td><b>Fecha de actualización:</b> <br>{{date('yy-m-d', strtotime($sintoma->updated_at))}}</td>
+                                            <td><b>Fecha de creación:</b> <br>{{date('Y-m-d', strtotime($sintoma->created_at))}}</td>
+                                            <td><b>Fecha de actualización:</b> <br>{{date('Y-m-d', strtotime($sintoma->updated_at))}}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['sintoma.edit',$sintoma->id], 'method' => 'get']) !!}
                                                 {!! Form::submit('Editar', ['class'=> 'btn btn-info', 'style'=>"width: 100%"])!!}

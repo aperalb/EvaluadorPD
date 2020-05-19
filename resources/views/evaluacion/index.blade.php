@@ -41,11 +41,11 @@
                             </tr>
                             @foreach($evaluaciones as $evaluacion)
                                 <tr>
-                                    <td>{{ date('yy-m-d', strtotime($evaluacion->created_at)) }}</td>
+                                    <td>{{ date('Y-m-d', strtotime($evaluacion->created_at)) }}</td>
                                     @if($evaluacion->fechafin == null)
                                         <td>No Finalizada</td>
                                     @else
-                                        <td>{{ date('yy-m-d', strtotime($evaluacion->fechafin)) }}</td>
+                                        <td>{{ date('Y-m-d', strtotime($evaluacion->fechafin)) }}</td>
                                     @endif
                                     <td>{{ $evaluacion->altura }}</td>
                                     <td>{{ $evaluacion->peso}}</td>

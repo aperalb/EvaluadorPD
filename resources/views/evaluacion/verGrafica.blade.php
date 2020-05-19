@@ -21,7 +21,7 @@
                              width="50" height="50" ,
                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                              alt="Finalizada"/>
-                        {{'Finalizada: '.date('yy-m-d', strtotime($evaluacion->fechafin)) }}
+                        {{'Finalizada: '.date('Y-m-d', strtotime($evaluacion->fechafin)) }}
                     </h3>
                 @endif
                 <hr>
@@ -32,7 +32,7 @@
                     </tr>
                     <tr>
                         <th> Fecha de inicio:</th>
-                        <td>{{date('yy-m-d', strtotime($evaluacion->created_at))}}</td>
+                        <td>{{date('Y-m-d', strtotime($evaluacion->created_at))}}</td>
                     </tr>
                 </table>
                 <hr>

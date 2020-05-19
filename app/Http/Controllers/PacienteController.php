@@ -51,8 +51,8 @@ class PacienteController extends Controller
             'nuhsa' => 'required|unique:pacientes',
             'fotografia' => 'nullable|mimes:jpeg,bmp,png',
             'password' => 'required|alpha_num',
-            'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
-            'fechanac' => 'required|before:strtotime("now")'
+            'fechainiciopd' =>'required|before_or_equal:today',
+            'fechanac' => 'required|before:today'
         ]);
         $user = User::create([
             'name' => $request->get('nombre'),
@@ -124,10 +124,9 @@ class PacienteController extends Controller
             'apellido2'=>'required|alpha',
             'sexo' => 'required|in:Hombre,Mujer',
             'numerotel'=> 'nullable|alpha_num|max:9',
-            'nuhsa' => 'required|unique:pacientes',
             'fotografia' => 'nullable|mimes:jpeg,bmp,png',
-            'fechainiciopd' =>'required|before_or_equal:strtotime("now")',
-            'fechanac' => 'required|before:strtotime("now")'
+            'fechainiciopd' =>'required|before_or_equal:today',
+            'fechanac' => 'required|before:today'
         ]);
         $paciente = Paciente::find($id);
         $user = $paciente->user;

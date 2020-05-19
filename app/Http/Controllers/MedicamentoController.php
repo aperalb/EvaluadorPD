@@ -54,14 +54,21 @@ class MedicamentoController extends Controller
     public function store(Request $request)
     {
         User::validaRol('MEDICO');
-        $validatedData =   $request->validate([
-            'nombre' => 'required|alpha_num',
-            'descripcion' => 'nullable'
-            ]);
+
         $medicamento = new Medicamento();
         if($request->get('categoriaNueva') != '' && $request->get('categoriaNueva') != null ){
+            $validatedData =   $request->validate([
+                'nombre' => 'required',
+                'categoriaNueva' => 'required|alpha_num',
+                'descripcion' => 'nullable'
+            ]);
             $medicamento->categoria = $request->get('categoriaNueva');
         }else{
+            $validatedData =   $request->validate([
+                'nombre' => 'required',
+                'categoriaExistente' => 'required|alpha_num',
+                'descripcion' => 'nullable'
+            ]);
             $categoria = Medicamento::categorias()[$request->get('categoriaExistente')];
             $medicamento->categoria = $categoria;
         }
@@ -106,14 +113,21 @@ class MedicamentoController extends Controller
     public function update(Request $request, $id)
     {
         User::validaRol('MEDICO');
-        $validatedData =   $request->validate([
-            'nombre' => 'required|alpha_num',
-            'descripcion' => 'nullable'
-        ]);
+
         $medicamento = Medicamento::find($id);
         if($request->get('categoriaNueva') != '' && $request->get('categoriaNueva') != null ){
+            $validatedData =   $request->validate([
+                'nombre' => 'required',
+                'categoriaNueva' => 'required|alpha_num',
+                'descripcion' => 'nullable'
+            ]);
             $medicamento->categoria = $request->get('categoriaNueva');
         }else{
+            $validatedData =   $request->validate([
+                'nombre' => 'required',
+                'categoriaExistente' => 'required|alpha_num',
+                'descripcion' => 'nullable'
+            ]);
             $categoria = Medicamento::categorias()[$request->get('categoriaExistente')];
             $medicamento->categoria = $categoria;
         }

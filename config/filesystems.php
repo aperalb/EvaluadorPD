@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'public'),
+    'default' => env('FILESYSTEM_DRIVER', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,11 +57,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'key' => env('AWS_ACCESS_KEY_ID','AKIA37SVVXBH7IS62PBV'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY','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'),
+            'region' => env('AWS_DEFAULT_REGION','eu-west-1'),
+            'bucket' => env('AWS_BUCKET','cloud-cube-eu'),
+            'url' => env('AWS_URL','https://cloud-cube-eu.s3.amazonaws.com/oyqz57yo2z1j'),
         ],
 
     ],

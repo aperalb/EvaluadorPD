@@ -42,35 +42,16 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-    /* PARA LOCAL
+
+
         'mysql' => [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
-   */
-        'mysql' => [
-            'driver' => 'mysql',
-            'url' => env('mysql://b5f17c9fa07413:e467a82b@eu-cdbr-west-03.cleardb.net/heroku_f7774fd8dd07d4f?reconnect=true'),
+            'url' => 'mysql://b24548f2b623cf:9b6203fd@eu-cdbr-west-03.cleardb.net/heroku_f71d7b9233c47c9?reconnect=true',
             'host' => env('DB_HOST', 'db4free.net'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'heroku_f7774fd8dd07d4f'),
-            'username' => env('DB_USERNAME', 'b5f17c9fa07413'),
-            'password' => env('DB_PASSWORD', 'e467a82b'),
+            'database' => env('DB_DATABASE', 'heroku_f71d7b9233c47c9'),
+            'username' => env('DB_USERNAME', 'b24548f2b623cf'),
+            'password' => env('DB_PASSWORD', '9b6203fd'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -82,7 +63,8 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        
+
+
         
         'pgsql' => [
             'driver' => 'pgsql',

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 's3'),
+    'default' => env('public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('s3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,24 +44,35 @@ return [
     'disks' => [
 
         'local' => [
-            'driver' => 'local',
-            'root' => storage_path('app'),
+            'driver' => 's3',
+            'root' => 'oyqz57yo2z1j/public/storage',
+            'key' => 'AKIA37SVVXBH7IS62PBV',
+            'secret' => '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',
+            'region' => 'eu-west-1',
+            'bucket' => 'cloud-cube-eu',
+            'url' => 'https://cloud-cube-eu.s3.amazonaws.com/oyqz57yo2z1j',
         ],
 
         'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'driver' => 's3',
+            'root' => 'oyqz57yo2z1j/public/storage',
+            'key' => 'AKIA37SVVXBH7IS62PBV',
+            'secret' => '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',
+            'region' => 'eu-west-1',
+            'domain' => 'https://cloud-cube-eu.s3.amazonaws.com',
+            'bucket' => 'cloud-cube-eu',
+            'url' => 'https://cloud-cube-eu.s3.amazonaws.com/oyqz57yo2z1j',
         ],
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID','AKIA37SVVXBH7IS62PBV'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY','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'),
-            'region' => env('AWS_DEFAULT_REGION','eu-west-1'),
-            'bucket' => env('AWS_BUCKET','cloud-cube-eu'),
-            'url' => env('AWS_URL','https://cloud-cube-eu.s3.amazonaws.com/oyqz57yo2z1j'),
+            'root' => 'oyqz57yo2z1j/public/storage',
+            'key' => 'AKIA37SVVXBH7IS62PBV',
+            'secret' => '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',
+            'region' => 'eu-west-1',
+            'domain' => 'https://cloud-cube-eu.s3.amazonaws.com',
+            'bucket' => 'cloud-cube-eu',
+            'url' => 'https://cloud-cube-eu.s3.amazonaws.com/oyqz57yo2z1j',
         ],
 
     ],

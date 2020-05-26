@@ -57,8 +57,13 @@
 
                                 <tr>
                                     <td rowspan="1">
-
-                                        <img src="{{$responsable->user->getFirstMediaUrl('fotografias') }}"
+                                        @php
+                                            $url="default";
+                                            if(isset(explode('.',$responsable->user->getFirstMediaUrl('fotografias'),2 )[1])){
+                                                $url='https://cloud-cube-eu.'.explode('.',$responsable->user->getFirstMediaUrl('fotografias'),2 )[1];
+                                            }
+                                        @endphp
+                                        <img src="{{$url}}"
                                              width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                              alt="Fotografia" />

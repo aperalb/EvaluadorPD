@@ -36,8 +36,13 @@
 
                     <tr>
                         <td rowspan="1">
-
-                            <img src="{{$paciente->user->getFirstMediaUrl('fotografias') }}"
+                            @php
+                            $url="default";
+                            if(isset(explode('.',$paciente->user->getFirstMediaUrl('fotografias'),2 )[1])){
+                                $url='https://cloud-cube-eu.'.explode('.',$paciente->user->getFirstMediaUrl('fotografias'),2 )[1];
+                            }
+                            @endphp
+                            <img src="{{$url}}"
                                  alt="avatar" style="border-radius: 50%;"
                                  width="200" height="200",
                                  onerror="this.onerror=null; this.src='/images/Default.jpg'"

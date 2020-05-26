@@ -119,7 +119,13 @@
                                     </td>
                                 <tr>
                                     <td rowspan="1">
-                                        <img src="{{$evaluacion->paciente->user->getFirstMediaUrl('fotografias') }}"
+                                        @php
+                                            $url="default";
+                                            if(isset(explode('.',$evaluacion->paciente->user->getFirstMediaUrl('fotografias'),2 )[1])){
+                                                $url='https://cloud-cube-eu.'.explode('.',$evaluacion->paciente->user->getFirstMediaUrl('fotografias'),2 )[1];
+                                            }
+                                        @endphp
+                                        <img src="{{$url}}"
                                              width="300" height="300",
                                              onerror="this.onerror=null; this.src='/images/Default.jpg'"
                                              alt="Fotografia" />

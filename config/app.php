@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://evaluadorpd.test'),
+    'url' => env('APP_URL', 'https://evaluadorpd.test'),
 
     'asset_url' => env('ASSET_URL', null),
 

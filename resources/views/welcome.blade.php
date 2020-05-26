@@ -81,7 +81,7 @@
                         <div class="col-md-8 text-center">
                             <h1>EvaluadorPD <span class="typed-words"></span></h1>
                             <p class="lead mb-5">Ana Perez Albarrán</p>
-                            <div><a data-fancybox data-ratio="2" href="https://github.com" class="btn btn-primary btn-md">Github</a></div>
+                            <div><a data-fancybox data-ratio="2" href="https://github.com/aperalb/EvaluadorPD" class="btn btn-primary btn-md">Github</a></div>
                         </div>
                     </div>
 
@@ -93,50 +93,7 @@
 
 
 
-    <section class="site-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="p-3 box-with-humber">
-                        <div class="number-behind">01.</div>
-                        <h2 class="text-primary">Título 1</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
-                        <ul class="list-unstyled ul-check primary">
-                            <li>Característica 1</li>
-                            <li>Característica 2</li>
-                            <li>Característica 3</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="p-3 box-with-humber">
-                        <div class="number-behind">02.</div>
-                        <h2 class="text-primary">Título 2</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
-                        <ul class="list-unstyled ul-check primary">
-                            <li>Característica 1</li>
-                            <li>Característica 2</li>
-                            <li>Característica 3</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="p-3 box-with-humber">
-                        <div class="number-behind">03.</div>
-                        <h2 class="text-primary">Título 3</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et praesentium eos nulla qui commodi consectetur beatae fugiat. Veniam iste rerum perferendis.</p>
-                        <ul class="list-unstyled ul-check primary">
-                            <li>Característica 1</li>
-                            <li>Característica 2</li>
-                            <li>Característica 3</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <div class="container-fluid">
         <div class="row">

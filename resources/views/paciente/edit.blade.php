@@ -108,7 +108,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        URL Fotografía
+                                        Imagen
                                     </th>
 
                                 </tr>

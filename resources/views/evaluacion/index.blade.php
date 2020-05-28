@@ -35,7 +35,7 @@
                                 @if(Auth::User()->showRol()=='MEDICO')
                                 <th align ="center" colspan ="3">Acciones</th>
                                 @else
-                                    <th align ="center" colspan ="1">Acciones</th>
+                                    <th align ="center" colspan ="2">Acciones</th>
                                 @endif
 
                             </tr>

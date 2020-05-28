@@ -19,8 +19,7 @@
                             <tr>
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>
-                                <th>Altura</th>
-                                <th>Peso</th>
+                                <th>Paciente</th>
                                 <th style="text-align:center" colspan ="4">Acciones</th>
                             </tr>
 
@@ -32,8 +31,7 @@
                                     @else
                                         <td>{{ date('Y-m-d', strtotime($evaluacion->fechafin)) }}</td>
                                     @endif
-                                    <td>{{ $evaluacion->altura }}</td>
-                                    <td>{{ $evaluacion->peso}}</td>
+                                    <td>{{ $evaluacion->paciente->user->getFullsurnameAttribute() }}</td>
                                     <td>
                                         {!! Form::open(['route' => ['evaluacion.show',$evaluacion->id], 'method' => 'get']) !!}
                                         {!! Form::submit('Detalles', ['class'=> 'btn btn-info'])!!}
@@ -52,11 +50,9 @@
                         </table>
 
 
+
                         <td>
-                            <a href={{url('/evaluacion/create/?pacienteID='.$evaluacion->paciente_id)}} class="btn btn-info">Añadir Evaluación</a>
-                        </td>
-                        <td>
-                            <a href={{ '/paciente/'.$evaluacion->paciente_id }} class="btn btn-info">Volver</a>
+                            <a href={{ '/home }} class="btn btn-info">Volver</a>
                         </td>
 
                     </div>

@@ -52,7 +52,7 @@
 
 
                         <td>
-                            <a href={{ '/home }} class="btn btn-info">Volver</a>
+                            <a href={{ '/home' }} class="btn btn-info">Volver</a>
                         </td>
 
                     </div>

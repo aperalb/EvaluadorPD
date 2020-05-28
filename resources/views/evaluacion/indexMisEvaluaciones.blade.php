@@ -51,9 +51,9 @@
 
 
 
-                        <td>
-                            <a href={{ '/home' }} class="btn btn-info">Volver</a>
-                        </td>
+                        {{--<td>--}}
+                            {{--<a href={{ '/home' }} class="btn btn-info">Volver</a>--}}
+                        {{--</td>--}}
 
                     </div>
                     @else

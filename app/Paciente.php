@@ -56,6 +56,13 @@ class Paciente extends Model
         return $sysDate - $anoNac;
     }
 
+    public function getInitPDAgeAttribute(){
+        $sysDate = date('Y');
+        $anoInitPD = date('Y', strtotime($this->fechainiciopd));
+        $birth = date('Y', strtotime($this->fechanac));
+        return $anoInitPD - $birth;
+    }
+
     public function getAgeInitPD()
     {
         return date('Y', strtotime($this->fechainiciopd));

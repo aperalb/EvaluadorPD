@@ -72,24 +72,16 @@
                                 <table class="table table-striped table-bordered">
                                     <tr>
                                         <td rowspan="1">
-                                            <a href="{{route('formulario.index')}}" class="btn"><strong>Formularios</strong>
-                                                <img src="/images/formulario.png"
-                                                     width="200" height="200"
-                                                     alt="Formularios"
-
+                                            <a href="{{route('medico.Estadisticas')}}" class="btn"><strong>Estadísticas</strong>
+                                                <img src="/images/estadisticas.png"
+                                                     width="210" height="130"
+                                                     alt="Estadisticas"
                                                 />
                                             </a>
-
                                         </td>
                                     </tr>
-
-
-
                                 </table>
-
-
                             </div>
-
 
 
                         </div>
@@ -101,7 +93,7 @@
                                     <td rowspan="1">
                                         <a href="{{route('paciente.index')}}" class="btn"><strong>Mis pacientes</strong>
                                             <img src="/images/pacientes.png"
-                                                 width="200" height="200"
+                                                 width="150" height="150"
                                                  alt="Pacientes"
 
                                             />
@@ -113,7 +105,7 @@
                                     <td rowspan="1">
                                         <a href="{{route('evaluacion.misEvaluaciones')}}" class="btn"><strong>Mis evaluaciones</strong>
                                             <img src="/images/evaluaciones.png"
-                                                 width="200" height="200"
+                                                 width="150" height="150"
                                                  alt="Evaluaciones"
 
                                             />
@@ -127,8 +119,21 @@
                                         {{--{{route('medicamento.index')}}--}}
                                         <a href="{{route('medicamento.index')}}" class="btn"><strong>Medicamentos</strong>
                                             <img src="/images/medicamentos.png"
-                                                 width="200" height="200"
+                                                 width="150" height="150"
                                                  alt="Medicamentos"
+
+                                            />
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <td></td>
+                                <tr>
+                                    <td rowspan="1">
+                                        <a href="{{route('formulario.index')}}" class="btn"><strong>Formularios</strong>
+                                            <img src="/images/formulario.png"
+                                                 width="150" height="150"
+                                                 alt="Formularios"
 
                                             />
                                         </a>

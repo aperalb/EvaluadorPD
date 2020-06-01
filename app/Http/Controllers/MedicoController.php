@@ -246,7 +246,7 @@ class MedicoController extends Controller
         array_push($graficas, $chartFormularios );
 
 
-        return view('medico/estadisticas', ['numeroPacientes' => $numeroPacientes,'mediaEdad'=>$mediaEdad,
+        return view('medico/Estadisticas', ['numeroPacientes' => $numeroPacientes,'mediaEdad'=>$mediaEdad,
             'mediaEdadInitPD'=>$mediaEdadInitPD,'numeroEvaluaciones'=>$numeroEvaluaciones,'graficas'=>$graficas]);
     }
 

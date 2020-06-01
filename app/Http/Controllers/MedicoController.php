@@ -247,7 +247,7 @@ class MedicoController extends Controller
 
 
         return view('medico/estadisticas', ['numeroPacientes' => $numeroPacientes,'mediaEdad'=>$mediaEdad,
-            'mediaEdadInitiPD'=>$mediaEdadInitPD,'numeroEvaluaciones'=>$numeroEvaluaciones,'graficas'=>$graficas]);
+            'mediaEdadInitPD'=>$mediaEdadInitPD,'numeroEvaluaciones'=>$numeroEvaluaciones,'graficas'=>$graficas]);
     }
 
 }

@@ -21,11 +21,11 @@
            </tr>
            <tr>
                <td>Media de edad</td>
-               <td>{{round($mediaEdad,2)}}</td>
+               <td>{{$mediaEdad}}</td>
            </tr>
            <tr>
                <td>Media de edad en origen de enfermedad</td>
-               <td>{{round($mediaEdadInitPD,2)}}</td>
+               <td>{{$mediaEdadInitPD}}</td>
            </tr>
            <tr>
                <td>Número de evaluaciones registradas en el sistema</td>
